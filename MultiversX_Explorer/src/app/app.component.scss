@@ -11,12 +11,14 @@ p {
   cursor: pointer;
   padding: 5px 8px;
 }
-p:hover {
+p:hover,
+.active {
   color: hsl(173, 93%, 55%);
   background: #232323;
   padding: 5px 8px;
   border-radius: 8px;
 }
+
 mat-toolbar {
   gap: 20px;
 }
@@ -73,10 +75,11 @@ mat-drawer {
   font-size: xx-large;
 }
 .toggle-sidenav {
-  background: aliceblue;
+  color: hsl(0 0% 64%);
   border-radius: 50px;
   padding: 9px;
   margin: 11px 19px;
+  border: 1px solid hsl(0 0% 64%);
 }
 .close {
   position: absolute;
@@ -85,7 +88,10 @@ mat-drawer {
   padding: 9px;
   cursor: pointer;
   border: none;
-  background: grey;
+  color: hsl(0 0% 64%);
+  border-radius: 50px;
+  margin: 0px 5px;
+  border: 1px solid hsl(0 0% 64%);
 }
 .logo-small-screen {
   text-align: center;

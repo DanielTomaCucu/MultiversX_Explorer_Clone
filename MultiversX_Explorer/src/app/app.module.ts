@@ -19,6 +19,7 @@ import { ValidatorsComponent } from './validators/validators.component';
 import { AnalyticsComponent } from './analytics/analytics.component';
 import { BlocksComponent } from './blocks/blocks.component';
 import { TransactionsComponent } from './transactions/transactions.component';
+import { SharedModule } from './shared/shared.module';
 @NgModule({
   declarations: [AppComponent, DashboardComponent, AccountsComponent, TokensComponent, NftsComponent, ValidatorsComponent, AnalyticsComponent, BlocksComponent, TransactionsComponent],
   imports: [
@@ -34,7 +35,8 @@ import { TransactionsComponent } from './transactions/transactions.component';
     MatIconModule,
     LayoutModule,
     MatListModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent],
