@@ -1,0 +1,23 @@
+<div class="input-info">
+  <input
+    matInput
+    type="text"
+    class="input"
+    [(ngModel)]="value"
+    placeholder="Search for an address, transaction/block hash, validator key or token id"
+  />
+  <div class="cards-network-info">
+    <mat-card>
+      <p>Epoch {{ epoch[0]?.epoch | number }}</p>
+      <small>{{ epoch[0]?.round | number }} Rounds</small>
+    </mat-card>
+    <mat-card>
+      <p class="special-info">${{ price }} </p>
+      <small>Current Price</small>
+    </mat-card>
+    <mat-card>
+      <p class="special-info">{{ tokensCount }}</p>
+      <small> Tokens on blockchain</small>
+    </mat-card>
+  </div>
+</div>

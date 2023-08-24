@@ -4,23 +4,32 @@
 span {
   color: #e9e9e9;
 }
-p {
+p  {
   color: #e9e9e9;
   font-weight: 200;
-  font-size: smaller;
+  font-size: small;
   cursor: pointer;
-  padding: 5px 8px;
+  padding: 0px 8px;
 }
 p:hover,
 .active {
   color: hsl(173, 93%, 55%);
   background: #232323;
-  padding: 5px 8px;
+  padding: 0px 8px;
   border-radius: 8px;
 }
-
+.li-menu-mobile {
+  padding: 10px 15px;
+}
+.li-menu-mobile:hover {
+  color: hsl(173, 93%, 55%);
+  background: #232323;
+  padding: 10px 15px;
+  border-radius: 8px;
+}
 mat-toolbar {
   gap: 20px;
+  background: #171717;
 }
 .mainnet {
   padding: 10px 18px 10px 25px;
@@ -100,4 +109,18 @@ mat-drawer {
   transform: translateX(-50%);
   font-size: larger;
   top: 20px;
+}
+.fullscreen {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+
+.hidden {
+  width: 0;
+  height: 0;
+  overflow: hidden;
 }

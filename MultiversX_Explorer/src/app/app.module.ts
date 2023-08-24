@@ -20,7 +20,8 @@ import { AnalyticsComponent } from './analytics/analytics.component';
 import { BlocksComponent } from './blocks/blocks.component';
 import { TransactionsComponent } from './transactions/transactions.component';
 import { SharedModule } from './shared/shared.module';
-
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
 @NgModule({
   declarations: [
@@ -50,6 +51,8 @@ import { MatTableModule } from '@angular/material/table';
     AppRoutingModule,
     SharedModule,
     MatTableModule,
+    MatInputModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,0 +1,41 @@
+.input {
+  background-color: #000000;
+  padding: 17px;
+  border: 1px solid #000000;
+  border-radius: 20px;
+  min-width: 45%;
+  color: #feffff;
+}
+.input-info {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 30px;
+  margin: 10px;
+}
+mat-card {
+  background: #262626;
+  color: #d4d4d4;
+  padding: 5px 20px;
+  border-radius: 50px;
+  p {
+    font-size: smaller;
+    margin: 3px 0px 0px;
+  }
+  small {
+    font-size: 11px;
+    color: #707170;
+    margin-top: 4px;
+  }
+  .special-info {
+  color: #22f7dd;
+  font-size: 16px;
+}
+}
+.cards-network-info {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 18px;
+}
+
