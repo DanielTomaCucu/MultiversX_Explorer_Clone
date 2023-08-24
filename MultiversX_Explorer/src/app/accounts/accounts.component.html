@@ -1,1 +1,25 @@
-<p>accounts works!</p>
+<div class="info-accounts">
+  <h2 class="header-dashboard">Accounts</h2>
+  <div class="cards-content">
+    <mat-card>
+      <mat-card-content class="card-dashboard">
+        <h4 class="card-header">Total Accounts</h4>
+        <p>{{ accountsCount | number }}</p>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card>
+      <mat-card-content class="card-dashboard">
+        <h4 class="card-header">User Staking</h4>
+        <p>{{ totalStakeCount | truncate }}</p>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card>
+      <mat-card-content class="card-dashboard">
+        <h4 class="card-header">Active Validators</h4>
+        <p>{{ activeValidators | number }}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

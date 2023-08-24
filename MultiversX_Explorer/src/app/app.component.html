@@ -1,40 +1,44 @@
 <mat-toolbar *ngIf="!(isHandset$ | async)">
   <span>MultiversX Explorer</span>
   <span class="spacer"></span>
-  <p routerLink="/dashboard">Dashboad</p>
-  <p routerLink="blocks">Blocks</p>
-  <p routerLink="transactions">Transactions</p>
-  <p routerLink="accounts">Accounts</p>
-  <p routerLink="tokens">Tokens</p>
-  <p routerLink="nfts">NTFs</p>
-  <p routerLink="validators">Validators</p>
-  <p routerLink="analytics">Analitycs</p>
+  <p routerLink="/dashboard" routerLinkActive="active">Dashboad</p>
+  <p routerLink="blocks" routerLinkActive="active">Blocks</p>
+  <p routerLink="transactions" routerLinkActive="active">Transactions</p>
+  <p routerLink="accounts" routerLinkActive="active">Accounts</p>
+  <p routerLink="tokens" routerLinkActive="active">Tokens</p>
+  <p routerLink="nfts" routerLinkActive="active">NTFs</p>
+  <p routerLink="validators" routerLinkActive="active">Validators</p>
+  <p routerLink="analytics" routerLinkActive="active">Analitycs</p>
   <button class="mainnet" mat-button>
-  <span class="dot"></span>
-  Mainnet
-</button>
-
+    <span class="dot"></span>
+    Mainnet
+  </button>
 </mat-toolbar>
 
-<span class="logo-small-screen" *ngIf="(isHandset$ | async)">MultiversX Explorer</span>
-<mat-drawer-container class="example-container" autosize *ngIf="(isHandset$ | async)">
+<span class="logo-small-screen" *ngIf="isHandset$ | async"
+  >MultiversX Explorer</span
+>
+<mat-drawer-container
+  class="example-container"
+  autosize
+  *ngIf="isHandset$ | async"
+>
   <mat-drawer #drawer class="example-sidenav" mode="side">
     <mat-icon class="close" (click)="drawer.toggle()">close</mat-icon>
     <span>MultiversX Explorer</span>
     <span class="spacer"></span>
-    <p routerLink="/dashboard">Dashboad</p>
-    <p routerLink="blocks">Blocks</p>
-    <p routerLink="transactions">Transactions</p>
-    <p routerLink="accounts">Accounts</p>
-    <p routerLink="tokens">Tokens</p>
-    <p routerLink="nfts">NTFs</p>
-    <p routerLink="validators">Validators</p>
-    <p routerLink="analytics">Analytics</p>
-   <button class="mainnet" mat-button>
-  <span class="dot"></span>
-  Mainnet
-</button>
-
+    <p routerLink="/dashboard" routerLinkActive="active">Dashboad</p>
+    <p routerLink="blocks" routerLinkActive="active">Blocks</p>
+    <p routerLink="transactions" routerLinkActive="active">Transactions</p>
+    <p routerLink="accounts" routerLinkActive="active">Accounts</p>
+    <p routerLink="tokens" routerLinkActive="active">Tokens</p>
+    <p routerLink="nfts" routerLinkActive="active">NTFs</p>
+    <p routerLink="validators" routerLinkActive="active">Validators</p>
+    <p routerLink="analytics" routerLinkActive="active">Analytics</p>
+    <button class="mainnet" mat-button>
+      <span class="dot"></span>
+      Mainnet
+    </button>
   </mat-drawer>
 
   <mat-icon

@@ -1,30 +1,30 @@
 <div class="dashdoard-content">
-  <h1 class=" header-dashboard">MultiversX Blockchain Explorer</h1>
+  <h1 class="header-dashboard">MultiversX Blockchain Explorer</h1>
   <div class="cards-content">
-  <mat-card>
-    <mat-card-content class="card-dashboard">
-      <h4 class="card-header">Total Accounts</h4>
-      <p>{{ accountsCount }}</p>
-    </mat-card-content>
-  </mat-card>
+    <mat-card>
+      <mat-card-content class="card-dashboard">
+        <h4 class="card-header">Total Accounts</h4>
+        <p>{{ accountsCount | number }}</p>
+      </mat-card-content>
+    </mat-card>
 
-  <mat-card>
-    <mat-card-content class="card-dashboard">
-      <h4 class="card-header">Block Height</h4>
-      <p>{{ blocksCount }}</p>
-    </mat-card-content>
-  </mat-card>
-  <mat-card>
-    <mat-card-content class="card-dashboard">
-      <h4 class="card-header">Total Transactions</h4>
-      <p>{{ transactionsCount }}</p>
-    </mat-card-content>
-  </mat-card>
-  <mat-card>
-    <mat-card-content class="card-dashboard">
-      <h4 class="card-header">Validators</h4>
-      <p>{{ validatorsCount }}</p>
-    </mat-card-content>
-  </mat-card>
+    <mat-card>
+      <mat-card-content class="card-dashboard">
+        <h4 class="card-header">Block Height</h4>
+        <p>{{ blocksCount | number }}</p>
+      </mat-card-content>
+    </mat-card>
+    <mat-card>
+      <mat-card-content class="card-dashboard">
+        <h4 class="card-header">Total Transactions</h4>
+        <p>{{ transactionsCount | number }}</p>
+      </mat-card-content>
+    </mat-card>
+    <mat-card>
+      <mat-card-content class="card-dashboard">
+        <h4 class="card-header">Validators</h4>
+        <p>{{ validatorsCount | number }}</p>
+      </mat-card-content>
+    </mat-card>
   </div>
 </div>
