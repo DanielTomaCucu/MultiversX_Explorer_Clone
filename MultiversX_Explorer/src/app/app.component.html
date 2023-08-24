@@ -19,6 +19,8 @@
   >MultiversX Explorer</span
 >
 <mat-drawer-container
+  [class.fullscreen]="drawer.opened"
+  [class.hidden]="!drawer.opened"
   class="example-container"
   autosize
   *ngIf="isHandset$ | async"
@@ -27,27 +29,45 @@
     <mat-icon class="close" (click)="drawer.toggle()">close</mat-icon>
     <span>MultiversX Explorer</span>
     <span class="spacer"></span>
-    <p routerLink="/dashboard" routerLinkActive="active">Dashboad</p>
-    <p routerLink="blocks" routerLinkActive="active">Blocks</p>
-    <p routerLink="transactions" routerLinkActive="active">Transactions</p>
-    <p routerLink="accounts" routerLinkActive="active">Accounts</p>
-    <p routerLink="tokens" routerLinkActive="active">Tokens</p>
-    <p routerLink="nfts" routerLinkActive="active">NTFs</p>
-    <p routerLink="validators" routerLinkActive="active">Validators</p>
-    <p routerLink="analytics" routerLinkActive="active">Analytics</p>
+    <p class="li-menu-mobile" routerLink="/dashboard" routerLinkActive="active">
+      Dashboad
+    </p>
+    <p class="li-menu-mobile" routerLink="blocks" routerLinkActive="active">
+      Blocks
+    </p>
+    <p
+      class="li-menu-mobile"
+      routerLink="transactions"
+      routerLinkActive="active"
+    >
+      Transactions
+    </p>
+    <p class="li-menu-mobile" routerLink="accounts" routerLinkActive="active">
+      Accounts
+    </p>
+    <p class="li-menu-mobile" routerLink="tokens" routerLinkActive="active">
+      Tokens
+    </p>
+    <p class="li-menu-mobile" routerLink="nfts" routerLinkActive="active">
+      NTFs
+    </p>
+    <p class="li-menu-mobile" routerLink="validators" routerLinkActive="active">
+      Validators
+    </p>
+    <p class="li-menu-mobile" routerLink="analytics" routerLinkActive="active">
+      Analytics
+    </p>
     <button class="mainnet" mat-button>
       <span class="dot"></span>
       Mainnet
     </button>
   </mat-drawer>
-
-  <mat-icon
-    *ngIf="isHandset$ | async"
-    (click)="drawer.toggle()"
-    class="toggle-sidenav"
-    >menu</mat-icon
-  >
 </mat-drawer-container>
-
+<mat-icon
+  *ngIf="isHandset$ | async"
+  (click)="drawer.toggle()"
+  class="toggle-sidenav"
+  >menu</mat-icon
+>
 
 <router-outlet></router-outlet>

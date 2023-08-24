@@ -9,6 +9,7 @@ export class AccountsService {
   private accountsCount = `${environment.baseUrl}/accounts/count`;
   private totalStake = `${environment.baseUrl}/stake`;
   private accountsList = `${environment.baseUrl}/accounts?size=50`;
+  private getAccountByAddress=`${environment.baseUrl}/accounts`
   constructor(private http: HttpClient) {}
   getTotalAccounts(): Observable<any> {
     return this.http.get<any>(this.accountsCount);
