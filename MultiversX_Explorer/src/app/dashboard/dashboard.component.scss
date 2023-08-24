@@ -1,20 +1,19 @@
 .dashdoard-content {
   background-color: #000;
-      margin: 1vh 10px;
+  margin: 1vh 10px;
   border-radius: 20px;
 
   padding: 20px;
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 
-    gap: 20px;
+  gap: 20px;
 }
 .cards-content {
-   display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 20px;
-    width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
 }
 .header-dashboard {
   color: #fff;
@@ -22,7 +21,7 @@
   font-size: xx-large;
 }
 mat-card {
-  background:#111212;
+  background: #111212;
   border-radius: 20px;
   flex: 1;
 }

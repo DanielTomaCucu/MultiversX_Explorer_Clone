@@ -59,18 +59,6 @@ mat-toolbar {
   background-color: #000;
 }
 
-.example-container {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-}
-.example-sidenav {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-}
 
 .spacer {
   flex: 1 1 auto;
@@ -109,12 +97,13 @@ mat-drawer {
   top: 20px;
 }
 .fullscreen {
-  position: absolute;
+  position: fixed;
   width: 100%;
   height: 100%;
   top: 0;
   left: 0;
   z-index: 2;
+  overflow: hidden;
 }
 
 .hidden {
