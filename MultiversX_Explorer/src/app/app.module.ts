@@ -20,8 +20,20 @@ import { AnalyticsComponent } from './analytics/analytics.component';
 import { BlocksComponent } from './blocks/blocks.component';
 import { TransactionsComponent } from './transactions/transactions.component';
 import { SharedModule } from './shared/shared.module';
+
+import { MatTableModule } from '@angular/material/table';
 @NgModule({
-  declarations: [AppComponent, DashboardComponent, AccountsComponent, TokensComponent, NftsComponent, ValidatorsComponent, AnalyticsComponent, BlocksComponent, TransactionsComponent],
+  declarations: [
+    AppComponent,
+    DashboardComponent,
+    AccountsComponent,
+    TokensComponent,
+    NftsComponent,
+    ValidatorsComponent,
+    AnalyticsComponent,
+    BlocksComponent,
+    TransactionsComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -36,7 +48,8 @@ import { SharedModule } from './shared/shared.module';
     LayoutModule,
     MatListModule,
     AppRoutingModule,
-    SharedModule
+    SharedModule,
+    MatTableModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

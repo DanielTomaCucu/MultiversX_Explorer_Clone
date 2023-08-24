@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
 import { AccountsService } from './accounts.service';
 
 @Component({
@@ -10,7 +11,14 @@ export class AccountsComponent {
   accountsCount: string = '';
   totalStakeCount: any = '';
   activeValidators: string = '';
-  constructor(private accountsService: AccountsService) {}
+  accountsList!: Observable<any>;
+  dataSource :any;
+  constructor(private accountsService: AccountsService) {
+
+  }
+
+  displayedColumns = ['address', 'balance'];
+
   ngOnInit() {
     this.accountsService
       .getTotalAccounts()
@@ -19,5 +27,10 @@ export class AccountsComponent {
       this.totalStakeCount = data.totalStaked;
       this.activeValidators = data.activeValidators;
     });
+    this.accountsService.getAccountsList().subscribe((data) => {
+      this.accountsList = data;
+      this.dataSource = this.accountsList; // <-- Set the dataSource here
+    });
+
   }
 }
