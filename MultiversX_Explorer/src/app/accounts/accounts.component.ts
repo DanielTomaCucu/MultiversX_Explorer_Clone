@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
+import { AccountsDetailsService } from './accounts-details/accounts-details.service';
 import { AccountsService } from './accounts.service';
 
 @Component({
@@ -15,7 +17,11 @@ export class AccountsComponent {
   accountsList!: Observable<any>;
   dataSource: any;
   value: any;
-  constructor(private accountsService: AccountsService) {
+  constructor(
+    private accountsService: AccountsService,
+    private accountDetailsService: AccountsDetailsService,
+    private router: Router
+  ) {
     this.subscriptions = new Subscription();
   }
 
@@ -39,6 +45,11 @@ export class AccountsComponent {
         this.dataSource = this.accountsList;
       })
     );
+  }
+  getAddress(address: any): Observable<any> {
+    this.router.navigate(['/accounts' ,address]);
+    return this.accountDetailsService.getAccountDetails(address);
+
   }
   ngOnDestroy() {
     this.subscriptions.unsubscribe();

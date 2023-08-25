@@ -1,0 +1,72 @@
+<app-network-info></app-network-info>
+
+<div class="addressDetails-container">
+  <h2>Address Details</h2>
+  <div class="address">
+    <p class="address-copy">
+      Address: <span class="address-id"> {{ address }} </span>
+      <mat-icon class="copy-address-icon" (click)="copyToClipboard()"
+        >content_copy</mat-icon
+      >
+    </p>
+  </div>
+  <div class="cards-info">
+    <div class="card-info">
+      <img
+        src="assets/multiversX-logo.png"
+        alt="MultiversX logo"
+        class="mvx-logo"
+      />
+      <div class="text-card-info">
+        <p>Balance</p>
+        <p class="specific-infi-card">
+          {{ accountDetails?.balance | truncate }} EGLD
+        </p>
+      </div>
+    </div>
+    <div class="card-info">
+      <mat-icon class="icon-account-info">lock</mat-icon>
+      <div class="text-card-info">
+        <p>Stake</p>
+        <p class="specific-infi-card">{{ stakeAmount | number }}</p>
+      </div>
+    </div>
+
+    <div class="card-info">
+      <mat-icon class="icon-account-info">attach_money</mat-icon>
+      <div class="text-card-info">
+        <p>Value</p>
+        <p class="specific-infi-card">{{ accountDetails?.value }}</p>
+      </div>
+    </div>
+
+    <div class="card-info">
+      <mat-icon class="icon-account-info">person</mat-icon>
+      <div class="text-card-info">
+        <p>Nonce</p>
+        <p class="specific-infi-card">{{ accountDetails?.nonce }}</p>
+      </div>
+    </div>
+    <div class="card-info">
+      <mat-icon class="icon-account-info"> stacked_bar_chart </mat-icon>
+      <div class="text-card-info">
+        <p>Tokens</p>
+        <p class="specific-infi-card">{{ accountTokensCount }}</p>
+      </div>
+    </div>
+    <div class="card-info">
+      <mat-icon class="icon-account-info">play_arrow </mat-icon>
+      <div class="text-card-info">
+        <p>NFTs</p>
+        <p class="specific-infi-card">{{ nftAmount }}</p>
+      </div>
+    </div>
+    <div class="card-info">
+      <mat-icon class="icon-account-info">all_out </mat-icon>
+      <div class="text-card-info">
+        <p>Shard</p>
+        <p class="specific-infi-card">{{ accountDetails?.shard }}</p>
+      </div>
+    </div>
+  </div>
+</div>

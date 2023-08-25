@@ -23,6 +23,7 @@ import { SharedModule } from './shared/shared.module';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
+import { AccountsDetailsComponent } from './accounts/accounts-details/accounts-details.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { MatTableModule } from '@angular/material/table';
     AnalyticsComponent,
     BlocksComponent,
     TransactionsComponent,
+    AccountsDetailsComponent,
   ],
   imports: [
     BrowserModule,
