@@ -5,12 +5,25 @@ import { NetworkInfoComponent } from './network-info/network-info.component';
 import { FormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { LargeNumberPipe } from './largeNumber.pipe';
-
+import { TruncateMiddlePipe } from './truncate-middle.pipe';
+import { CapitalizePipe } from './capitalize.pipe';
 
 
 @NgModule({
-  declarations: [TruncatePipe, NetworkInfoComponent,LargeNumberPipe],
+  declarations: [
+    TruncatePipe,
+    NetworkInfoComponent,
+    LargeNumberPipe,
+    TruncateMiddlePipe,
+    CapitalizePipe,
+  ],
   imports: [CommonModule, FormsModule, MatCardModule],
-  exports: [TruncatePipe, NetworkInfoComponent,LargeNumberPipe],
+  exports: [
+    TruncatePipe,
+    NetworkInfoComponent,
+    LargeNumberPipe,
+    TruncateMiddlePipe,
+    CapitalizePipe,
+  ],
 })
 export class SharedModule {}
