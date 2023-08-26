@@ -24,7 +24,8 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
 import { AccountsDetailsComponent } from './accounts/accounts-details/accounts-details.component';
-
+import { TokensListComponent } from './tokens/tokens-list/tokens-list.component';
+import { MatSortModule } from '@angular/material/sort';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,6 +38,7 @@ import { AccountsDetailsComponent } from './accounts/accounts-details/accounts-d
     BlocksComponent,
     TransactionsComponent,
     AccountsDetailsComponent,
+    TokensListComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,6 +58,8 @@ import { AccountsDetailsComponent } from './accounts/accounts-details/accounts-d
     MatTableModule,
     MatInputModule,
     FormsModule,
+ 
+    MatSortModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

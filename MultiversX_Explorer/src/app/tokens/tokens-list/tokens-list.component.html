@@ -1,0 +1,90 @@
+<div class="tokens-list">
+  <div class="small-info-table">
+    <h2 class="header-table">Tokens</h2>
+    <div class="info-eco">
+      <p>
+        <span>{{ tokens }} </span> Tokens
+      </p>
+      <p>
+        <span>${{ ecoMCap.marketCap + ecoMCap.tokenMarketCap | number }} </span>
+        Ecosistem Marketcap
+      </p>
+    </div>
+  </div>
+  <input
+    matInput
+    (keyup)="applyFilter($event)"
+    placeholder="Search"
+    #input
+    class="input-table"
+  />
+
+  <div class="table-container">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+      <ng-container matColumnDef="ticker">
+        <th
+          class="table-header"
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+        >
+          Token
+        </th>
+        <td mat-cell *matCellDef="let element" class="name-table-row">
+          <img [src]="element.assets.pngUrl" alt="Token Image" />
+          <div class="info-token">
+            <p>{{ element.ticker }}</p>
+            <p class="desc-token">
+              {{ element.assets.description }}
+            </p>
+          </div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Price</th>
+        <td mat-cell *matCellDef="let element">
+          ${{ element.price | number : "1.2-2" }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="circulatingSupply">
+        <th mat-header-cell *matHeaderCellDef>Circulating Supply</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.circulatingSupply | largeNumber }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="marketCap">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>MarketCap</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.marketCap | number : "1.0-0" }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="holders">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Holders</th>
+        <td mat-cell *matCellDef="let element">{{ element.accounts }}</td>
+      </ng-container>
+      <ng-container matColumnDef="transactions">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Transactions</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.transactions | number : "1.0-0" }}
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">
+          No data matching the filter "{{ input.value }}"
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
