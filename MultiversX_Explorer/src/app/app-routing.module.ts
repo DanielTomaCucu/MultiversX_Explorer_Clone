@@ -6,6 +6,7 @@ import { AnalyticsComponent } from './analytics/analytics.component';
 import { BlocksComponent } from './blocks/blocks.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NftsComponent } from './nfts/nfts.component';
+import { TokenDetailsComponent } from './tokens/tokens-list/token-details/token-details.component';
 import { TokensComponent } from './tokens/tokens.component';
 import { TransactionsComponent } from './transactions/transactions.component';
 import { ValidatorsComponent } from './validators/validators.component';
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'accounts', component: AccountsComponent },
   { path: 'accounts/:address', component: AccountsDetailsComponent },
   { path: 'tokens', component: TokensComponent },
+  { path: 'tokens/:identifier', component: TokenDetailsComponent },
   { path: 'nfts', component: NftsComponent },
   { path: 'validators', component: ValidatorsComponent },
   { path: 'analytics', component: AnalyticsComponent },
