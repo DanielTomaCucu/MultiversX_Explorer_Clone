@@ -1,0 +1,148 @@
+.container-details-info {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; /* space out the two cards */
+}
+
+.specific-detail {
+  background-color: #121212;
+  margin: 1vh 10px 3vh 10px;
+  border-radius: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  color: #fff;
+  width: calc(50% - 60px);
+  overflow: hidden;
+}
+.token-name-logo {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 15px;
+  img {
+    width: 30px;
+    margin-left: 10px;
+  }
+  p {
+    font-weight: 200;
+    font-size: large;
+  }
+}
+.list-summary {
+  padding: 0px 30px;
+  .item-list {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    .item-text {
+      min-width: 100px;
+      color: #a3a3a3;
+      font-weight: 100;
+      font-size: 14px;
+    }
+    .prop {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      .false {
+        color: #fef08a;
+        background: rgb(253 240 138 / 10%);
+        width: fit-content;
+        text-align: center;
+        padding: 3px 6px 3px 1px;
+        border-radius: 6px;
+        border: 1px solid;
+        font-size: 11px;
+        margin: 0px;
+      }
+      .true {
+        color: #22c55e;
+        background: #22c55e0f;
+        width: fit-content;
+        text-align: center;
+        padding: 3px 6px 3px 1px;
+        border-radius: 6px;
+        border: 1px solid;
+        font-size: 11px;
+        margin: 0px;
+      }
+      .icon-status {
+        width: 20px;
+        font-size: 12px;
+        margin: 0px 0px -14px;
+      }
+    }
+  }
+}
+.list-social {
+  display: flex;
+  gap: 3px;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  a {
+    color: #a3a3a3;
+  }
+  a:hover {
+    color: #22f7dd;
+  }
+  a:active {
+    color: #a3a3a3;
+  }
+  a:visited {
+    color: #a3a3a3;
+  }
+  mat-icon {
+    font-size: 18px;
+  }
+}
+.owner-modified{
+
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+
+
+}
+.special-desc{
+    max-height: 60px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+@media screen and (max-width: 900px) {
+  .specific-detail {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 600px) {
+  .token-name-logo {
+    img {
+      margin-left: 0px;
+    }
+  }
+  .list-summary {
+    gap: 20px;
+    padding: 10px 0px;
+    display: flex;
+    flex-direction: column;
+    .item-list {
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+      gap: 7px;
+      flex-direction: column;
+      border-bottom: 1px solid #9c9c9c12;
+      padding: 0px 0px 20px;
+      p {
+        margin: 0px;
+      }
+
+    }
+  }
+}

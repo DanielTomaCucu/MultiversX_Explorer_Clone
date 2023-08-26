@@ -1,1 +1,100 @@
 <app-network-info></app-network-info>
+
+<div class="container-details-info">
+  <div class="specific-detail">
+    <div class="token-name-logo">
+      <img [src]="tokenDetails?.assets?.pngUrl" />
+      <p class="item-text">
+        {{ tokenDetails?.name | capitalize }} ({{ tokenDetails?.ticker }}) Token
+      </p>
+    </div>
+    <div class="list-summary">
+      <div class="item-list">
+        <p class="item-text">Token</p>
+        <p class="item-text">{{ tokenDetails?.identifier }}</p>
+      </div>
+      <div class="item-list">
+        <p class="item-text">Price</p>
+        <p class="item-text">{{ tokenDetails?.price | number : "1.0-2" }}</p>
+      </div>
+      <div class="item-list">
+        <p class="item-text">Market Cap</p>
+        <p class="item-text">{{ tokenDetails?.marketCap | number }}</p>
+      </div>
+      <div class="item-list">
+        <p class="item-text">Holders</p>
+        <p class="item-text">{{ tokenDetails?.accounts | number }}</p>
+      </div>
+      <div class="item-list">
+        <p class="item-text">Transactions</p>
+        <p class="item-text">{{ tokenDetails?.transactions | number }}</p>
+      </div>
+      <div class="item-list">
+        <p class="item-text">Properties</p>
+        <div class="prop">
+          <div *ngFor="let property of displayedProperties">
+            <p
+              [class.false]="property.value == 'No'"
+              [class.true]="property.value == 'Yes'"
+            >
+              <mat-icon class="icon-status" *ngIf="property.value == 'Yes'"
+                >done</mat-icon
+              >
+              <mat-icon class="icon-status" *ngIf="property.value == 'No'"
+                >clear</mat-icon
+              >
+              {{ property.label }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="specific-detail">
+    <div class="token-name-logo">
+      <p class="item-text">Summary</p>
+    </div>
+    <div class="list-summary">
+      <div class="item-list">
+        <p class="item-text">Owner</p>
+        <p class="item-text">{{ tokenDetails?.owner | truncateMiddle : 40 }}</p>
+      </div>
+      <div class="item-list">
+        <p class="item-text">Supply</p>
+        <p class="item-text">{{ tokenDetails?.supply | number }}</p>
+      </div>
+      <div class="item-list">
+        <p class="item-text">Circulating</p>
+        <p class="item-text">{{ tokenDetails?.circulatingSupply | number }}</p>
+      </div>
+      <div class="item-list">
+        <p class="item-text">Decimals</p>
+        <p class="item-text">{{ tokenDetails?.decimals }}</p>
+      </div>
+      <div class="item-list">
+        <p class="item-text">Social</p>
+        <div class="list-social">
+          <a [href]="tokenDetails?.assets?.website"
+            ><mat-icon>language</mat-icon></a
+          >
+          <a [href]="tokenDetails?.assets?.social?.blog"
+            ><mat-icon>edit</mat-icon></a
+          >
+          <a [href]="tokenDetails?.assets?.social?.telegram"
+            ><mat-icon>send</mat-icon></a
+          >
+          <a [href]="tokenDetails?.assets?.social?.twitter"
+            ><mat-icon>group</mat-icon></a
+          >
+          <a [href]="tokenDetails?.assets?.social?.whitepaper"
+            ><mat-icon>description</mat-icon></a
+          >
+        </div>
+      </div>
+      <div class="item-list">
+        <p class="item-text">Description</p>
+        <p class="item-text special-desc">{{ tokenDetails?.assets?.description }}</p>
+      </div>
+    </div>
+  </div>
+</div>

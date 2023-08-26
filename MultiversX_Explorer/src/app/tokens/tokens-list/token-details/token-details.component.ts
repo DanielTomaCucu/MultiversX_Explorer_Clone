@@ -15,8 +15,34 @@ export class TokenDetailsComponent {
   ) {}
   ngOnInit() {
     const identifier = this.route.snapshot.paramMap.get('identifier');
-    this.tokenDetailsService
-      .getTokensDetails(identifier)
-      .subscribe((data) => console.log(data));
+    this.tokenDetailsService.getTokensDetails(identifier).subscribe((data) => {
+      this.tokenDetails = data;
+      console.log(data);
+      this.processData(this.tokenDetails);
+    });
   }
+  objectKeys = Object.keys;
+  displayedProperties: { label: string; value: any }[] = [];
+
+  processData(tokenDetails: any) {
+    const propertiesToDisplay = [
+      { key: 'canUpgrade', label: 'Can Upgrade' },
+      { key: 'canMint', label: 'Can Mint' },
+      { key: 'canBurn', label: 'Can Burn' },
+      { key: 'canChangeOwner', label: 'Can Change Owner' },
+      { key: 'canPause', label: 'Can Pause' },
+      { key: 'canWipe', label: 'Can Wipe' },
+      { key: 'canFreeze', label: 'Can Freeze' },
+      { key: 'isPaused', label: 'Not Paused' },
+    ];
+
+    this.displayedProperties = propertiesToDisplay.map((prop) => {
+      return {
+        label: prop.label,
+        value: tokenDetails[prop.key] ? 'Yes' : 'No',
+      };
+    });
+  }
+
+
 }
