@@ -1,1 +1,34 @@
-<p>tokens works!</p>
+<app-network-info></app-network-info>
+
+<div class="container-info-tokens">
+  <h2 class="header-tokens">Tokens</h2>
+  <div class="container-cards">
+    <mat-card>
+      <mat-card-content class="card-body">
+        <p class="card-title">Ecosystem Marketcap</p>
+        <p class="text-special">
+          ${{ marketCap.marketCap + marketCap.tokenMarketCap | number }}
+        </p>
+      </mat-card-content>
+    </mat-card>
+    <mat-card>
+      <mat-card-content class="card-body">
+        <p class="card-title">Total Tokens</p>
+        <p class="text-special">{{ totalTokens | number }}</p>
+      </mat-card-content>
+    </mat-card>
+    <mat-card>
+      <mat-card-content class="card-body">
+        <p class="card-title">Tokens Marketcap</p>
+        <p class="text-special">{{ marketCap.tokenMarketCap | number }}</p>
+      </mat-card-content>
+    </mat-card>
+    <mat-card>
+      <mat-card-content class="card-body">
+        <p class="card-title">Transactions Count</p>
+        <p class="text-special">{{ transactions | number }}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+<app-tokens-list></app-tokens-list>
