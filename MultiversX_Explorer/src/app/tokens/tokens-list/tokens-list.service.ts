@@ -8,7 +8,7 @@ import { environment } from 'src/enviroments/enviroment';
 export class TokensListService {
   private tokensList = `${environment.baseUrl}/tokens`;
   constructor(private http: HttpClient) {}
-  getTokensList(): Observable<any> {
-    return this.http.get<any>(this.tokensList);
+  getTokensList(from: number = 0, size: number = 25): Observable<any> {
+    return this.http.get<any>(`${this.tokensList}?from=${from}&size=${size}`);
   }
 }

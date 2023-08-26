@@ -11,14 +11,21 @@
       </p>
     </div>
   </div>
-  <input
-    matInput
-    (keyup)="applyFilter($event)"
-    placeholder="Search"
-    #input
-    class="input-table"
-  />
-
+  <div class="container-input-navigation">
+    <input
+      matInput
+      (keyup)="applyFilter($event)"
+      placeholder="Search"
+      #input
+      class="input-table"
+    />
+    <div class="navigation">
+      <span (click)="prevPage()" [class.disable]="currentFrom == 0">
+        <mat-icon> chevron_left </mat-icon>Prev</span
+      >
+      <span (click)="nextPage()">Next <mat-icon>chevron_right</mat-icon></span>
+    </div>
+  </div>
   <div class="table-container">
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
       <ng-container matColumnDef="ticker">
@@ -33,7 +40,12 @@
         <td mat-cell *matCellDef="let element" class="name-table-row">
           <img [src]="element.assets.pngUrl" alt="Token Image" />
           <div class="info-token">
-            <p>{{ element.ticker }}</p>
+            <p
+              class="get-identifier"
+              (click)="redirectToToken(element.identifier)"
+            >
+              {{ element.ticker }}
+            </p>
             <p class="desc-token">
               {{ element.assets.description }}
             </p>
