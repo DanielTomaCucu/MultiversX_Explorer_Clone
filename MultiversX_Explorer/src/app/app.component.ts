@@ -34,7 +34,7 @@ export class AppComponent {
     private router: Router
   ) {
     this.isHandset$ = this.breakpointObserver
-      .observe('(max-width: 1100px)')
+      .observe('(max-width: 993px)')
       .pipe(map((result) => result.matches));
 
     this.router.events.subscribe((event) => {
@@ -43,4 +43,5 @@ export class AppComponent {
       }
     });
   }
+  
 }
