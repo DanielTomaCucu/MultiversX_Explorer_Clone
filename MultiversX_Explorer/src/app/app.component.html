@@ -1,23 +1,44 @@
-<mat-toolbar *ngIf="!(isHandset$ | async)">
-  <span>MultiversX Explorer</span>
-  <span class="spacer"></span>
-  <p routerLink="/dashboard" routerLinkActive="active">Dashboad</p>
-  <p routerLink="blocks" routerLinkActive="active">Blocks</p>
-  <p routerLink="transactions" routerLinkActive="active">Transactions</p>
-  <p routerLink="accounts" routerLinkActive="active">Accounts</p>
-  <p routerLink="tokens" routerLinkActive="active">Tokens</p>
-  <p routerLink="nfts" routerLinkActive="active">NTFs</p>
-  <p routerLink="validators" routerLinkActive="active">Validators</p>
-  <p routerLink="analytics" routerLinkActive="active">Analitycs</p>
-  <button class="mainnet" mat-button>
-    <span class="dot"></span>
-    Mainnet
-  </button>
-</mat-toolbar>
+<div class="toolbar" *ngIf="!(isHandset$ | async)">
+  <mat-toolbar>
+    <span>MultiversX Explorer</span>
+    <span class="spacer"></span>
+    <p class="li-menu-desk" routerLink="/dashboard" routerLinkActive="active">
+      Dashboad
+    </p>
+    <p class="li-menu-desk" routerLink="blocks" routerLinkActive="active">
+      Blocks
+    </p>
+    <p class="li-menu-desk" routerLink="transactions" routerLinkActive="active">
+      Transactions
+    </p>
+    <p class="li-menu-desk" routerLink="accounts" routerLinkActive="active">
+      Accounts
+    </p>
+    <p class="li-menu-desk" routerLink="tokens" routerLinkActive="active">
+      Tokens
+    </p>
+    <p class="li-menu-desk" routerLink="nfts" routerLinkActive="active">NTFs</p>
+    <p class="li-menu-desk" routerLink="validators" routerLinkActive="active">
+      Validators
+    </p>
+    <p class="li-menu-desk" routerLink="analytics" routerLinkActive="active">
+      Analitycs
+    </p>
+    <button class="mainnet" mat-button>
+      <span class="dot"></span>
+      Mainnet
+    </button>
+  </mat-toolbar>
+</div>
+<div class="toolbar-mobil" *ngIf="isHandset$ | async">
+  <div class="grid-mobil">
+    <mat-icon (click)="drawer.toggle()" class="toggle-sidenav">menu</mat-icon>
+    <span class="logo-small-screen" *ngIf="isHandset$ | async"
+      >MultiversX Explorer</span
+    >
+  </div>
+</div>
 
-<span class="logo-small-screen" *ngIf="isHandset$ | async"
-  >MultiversX Explorer</span
->
 <mat-drawer-container
   [class.fullscreen]="drawer.opened"
   [class.hidden]="!drawer.opened"
@@ -27,47 +48,55 @@
 >
   <mat-drawer #drawer class="example-sidenav" mode="side">
     <mat-icon class="close" (click)="drawer.toggle()">close</mat-icon>
-    <span>MultiversX Explorer</span>
+    <span class="header-menu-mobile">MultiversX Explorer</span>
     <span class="spacer"></span>
-    <p class="li-menu-mobile" routerLink="/dashboard" routerLinkActive="active">
-      Dashboad
-    </p>
-    <p class="li-menu-mobile" routerLink="blocks" routerLinkActive="active">
-      Blocks
-    </p>
-    <p
-      class="li-menu-mobile"
-      routerLink="transactions"
-      routerLinkActive="active"
-    >
-      Transactions
-    </p>
-    <p class="li-menu-mobile" routerLink="accounts" routerLinkActive="active">
-      Accounts
-    </p>
-    <p class="li-menu-mobile" routerLink="tokens" routerLinkActive="active">
-      Tokens
-    </p>
-    <p class="li-menu-mobile" routerLink="nfts" routerLinkActive="active">
-      NTFs
-    </p>
-    <p class="li-menu-mobile" routerLink="validators" routerLinkActive="active">
-      Validators
-    </p>
-    <p class="li-menu-mobile" routerLink="analytics" routerLinkActive="active">
-      Analytics
-    </p>
-    <button class="mainnet" mat-button>
-      <span class="dot"></span>
-      Mainnet
-    </button>
+    <div class="list-mobile">
+      <p
+        class="li-menu-mobile"
+        routerLink="/dashboard"
+        routerLinkActive="active"
+      >
+        Dashboad
+      </p>
+      <p class="li-menu-mobile" routerLink="blocks" routerLinkActive="active">
+        Blocks
+      </p>
+      <p
+        class="li-menu-mobile"
+        routerLink="transactions"
+        routerLinkActive="active"
+      >
+        Transactions
+      </p>
+      <p class="li-menu-mobile" routerLink="accounts" routerLinkActive="active">
+        Accounts
+      </p>
+      <p class="li-menu-mobile" routerLink="tokens" routerLinkActive="active">
+        Tokens
+      </p>
+      <p class="li-menu-mobile" routerLink="nfts" routerLinkActive="active">
+        NTFs
+      </p>
+      <p
+        class="li-menu-mobile"
+        routerLink="validators"
+        routerLinkActive="active"
+      >
+        Validators
+      </p>
+      <p
+        class="li-menu-mobile"
+        routerLink="analytics"
+        routerLinkActive="active"
+      >
+        Analytics
+      </p>
+      <button class="mainnet" mat-button>
+        <span class="dot-small-screen"></span>
+        Mainnet
+      </button>
+    </div>
   </mat-drawer>
 </mat-drawer-container>
-<mat-icon
-  *ngIf="isHandset$ | async"
-  (click)="drawer.toggle()"
-  class="toggle-sidenav"
-  >menu</mat-icon
->
 
 <router-outlet></router-outlet>
