@@ -1,1 +1,35 @@
-<p>nfts works!</p>
+<app-network-info></app-network-info>
+
+<div class="nfts-container">
+  <div class="nfts-cards">
+    <mat-card>
+      <mat-card-content class="card-body">
+        <p class="nfts-card-header">Total NFTs</p>
+        <p class="nfts-caed-info">{{ nftsCount | number }}</p>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card>
+      <mat-card-content class="card-body">
+        <p class="nfts-card-header">Total Collections</p>
+        <p class="nfts-caed-info">{{ collectionsCount | number }}</p>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card>
+      <mat-card-content class="card-body">
+        <p class="nfts-card-header">Total Transactions</p>
+        <p class="nfts-caed-info">{{ resultsCount | number }}</p>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card>
+      <mat-card-content class="card-body">
+        <p class="nfts-card-header">Economics</p>
+        <p class="nfts-caed-info">{{ economics | number }}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+
+<app-nfts-list></app-nfts-list>

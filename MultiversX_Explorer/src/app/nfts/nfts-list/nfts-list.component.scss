@@ -1,0 +1,124 @@
+.input-table {
+  padding: 13px;
+  border: 0px;
+  outline: none;
+  border-radius: 8px;
+  color: #a3a3a3;
+  background: #262626;
+  width: 50%;
+}
+.input-table:focus {
+  border: 1px solid #22f7de75;
+}
+.container-input-navigation {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 15px 0px;
+  .navigation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: nowrap;
+    span {
+      cursor: pointer;
+      color: #a3a3a4;
+      font-size: smaller;
+      mat-icon {
+        margin-bottom: -7px;
+      }
+    }
+  }
+}
+.header-table {
+  color: white;
+  font-size: large;
+  font-weight: 300;
+  margin: 5px 0px;
+}
+.nfts-list {
+  background-color: #121212;
+  margin: 10px;
+  padding: 16px;
+  border-radius: 20px;
+}
+.table-continer {
+  overflow: scroll;
+}
+table {
+  background: none;
+  box-shadow: none;
+}
+.mat-mdc-table .mat-mdc-header-cell {
+  background-color: hsl(0 0% 15% / 0.6);
+  color: hsl(0 0% 64%);
+  font-weight: 200;
+}
+td {
+  white-space: nowrap;
+  color: #a3a3a3;
+}
+.collection-coll {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 7px;
+  align-items: center;
+  height: inherit;
+  .white-text {
+    color: aliceblue;
+  }
+  .white-text:hover {
+    color: rgb(35 247 221);
+    cursor: pointer;
+  }
+
+  mat-icon {
+    font-size: 14px;
+    color: #fcd64e;
+    margin-bottom: -10px;
+    width: 15px;
+  }
+  .p-collection {
+    margin: 0px;
+    border-radius: 4px;
+    padding: 0px 6px;
+    font-weight: 100;
+    font-size: 12px;
+  }
+  .p-sft {
+    color: #fed7aa;
+    border: 1px solid #ff880063;
+  }
+  .p-nft {
+    color: #fef08a;
+    border: 1px solid #ffe1034a;
+  }
+  .img-collection-table {
+    width: 25px;
+    border-radius: 50px;
+  }
+}
+.owner-style {
+  color: aliceblue;
+}
+.owner-style:hover {
+  color: rgb(35 247 221);
+  cursor: pointer;
+}
+@media screen and (max-width: 600px) {
+  .nfts-list {
+    padding: 14px;
+  }
+  .collection-coll {
+    .img-collection-table {
+      width: 23px;
+    }
+  }
+}
+@media screen and (max-width: 400px) {
+  .input-table {
+    width: 100%;
+  }
+}
