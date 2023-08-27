@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { TokenDetailsService } from './token-details.service';
 
 @Component({
@@ -9,17 +10,21 @@ import { TokenDetailsService } from './token-details.service';
 })
 export class TokenDetailsComponent {
   tokenDetails: any;
+  subscription: Subscription;
   constructor(
     private tokenDetailsService: TokenDetailsService,
     private route: ActivatedRoute
-  ) {}
+  ) {
+    this.subscription = new Subscription();
+  }
   ngOnInit() {
     const identifier = this.route.snapshot.paramMap.get('identifier');
-    this.tokenDetailsService.getTokensDetails(identifier).subscribe((data) => {
-      this.tokenDetails = data;
-      console.log(data);
-      this.processData(this.tokenDetails);
-    });
+    this.subscription = this.tokenDetailsService
+      .getTokensDetails(identifier)
+      .subscribe((data) => {
+        this.tokenDetails = data;
+        this.processData(this.tokenDetails);
+      });
   }
   objectKeys = Object.keys;
   displayedProperties: { label: string; value: any }[] = [];
@@ -43,6 +48,7 @@ export class TokenDetailsComponent {
       };
     });
   }
-
-
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
 }

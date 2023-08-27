@@ -29,6 +29,8 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { CommonModule } from '@angular/common';
 import { TokenDetailsComponent } from './tokens/tokens-list/token-details/token-details.component';
+import { NftsListComponent } from './nfts/nfts-list/nfts-list.component';
+import { NftDetailsComponent } from './nfts/nfts-list/nft-details/nft-details.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,6 +45,8 @@ import { TokenDetailsComponent } from './tokens/tokens-list/token-details/token-
     AccountsDetailsComponent,
     TokensListComponent,
     TokenDetailsComponent,
+    NftsListComponent,
+    NftDetailsComponent,
   ],
   imports: [
     BrowserModule,
