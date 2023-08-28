@@ -1,0 +1,183 @@
+.container-details-info {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.header {
+  font-weight: 100;
+  font-size: 18px;
+  margin: 0px;
+}
+.container-redirect {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 20px;
+  margin-top: 15px;
+  row-gap: 10px;
+  row-gap .header {
+    font-size: 18px;
+    font-weight: 200;
+    margin: 0px;
+  }
+}
+a {
+  text-decoration: none;
+  color: #fff;
+}
+a:visited {
+  text-decoration: none;
+  color: #fff;
+}
+.verified {
+  font-size: 14px;
+  color: #fcd64e;
+  margin-bottom: -10px;
+  width: 15px;
+}
+
+.specific-detail {
+  background-color: #121212;
+  margin: 1vh 10px 3vh 10px;
+  border-radius: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  color: #fff;
+  overflow: hidden;
+}
+.redirect-xSpotlight {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 6px;
+  width: -moz-fit-content;
+  width: fit-content;
+  background: #262626;
+  padding: 8px 13px;
+  border-radius: 5px;
+  font-weight: 300;
+  font-size: 14px;
+  margin: 0px;
+}
+.xSpotlight-img {
+  height: 18px;
+}
+.token-name-logo {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 5px;
+  img {
+    width: 1.5rem;
+    height: 1.5rem;
+    min-width: 1.5rem;
+    min-height: 1.5rem;
+    color: transparent;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 1px solid hsla(0, 0%, 100%, 0.2);
+  }
+  p {
+    font-weight: 200;
+    font-size: large;
+  }
+}
+.p-collection {
+  margin: 0px;
+  border-radius: 4px;
+  padding: 0px 6px;
+  font-weight: 100;
+  font-size: 12px;
+  padding: 4px 7px;
+}
+.p-sft {
+  color: #fed7aa;
+  border: 1px solid #ff880063;
+}
+.p-nft {
+  color: #fef08a;
+  border: 1px solid #ffe1034a;
+}
+
+.list-summary {
+  padding: 0px 30px;
+  .item-list {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    .item-text {
+      min-width: 100px;
+      color: #a3a3a3;
+      font-weight: 100;
+      font-size: 14px;
+    }
+    .prop {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      .false {
+        color: #fef08a;
+        background: rgb(253 240 138 / 10%);
+        width: fit-content;
+        text-align: center;
+        padding: 3px 6px 3px 1px;
+        border-radius: 6px;
+        border: 1px solid;
+        font-size: 11px;
+        margin: 0px;
+      }
+      .true {
+        color: #22c55e;
+        background: #22c55e0f;
+        width: fit-content;
+        text-align: center;
+        padding: 3px 6px 3px 1px;
+        border-radius: 6px;
+        border: 1px solid;
+        font-size: 11px;
+        margin: 0px;
+      }
+      .icon-status {
+        width: 20px;
+        font-size: 12px;
+        margin: 0px 0px -14px;
+      }
+    }
+  }
+}
+.owner-modified {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 600px) {
+  .token-name-logo {
+    img {
+      margin-left: 0px;
+    }
+  }
+  .list-summary {
+    gap: 20px;
+    padding: 10px 0px;
+    display: flex;
+    flex-direction: column;
+    .item-list {
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+      gap: 7px;
+      flex-direction: column;
+      border-bottom: 1px solid #9c9c9c12;
+      padding: 0px 0px 20px;
+      p {
+        margin: 0px;
+      }
+    }
+  }
+}

@@ -1,1 +1,77 @@
 <app-network-info></app-network-info>
+
+<div class="specific-detail">
+  <div class="container-redirect">
+    <p class="item-text header">Collection Details</p>
+    <a
+      href="https://xspotlight.com/collections/{{ nftDetal?.collection }} "
+      target="_blank"
+    >
+      <p class="redirect-xSpotlight">
+        View on <img src="assets/xSpotlight-lbg.png" class="xSpotlight-img" />
+        <mat-icon class="verified">open_in_new </mat-icon>
+      </p>
+    </a>
+  </div>
+
+  <div class="list-summary">
+    <div class="item-list">
+      <p class="item-text">Name</p>
+      <div class="token-name-logo">
+        <img [src]="nftDetal?.assets?.pngUrl" />
+        <p class="item-text">
+          {{ nftDetal?.name | capitalize }}
+        </p>
+        <mat-icon class="verified">verified</mat-icon>
+      </div>
+    </div>
+    <div class="item-list">
+      <p class="item-text">Collection</p>
+      <p class="item-text">{{ nftDetal?.collection }}</p>
+    </div>
+    <div class="item-list">
+      <p class="item-text">Ticker</p>
+      <p class="item-text">{{ nftDetal?.ticker }}</p>
+    </div>
+    <div class="item-list">
+      <p class="item-text">Type</p>
+      <p
+        class="p-collection p-sft"
+        *ngIf="nftDetal?.type == 'SemiFungibleESDT'; else nft"
+      >
+        SFT
+      </p>
+
+      <ng-template #nft>
+        <p class="p-collection p-nft">NFT</p>
+      </ng-template>
+    </div>
+    <div class="item-list">
+      <p class="item-text">Owner</p>
+      <p class="item-text">{{ nftDetal?.owner | truncateMiddle : 40 }}</p>
+    </div>
+    <div class="item-list">
+      <p class="item-text">Created</p>
+      <p class="item-text">{{ nftDetal?.timestamp | date }}</p>
+    </div>
+    <div class="item-list">
+      <p class="item-text">Properties</p>
+      <div class="prop">
+        <div *ngFor="let property of displayedProperties">
+          <p
+            [class.false]="property.value == 'No'"
+            [class.true]="property.value == 'Yes'"
+          >
+            <mat-icon class="icon-status" *ngIf="property.value == 'Yes'"
+              >done</mat-icon
+            >
+            <mat-icon class="icon-status" *ngIf="property.value == 'No'"
+              >clear</mat-icon
+            >
+            {{ property.label }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
