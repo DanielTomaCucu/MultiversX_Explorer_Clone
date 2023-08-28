@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { NftDetailsTableService } from '../nft-details-tabel/nft-details-table.service';
 import { NftDetailsService } from './nft-details.service';
 
 @Component({
@@ -9,11 +10,13 @@ import { NftDetailsService } from './nft-details.service';
   styleUrls: ['./nft-details.component.scss'],
 })
 export class NftDetailsComponent {
+
   subscription: Subscription;
   nftDetal: any;
   constructor(
     private nftsDetailsService: NftDetailsService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private nffDetailsTableService: NftDetailsTableService
   ) {
     this.subscription = new Subscription();
   }
@@ -24,8 +27,10 @@ export class NftDetailsComponent {
       .subscribe((data) => {
         this.nftDetal = data;
         this.processData(data);
+        this.nffDetailsTableService.getNftList(data.collection);
       });
   }
+
   objectKeys = Object.keys;
   displayedProperties: { label: string; value: any }[] = [];
   processData(nftDetal: any) {

@@ -33,8 +33,9 @@ a:visited {
 .verified {
   font-size: 14px;
   color: #fcd64e;
-  margin-bottom: -10px;
+  margin-bottom: -12px;
   width: 15px;
+  margin-left: 5px;
 }
 
 .specific-detail {
@@ -155,7 +156,37 @@ a:visited {
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
-
+.list-social {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin-bottom: -9px;
+  a {
+    color: #a3a3a3;
+        width: 15px;
+  }
+  a:hover {
+    color: #22f7dd;
+  }
+  a:active {
+    color: #a3a3a3;
+  }
+  a:visited {
+    color: #a3a3a3;
+  }
+  mat-icon {
+    font-size: 18px;
+  }
+}
+.special-desc {
+  max-height: 60px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
 @media screen and (max-width: 600px) {
   .token-name-logo {
     img {

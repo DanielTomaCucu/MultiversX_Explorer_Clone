@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { NftDetailsService } from './nft-details/nft-details.service';
 import { NftsListService } from './nfts-list.service';
@@ -19,7 +19,8 @@ export class NftsListComponent {
   constructor(
     private nftsListService: NftsListService,
     private router: Router,
-    private nftDetailsService: NftDetailsService
+    private nftDetailsService: NftDetailsService,
+    private route: ActivatedRoute
   ) {
     this.subscription = new Subscription();
   }
@@ -33,7 +34,13 @@ export class NftsListComponent {
     'owner',
   ];
   ngOnInit() {
-    this.loadTokens();
+    this.subscription.add(
+      this.route.queryParams.subscribe((params) => {
+        const page = +params['page'] || 1;
+        this.currentFrom = (page - 1) * this.itemsSize;
+        this.loadTokens();
+      })
+    );
   }
   loadTokens() {
     this.subscription.add(
@@ -45,15 +52,22 @@ export class NftsListComponent {
     );
   }
   nextPage() {
-    this.currentFrom += this.itemsSize;
-    this.loadTokens();
+    const nextPage = this.currentFrom / this.itemsSize + 2;
+    this.updatePage(nextPage);
   }
 
   prevPage() {
-    if (this.currentFrom > 0) {
-      this.currentFrom -= this.itemsSize;
-      this.loadTokens();
+    const prevPage = this.currentFrom / this.itemsSize;
+    if (prevPage > 0) {
+      this.updatePage(prevPage);
     }
+  }
+  updatePage(page: number) {
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: { page: page },
+      queryParamsHandling: 'merge',
+    });
   }
 
   applyFilter(event: Event) {
@@ -62,7 +76,7 @@ export class NftsListComponent {
   }
   redirectToCollection(collection: string) {
     this.nftDetailsService.getCollectionDetails(collection);
-    this.router.navigate(['/nfts', collection]);
+    this.router.navigate(['/collections', collection]);
   }
 
   redirectToUserAccount(account: number) {

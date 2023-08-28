@@ -3,7 +3,7 @@ import { TokensListService } from './tokens-list.service';
 import { TokensService } from '../tokens.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TokenDetailsService } from './token-details/token-details.service';
 import { Subscription } from 'rxjs';
 @Component({
@@ -20,7 +20,8 @@ export class TokensListComponent {
     private tokensListService: TokensListService,
     private tokensService: TokensService,
     private router: Router,
-    private tokenDetailsService: TokenDetailsService
+    private tokenDetailsService: TokenDetailsService,
+    private route: ActivatedRoute
   ) {
     this.subscriptions = new Subscription();
   }
@@ -29,7 +30,14 @@ export class TokensListComponent {
   itemsSize: number = 25;
 
   ngOnInit() {
-    this.loadTokens();
+    this.subscriptions.add(
+      this.route.queryParams.subscribe((params) => {
+        const page = +params['page'] || 1;
+        this.currentFrom = (page - 1) * this.itemsSize;
+        this.loadTokens();
+      })
+    );
+
     this.subscriptions.add(
       this.tokensService
         .getTotalTokens()
@@ -54,16 +62,24 @@ export class TokensListComponent {
   }
 
   nextPage() {
-    this.currentFrom += this.itemsSize;
-    this.loadTokens();
+    const nextPage = this.currentFrom / this.itemsSize + 2;
+    this.updatePage(nextPage);
   }
 
   prevPage() {
-    if (this.currentFrom > 0) {
-      this.currentFrom -= this.itemsSize;
-      this.loadTokens();
+    const prevPage = this.currentFrom / this.itemsSize;
+    if (prevPage > 0) {
+      this.updatePage(prevPage);
     }
   }
+  updatePage(page: number) {
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: { page: page },
+      queryParamsHandling: 'merge',
+    });
+  }
+
   displayedColumns: string[] = [
     'ticker',
     'name',
@@ -80,7 +96,6 @@ export class TokensListComponent {
   }
 
   redirectToToken(identifier: string) {
-    console.log(identifier);
     this.router.navigate(['/tokens', identifier]);
     this.tokenDetailsService.getTokensDetails(identifier);
   }
