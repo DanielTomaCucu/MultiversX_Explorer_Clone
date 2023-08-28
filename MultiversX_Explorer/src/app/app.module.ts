@@ -31,6 +31,10 @@ import { CommonModule } from '@angular/common';
 import { TokenDetailsComponent } from './tokens/tokens-list/token-details/token-details.component';
 import { NftsListComponent } from './nfts/nfts-list/nfts-list.component';
 import { NftDetailsComponent } from './nfts/nfts-list/nft-details/nft-details.component';
+
+import { NftDetailsTabelComponent } from './nfts/nfts-list/nft-details-tabel/nft-details-tabel.component';
+import { NftInfoComponent } from './nfts/nfts-list/nft-info/nft-info.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,6 +51,9 @@ import { NftDetailsComponent } from './nfts/nfts-list/nft-details/nft-details.co
     TokenDetailsComponent,
     NftsListComponent,
     NftDetailsComponent,
+
+    NftDetailsTabelComponent,
+     NftInfoComponent,
   ],
   imports: [
     BrowserModule,
@@ -69,6 +76,7 @@ import { NftDetailsComponent } from './nfts/nfts-list/nft-details/nft-details.co
     MatPaginatorModule,
     MatSortModule,
     CommonModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent],

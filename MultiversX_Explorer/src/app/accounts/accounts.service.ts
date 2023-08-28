@@ -8,8 +8,8 @@ import { environment } from 'src/enviroments/enviroment';
 export class AccountsService {
   private accountsCount = `${environment.baseUrl}/accounts/count`;
   private totalStake = `${environment.baseUrl}/stake`;
-  private accountsList = `${environment.baseUrl}/accounts?size=50`;
-  
+  private accountsList = `${environment.baseUrl}/accounts`;
+
   constructor(private http: HttpClient) {}
   getTotalAccounts(): Observable<any> {
     return this.http.get<any>(this.accountsCount);
@@ -17,7 +17,7 @@ export class AccountsService {
   getTotalStake(): Observable<any> {
     return this.http.get<any>(this.totalStake);
   }
-  getAccountsList(): Observable<any> {
-    return this.http.get<any>(this.accountsList);
+  getAccountsList(page:number, size:number): Observable<any> {
+    return this.http.get<any>(`${this.accountsList}?from=${page}&size=${size}`);
   }
 }

@@ -20,9 +20,9 @@
       <div class="token-name-logo">
         <img [src]="nftDetal?.assets?.pngUrl" />
         <p class="item-text">
-          {{ nftDetal?.name | capitalize }}
+          {{ nftDetal?.name | capitalize
+          }}<mat-icon class="verified">verified</mat-icon>
         </p>
-        <mat-icon class="verified">verified</mat-icon>
       </div>
     </div>
     <div class="item-list">
@@ -73,5 +73,69 @@
         </div>
       </div>
     </div>
+    <div class="item-list">
+      <p class="item-text">Social</p>
+      <div class="list-social" *ngIf="nftDetal?.assets?.website; else noSocial">
+        <a *ngIf="nftDetal?.assets.website" [href]="nftDetal?.assets?.website"
+          ><mat-icon class="icons-social">language</mat-icon></a
+        >
+        <a
+          *ngIf="nftDetal?.assets.social.blog"
+          [href]="nftDetal?.assets?.social.blog"
+          target="_blank"
+          ><mat-icon class="icons-social">edit</mat-icon></a
+        >
+        <a
+          *ngIf="nftDetal?.assets.social.email"
+          href="mailto:nftDetal?.assets?.social.email"
+          ><mat-icon class="icons-social">mail</mat-icon></a
+        >
+
+        <a
+          *ngIf="nftDetal?.assets.social.telegram"
+          [href]="nftDetal?.assets?.social.telegram"
+          target="_blank"
+          ><i class="icons-social fab fa-telegram"></i
+        ></a>
+        <a
+          *ngIf="nftDetal?.assets.social.twitter"
+          [href]="nftDetal?.assets?.social.twitter"
+          target="_blank"
+          ><i class="icons-social fab fa-twitter"></i
+        ></a>
+        <a
+          *ngIf="nftDetal?.assets.social.whitepaper"
+          [href]="nftDetal?.assets?.social.whitepaper"
+          target="_blank"
+          ><mat-icon class="icons-social">description</mat-icon></a
+        >
+        <a
+          *ngIf="nftDetal?.assets.social.discord"
+          [href]="nftDetal?.assets?.social.discord"
+          target="_blank"
+          ><i class="icons-social fab fa-discord"></i
+        ></a>
+        <a
+          *ngIf="nftDetal?.assets.social.instagram"
+          [href]="nftDetal?.assets?.social.instagram"
+          target="_blank"
+          ><i class="icons-social fab fa-instagram"></i
+        ></a>
+      </div>
+    </div>
+    <ng-template #noSocial>
+      <p class="item-text">N/A</p>
+    </ng-template>
+    <div class="item-list">
+      <p class="item-text">Description</p>
+      <p
+        class="item-text special-desc"
+        *ngIf="nftDetal?.assets?.description; else noSocial"
+      >
+        {{ nftDetal?.assets?.description }}
+      </p>
+    </div>
   </div>
 </div>
+
+<app-nft-details-tabel></app-nft-details-tabel>

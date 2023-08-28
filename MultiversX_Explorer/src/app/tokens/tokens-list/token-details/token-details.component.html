@@ -72,29 +72,67 @@
         <p class="item-text">{{ tokenDetails?.decimals }}</p>
       </div>
       <div class="item-list">
-        <p class="item-text">Social</p>
-        <div class="list-social">
-          <a [href]="tokenDetails?.assets?.website"
-            ><mat-icon>language</mat-icon></a
-          >
-          <a [href]="tokenDetails?.assets?.social?.blog"
-            ><mat-icon>edit</mat-icon></a
-          >
-          <a [href]="tokenDetails?.assets?.social?.telegram"
-            ><mat-icon>send</mat-icon></a
-          >
-          <a [href]="tokenDetails?.assets?.social?.twitter"
-            ><mat-icon>group</mat-icon></a
-          >
-          <a [href]="tokenDetails?.assets?.social?.whitepaper"
-            ><mat-icon>description</mat-icon></a
-          >
-        </div>
+      <p class="item-text">Social</p>
+      <div class="list-social" *ngIf="tokenDetails?.assets?.website; else noSocial">
+        <a *ngIf="tokenDetails?.assets.website" [href]="tokenDetails?.assets?.website"
+          ><mat-icon class="icons-social">language</mat-icon></a
+        >
+        <a
+          *ngIf="tokenDetails?.assets.social.blog"
+          [href]="tokenDetails?.assets?.social.blog"
+          target="_blank"
+          ><mat-icon class="icons-social">edit</mat-icon></a
+        >
+        <a
+          *ngIf="tokenDetails?.assets.social.email"
+          href="mailto:nftDetal?.assets?.social.email"
+          ><mat-icon class="icons-social">mail</mat-icon></a
+        >
+
+        <a
+          *ngIf="tokenDetails?.assets.social.telegram"
+          [href]="tokenDetails?.assets?.social.telegram"
+          target="_blank"
+          ><i class="icons-social fab fa-telegram"></i
+        ></a>
+        <a
+          *ngIf="tokenDetails?.assets.social.twitter"
+          [href]="tokenDetails?.assets?.social.twitter"
+          target="_blank"
+          ><i class="icons-social fab fa-twitter"></i
+        ></a>
+        <a
+          *ngIf="tokenDetails?.assets.social.whitepaper"
+          [href]="tokenDetails?.assets?.social.whitepaper"
+          target="_blank"
+          ><mat-icon class="icons-social">description</mat-icon></a
+        >
+        <a
+          *ngIf="tokenDetails?.assets.social.discord"
+          [href]="tokenDetails?.assets?.social.discord"
+          target="_blank"
+          ><i class="icons-social fab fa-discord"></i
+        ></a>
+        <a
+          *ngIf="tokenDetails?.assets.social.instagram"
+          [href]="tokenDetails?.assets?.social.instagram"
+          target="_blank"
+          ><i class="icons-social fab fa-instagram"></i
+        ></a>
       </div>
+    </div>
+    <ng-template #noSocial>
+      <p class="item-text">N/A</p>
+    </ng-template>
       <div class="item-list">
-        <p class="item-text">Description</p>
-        <p class="item-text special-desc">{{ tokenDetails?.assets?.description }}</p>
-      </div>
+      <p class="item-text">Description</p>
+      <p
+        class="item-text special-desc"
+        *ngIf="tokenDetails?.assets?.description; else noSocial"
+      >
+        {{ tokenDetails?.assets?.description }}
+      </p>
+    </div>
     </div>
   </div>
 </div>

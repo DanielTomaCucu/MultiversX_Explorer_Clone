@@ -79,11 +79,12 @@
 }
 .list-social {
   display: flex;
-  gap: 3px;
+  gap: 16px;
   flex-wrap: wrap;
   justify-content: flex-start;
   a {
     color: #a3a3a3;
+    width: 15px;
   }
   a:hover {
     color: #22f7dd;
