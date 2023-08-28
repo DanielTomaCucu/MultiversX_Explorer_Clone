@@ -22,8 +22,29 @@ export class NftDetailsComponent {
     this.subscription = this.nftsDetailsService
       .getCollectionDetails(collection)
       .subscribe((data) => {
-        console.log(data), (this.nftDetal = data);
+        this.processData(data);
       });
+  }
+  objectKeys = Object.keys;
+  displayedProperties: { label: string; value: any }[] = [];
+  processData(nftDetal: any) {
+    const propertiesToDisplay = [
+      { key: 'canUpgrade', label: 'Can Upgrade' },
+      { key: 'canMint', label: 'Can Mint' },
+      { key: 'canBurn', label: 'Can Burn' },
+      { key: 'canChangeOwner', label: 'Can Change Owner' },
+      { key: 'canPause', label: 'Can Pause' },
+      { key: 'canWipe', label: 'Can Wipe' },
+      { key: 'canFreeze', label: 'Can Freeze' },
+      { key: 'isPaused', label: 'Not Paused' },
+    ];
+
+    this.displayedProperties = propertiesToDisplay.map((prop) => {
+      return {
+        label: prop.label,
+        value: nftDetal[prop.key] ? 'Yes' : 'No',
+      };
+    });
   }
   ngOnDestroy() {
     this.subscription.unsubscribe();

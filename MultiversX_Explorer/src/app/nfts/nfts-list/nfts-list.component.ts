@@ -40,7 +40,6 @@ export class NftsListComponent {
       this.nftsListService
         .getListOfNfts(this.currentFrom, this.itemsSize)
         .subscribe((data) => {
-          console.log(data), (this.nfts = data);
           this.dataSource = new MatTableDataSource(data);
         })
     );
