@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { NftDetailsTableService } from '../nft-details-tabel/nft-details-table.service';
 import { NftDetailsService } from './nft-details.service';
