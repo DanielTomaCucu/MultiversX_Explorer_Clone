@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { LoadingSpinnerService } from 'src/app/shared/loading-spinner.service';
 import { TokenDetailsService } from './token-details.service';
 
 @Component({
@@ -11,9 +12,11 @@ import { TokenDetailsService } from './token-details.service';
 export class TokenDetailsComponent {
   tokenDetails: any;
   subscription: Subscription;
+  isLoading$ = this.loadingSpinnerService.isLoading.asObservable();
   constructor(
     private tokenDetailsService: TokenDetailsService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private loadingSpinnerService: LoadingSpinnerService
   ) {
     this.subscription = new Subscription();
   }

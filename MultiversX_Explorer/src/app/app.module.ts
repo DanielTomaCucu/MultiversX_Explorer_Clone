@@ -4,7 +4,7 @@ import { MatListModule } from '@angular/material/list';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatCardModule } from '@angular/material/card';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -34,7 +34,8 @@ import { NftDetailsComponent } from './nfts/nfts-list/nft-details/nft-details.co
 
 import { NftDetailsTabelComponent } from './nfts/nfts-list/nft-details-tabel/nft-details-tabel.component';
 import { NftInfoComponent } from './nfts/nfts-list/nft-info/nft-info.component';
-
+import { LoadingInterceptor } from './shared/loading-interceptor.service';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,7 +54,7 @@ import { NftInfoComponent } from './nfts/nfts-list/nft-info/nft-info.component';
     NftDetailsComponent,
 
     NftDetailsTabelComponent,
-     NftInfoComponent,
+    NftInfoComponent,
   ],
   imports: [
     BrowserModule,
@@ -76,9 +77,15 @@ import { NftInfoComponent } from './nfts/nfts-list/nft-info/nft-info.component';
     MatPaginatorModule,
     MatSortModule,
     CommonModule,
-
+    MatProgressSpinnerModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoadingInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

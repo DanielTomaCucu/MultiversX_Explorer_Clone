@@ -1,6 +1,9 @@
 <app-network-info></app-network-info>
 
-<div class="nfts-container">
+<div class="loader-overlay" *ngIf="isLoading$ | async">
+  <mat-spinner></mat-spinner>
+</div>
+<div class="nfts-container" *ngIf="!(isLoading$ | async)">
   <div class="nfts-cards">
     <mat-card>
       <mat-card-content class="card-body">

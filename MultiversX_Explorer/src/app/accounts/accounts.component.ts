@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
+import { LoadingSpinnerService } from '../shared/loading-spinner.service';
 import { AccountsDetailsService } from './accounts-details/accounts-details.service';
 import { AccountsService } from './accounts.service';
 
@@ -18,11 +19,13 @@ export class AccountsComponent {
   dataSource: any;
   currentFrom: number = 0;
   itemsSize: number = 25;
+  isLoading$ = this.loadingSpinnerService.isLoading.asObservable();
   constructor(
     private accountsService: AccountsService,
     private accountDetailsService: AccountsDetailsService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private loadingSpinnerService: LoadingSpinnerService
   ) {
     this.subscriptions = new Subscription();
   }

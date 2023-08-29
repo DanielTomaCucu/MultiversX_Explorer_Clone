@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { LoadingSpinnerService } from 'src/app/shared/loading-spinner.service';
 import { AccountsDetailsService } from './accounts-details.service';
 
 @Component({
@@ -13,9 +14,11 @@ export class AccountsDetailsComponent {
   accountTokensCount: number = 0;
   stakeAmount: any;
   nftAmount: number = 0;
+  isLoading$ = this.loadingSpinnerService.isLoading.asObservable();
   constructor(
     private accountDetailsService: AccountsDetailsService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private loadingSpinnerService: LoadingSpinnerService
   ) {}
   ngOnInit() {
     this.address = this.route.snapshot.paramMap.get('address');

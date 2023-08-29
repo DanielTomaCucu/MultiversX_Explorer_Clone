@@ -1,6 +1,8 @@
 <app-network-info></app-network-info>
-
-<div class="container-info-tokens">
+<div class="loader-overlay" *ngIf="isLoading$ | async">
+  <mat-spinner></mat-spinner>
+</div>
+<div class="container-info-tokens" *ngIf="!(isLoading$ | async)">
   <h2 class="header-tokens">Tokens</h2>
   <div class="container-cards">
     <mat-card>

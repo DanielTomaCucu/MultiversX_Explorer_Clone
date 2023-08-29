@@ -1,4 +1,7 @@
-<div class="dashdoard-content">
+<div class="loader-overlay"  *ngIf="isLoading$ | async">
+ <mat-spinner></mat-spinner>
+</div>
+<div class="dashdoard-content"  *ngIf="!(isLoading$ | async)">
   <h1 class="header-dashboard">MultiversX Blockchain Explorer</h1>
   <div class="cards-content">
     <mat-card>

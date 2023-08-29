@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { LoadingSpinnerService } from '../shared/loading-spinner.service';
 import { NftsService } from './nfts.service';
 
 @Component({
@@ -13,7 +14,11 @@ export class NftsComponent {
   collectionsCount: number = 0;
   resultsCount: number = 0;
   economics: number = 0;
-  constructor(private ntfsService: NftsService) {
+  isLoading$ = this.loadingSpinnerService.isLoading.asObservable();
+  constructor(
+    private ntfsService: NftsService,
+    private loadingSpinnerService: LoadingSpinnerService
+  ) {
     this.subscription = new Subscription();
   }
   ngOnInit() {

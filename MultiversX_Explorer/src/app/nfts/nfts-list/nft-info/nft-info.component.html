@@ -1,6 +1,10 @@
+
+<div class="loader-overlay"  *ngIf="isLoading$ | async">
+ <mat-spinner></mat-spinner>
+</div>
 <app-network-info></app-network-info>
 
-<div class="specific-detail">
+<div class="specific-detail" *ngIf="!(isLoading$ | async)">
   <div class="container-redirect">
     <p class="item-text header">Collection Details</p>
     <a
@@ -163,11 +167,11 @@
     <div class="navigation">
       <span
         (click)="prevPage()"
-        [class.disable]="currentFrom == 0 || transactionsList.length < 25"
+        [class.disable]="currentFrom == 0 || transactionsList?.length < 25"
       >
         <mat-icon> chevron_left </mat-icon>Prev</span
       >
-      <span (click)="nextPage()" [class.disable]="transactionsList.length < 25"
+      <span (click)="nextPage()" [class.disable]="transactionsList?.length < 25"
         >Next <mat-icon>chevron_right</mat-icon></span
       >
     </div>

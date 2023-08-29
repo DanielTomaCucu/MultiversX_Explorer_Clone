@@ -1,4 +1,7 @@
-<div class="tokens-list">
+<div class="loader-overlay" *ngIf="isLoading$ | async">
+  <mat-spinner></mat-spinner>
+  </div>
+<div class="tokens-list" *ngIf="!(isLoading$ | async)">
   <div class="small-info-table">
     <h2 class="header-table">Tokens</h2>
     <div class="info-eco">

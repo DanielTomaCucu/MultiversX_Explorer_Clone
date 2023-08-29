@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { filter, map, Subscription } from 'rxjs';
+import { LoadingSpinnerService } from '../shared/loading-spinner.service';
 import { TokensService } from './tokens.service';
 
 @Component({
@@ -12,7 +13,11 @@ export class TokensComponent {
   marketCap: any = 0;
   totalTokens: number = 0;
   transactions: number = 0;
-  constructor(private tokensService: TokensService) {
+  isLoading$ = this.loadingSpinnerService.isLoading.asObservable();
+  constructor(
+    private tokensService: TokensService,
+    private loadingSpinnerService: LoadingSpinnerService
+  ) {
     this.subscriptions = new Subscription();
   }
   ngOnInit() {

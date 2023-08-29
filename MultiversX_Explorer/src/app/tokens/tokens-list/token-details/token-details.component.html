@@ -1,6 +1,8 @@
 <app-network-info></app-network-info>
-
-<div class="container-details-info">
+<div class="loader-overlay" *ngIf="isLoading$ | async">
+  <mat-spinner></mat-spinner>
+  </div>
+<div class="container-details-info" *ngIf="!(isLoading$ | async)">
   <div class="specific-detail">
     <div class="token-name-logo">
       <img [src]="tokenDetails?.assets?.pngUrl" />

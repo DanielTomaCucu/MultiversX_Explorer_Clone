@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { identity, Subscription } from 'rxjs';
+import { LoadingSpinnerService } from 'src/app/shared/loading-spinner.service';
 import { NftInfoService } from './nft-info.service';
 
 @Component({
@@ -17,12 +18,15 @@ export class NftInfoComponent {
   itemsSize: number = 25;
   transactionsList: any;
   subscriptions: Subscription;
+  isLoading$ = this.loadingSpinnerService.isLoading.asObservable();
   constructor(
     private nftInfoService: NftInfoService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private loadingSpinnerService: LoadingSpinnerService
   ) {
     this.subscriptions = new Subscription();
+    console.log(this.isLoading$)
   }
 
   displayedColumns: string[] = [
