@@ -1,1 +1,265 @@
-<p>nft-info works!</p>
+<app-network-info></app-network-info>
+
+<div class="specific-detail">
+  <div class="container-redirect">
+    <p class="item-text header">Collection Details</p>
+    <a
+      href="https://xspotlight.com/collections/{{ infoNft?.collection }} "
+      target="_blank"
+    >
+      <p class="redirect-xSpotlight">
+        View on <img src="assets/xSpotlight-lbg.png" class="xSpotlight-img" />
+        <mat-icon class="verified">open_in_new </mat-icon>
+      </p>
+    </a>
+  </div>
+
+  <div class="list-summary">
+    <div class="item-list">
+      <p class="item-text">Name</p>
+      <p class="item-text">{{ infoNft?.name }}</p>
+    </div>
+    <div class="item-list">
+      <p class="item-text">Identifier</p>
+      <p class="item-text">{{ infoNft?.identifier }}</p>
+    </div>
+    <div class="item-list">
+      <p class="item-text">Nonce</p>
+      <p class="item-text">{{ infoNft?.nonce }}</p>
+    </div>
+    <div class="item-list">
+      <p class="item-text">Type</p>
+      <p
+        class="p-collection p-sft"
+        *ngIf="infoNft?.type == 'SemiFungibleESDT'; else nft"
+      >
+        SFT
+      </p>
+
+      <ng-template #nft>
+        <p class="p-collection p-nft">NFT</p>
+      </ng-template>
+    </div>
+    <div class="item-list">
+      <p class="item-text">Collection</p>
+      <div class="token-name-logo">
+        <img [src]="infoNft?.assets?.pngUrl" />
+        <p class="item-text">
+          {{ infoNft?.ticker }}
+        </p>
+      </div>
+    </div>
+    <div class="item-list">
+      <p class="item-text">Creator</p>
+      <p class="item-text">{{ infoNft?.creator | truncateMiddle : 40 }}</p>
+    </div>
+
+    <div class="item-list">
+      <p class="item-text">Minted</p>
+      <p class="item-text">
+        <mat-icon class="minted-time-icon">schedule</mat-icon>
+        {{ infoNft?.timestamp | relativeTime }}
+      </p>
+    </div>
+    <div class="item-list">
+      <p class="item-text">Royalties</p>
+      <p class="item-text">{{ infoNft?.royalties }}%</p>
+    </div>
+    <div class="item-list">
+      <p class="item-text">Supply</p>
+      <p class="item-text">{{ infoNft?.supply | number }}</p>
+    </div>
+    <div class="item-list">
+      <p class="item-text">Social</p>
+      <div class="list-social" *ngIf="infoNft?.assets?.website; else noSocial">
+        <a *ngIf="infoNft?.assets.website" [href]="infoNft?.assets?.website"
+          ><mat-icon class="icons-social">language</mat-icon></a
+        >
+        <a
+          *ngIf="infoNft?.assets.social.blog"
+          [href]="infoNft?.assets?.social.blog"
+          target="_blank"
+          ><mat-icon class="icons-social">edit</mat-icon></a
+        >
+        <a
+          *ngIf="infoNft?.assets.social.email"
+          href="mailto:infoNft?.assets?.social.email"
+          ><mat-icon class="icons-social">mail</mat-icon></a
+        >
+
+        <a
+          *ngIf="infoNft?.assets.social.telegram"
+          [href]="infoNft?.assets?.social.telegram"
+          target="_blank"
+          ><i class="icons-social fab fa-telegram"></i
+        ></a>
+        <a
+          *ngIf="infoNft?.assets.social.twitter"
+          [href]="infoNft?.assets?.social.twitter"
+          target="_blank"
+          ><i class="icons-social fab fa-twitter"></i
+        ></a>
+        <a
+          *ngIf="infoNft?.assets.social.whitepaper"
+          [href]="infoNft?.assets?.social.whitepaper"
+          target="_blank"
+          ><mat-icon class="icons-social">description</mat-icon></a
+        >
+        <a
+          *ngIf="infoNft?.assets.social.discord"
+          [href]="infoNft?.assets?.social.discord"
+          target="_blank"
+          ><i class="icons-social fab fa-discord"></i
+        ></a>
+        <a
+          *ngIf="infoNft?.assets.social.instagram"
+          [href]="infoNft?.assets?.social.instagram"
+          target="_blank"
+          ><i class="icons-social fab fa-instagram"></i
+        ></a>
+      </div>
+    </div>
+    <ng-template #noSocial>
+      <p class="item-text">N/A</p>
+    </ng-template>
+    <div class="item-list">
+      <p class="item-text">Description</p>
+      <p
+        class="item-text special-desc"
+        *ngIf="infoNft?.assets?.description; else noSocial"
+      >
+        {{ infoNft?.assets?.description }}
+      </p>
+    </div>
+    <div class="item-list preview-parent">
+      <p class="item-text">Assets</p>
+      <a
+        href="{{ infoNft?.url }}"
+        class="image-preview"
+        (mouseover)="showImagePreview(infoNft?.url)"
+        (mouseout)="hideImagePreview()"
+      >
+        <p>{{ infoNft?.url }}</p>
+      </a>
+      <div
+        *ngIf="showImage"
+        class="image-hover-preview"
+        [style.background-image]="'url(' + imageUrl + ')'"
+      ></div>
+    </div>
+
+    <div class="item-list">
+      <p class="item-text">Tags</p>
+      <div class="container-tags">
+        <p *ngFor="let tag of infoNft?.tags" class="items-tags">#{{ tag }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="list-transfers">
+  <div class="table-header">
+    <p class="nft-header">Transactions</p>
+    <div class="navigation">
+      <span
+        (click)="prevPage()"
+        [class.disable]="currentFrom == 0 || transactionsList.length < 25"
+      >
+        <mat-icon> chevron_left </mat-icon>Prev</span
+      >
+      <span (click)="nextPage()" [class.disable]="transactionsList.length < 25"
+        >Next <mat-icon>chevron_right</mat-icon></span
+      >
+    </div>
+  </div>
+  <div class="table-container">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <ng-container matColumnDef="txHash">
+        <th mat-header-cell *matHeaderCellDef>Tx Hash</th>
+        <td mat-cell *matCellDef="let row">
+          <p class="item-table">{{ row.txHash | truncateMiddle : 16 }}</p>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="timestamp">
+        <th mat-header-cell *matHeaderCellDef>Age</th>
+        <td mat-cell *matCellDef="let row">
+          <p class="neutral-color">{{ row.timestamp | relativeTime }}</p>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="senderShard">
+        <th mat-header-cell *matHeaderCellDef>Shard</th>
+        <td mat-cell *matCellDef="let row">
+          <div class="shards">
+            <p class="item-table">Shard {{ row.senderShard }}</p>
+            <mat-icon class="neutral-color">arrow_right_alt</mat-icon>
+            <p class="item-table">Shard {{ row.receiverShard }}</p>
+          </div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="sender">
+        <th mat-header-cell *matHeaderCellDef>From</th>
+        <td mat-cell *matCellDef="let row">
+          <p class="item-table">{{ row.sender | truncateMiddle : 16 }}</p>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="receiver">
+        <th mat-header-cell *matHeaderCellDef>To</th>
+        <td mat-cell *matCellDef="let row">
+          <p class="item-table">{{ row.receiver | truncateMiddle : 16 }}</p>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="method">
+        <th mat-header-cell *matHeaderCellDef>Method</th>
+        <td mat-cell *matCellDef="let row">
+          <p class="method">{{ row.function }}</p>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="value">
+        <th mat-header-cell *matHeaderCellDef>Value</th>
+        <td mat-cell *matCellDef="let row">
+          <div class="value-table-col">
+            <p
+              class="type-value p-sft"
+              *ngIf="
+                row.action?.arguments.transfers[0].type == 'SemiFungibleESDT';
+                else nft
+              "
+            >
+              SFT
+            </p>
+
+            <ng-template #nft>
+              <p class="type-value p-nft">NFT</p>
+            </ng-template>
+            <p
+              class="number-value"
+              *ngIf="
+                row.action?.arguments.transfers[0].type == 'SemiFungibleESDT'
+              "
+            >
+              {{ row.action?.arguments.transfers[0].value }}
+            </p>
+            <img
+              [src]="row.action?.arguments.transfers[0].svgUrl"
+              *ngIf="row.action?.arguments.transfers[0].svgUrl"
+            />
+            <p class="item-table">
+              {{ row.action?.arguments.transfers[0].ticker }}
+            </p>
+          </div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">No data matching the filter</td>
+      </tr>
+    </table>
+  </div>
+</div>

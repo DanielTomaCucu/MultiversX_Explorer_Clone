@@ -77,7 +77,6 @@ export class AccountsComponent {
         .subscribe((data) => {
           this.accountsList = data;
           this.dataSource = this.accountsList;
-          console.log(data);
         })
     );
   }
@@ -86,7 +85,7 @@ export class AccountsComponent {
     return this.accountDetailsService.getAccountDetails(address);
   }
   containsManyQs(address: string): boolean {
-    const pattern = /q{10,}/; 
+    const pattern = /q{10,}/;
     return pattern.test(address);
   }
 
