@@ -7,6 +7,7 @@ import { MatCardModule } from '@angular/material/card';
 import { LargeNumberPipe } from './largeNumber.pipe';
 import { TruncateMiddlePipe } from './truncate-middle.pipe';
 import { CapitalizePipe } from './capitalize.pipe';
+import { RelativeTimePipe } from './relativeTime.pipe';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { CapitalizePipe } from './capitalize.pipe';
     LargeNumberPipe,
     TruncateMiddlePipe,
     CapitalizePipe,
+    RelativeTimePipe,
   ],
   imports: [CommonModule, FormsModule, MatCardModule],
   exports: [
@@ -24,6 +26,7 @@ import { CapitalizePipe } from './capitalize.pipe';
     LargeNumberPipe,
     TruncateMiddlePipe,
     CapitalizePipe,
+    RelativeTimePipe,
   ],
 })
 export class SharedModule {}
