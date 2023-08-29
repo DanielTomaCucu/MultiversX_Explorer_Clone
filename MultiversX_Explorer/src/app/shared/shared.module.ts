@@ -8,9 +8,11 @@ import { LargeNumberPipe } from './largeNumber.pipe';
 import { TruncateMiddlePipe } from './truncate-middle.pipe';
 import { CapitalizePipe } from './capitalize.pipe';
 import { RelativeTimePipe } from './relativeTime.pipe';
+import { LoadingSpinnerService } from './loading-spinner.service';
 
 
 @NgModule({
+  providers: [],
   declarations: [
     TruncatePipe,
     NetworkInfoComponent,
