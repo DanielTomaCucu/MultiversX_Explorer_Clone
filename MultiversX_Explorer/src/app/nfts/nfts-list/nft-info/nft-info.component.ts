@@ -59,9 +59,8 @@ export class NftInfoComponent {
       this.nftInfoService
         .getNftTransactions(identifier, this.currentFrom, this.itemsSize)
         .subscribe((data) => {
-          console.log(data),
-            this.transactionsList = data;
-            (this.dataSource = new MatTableDataSource(data));
+          console.log(data), (this.transactionsList = data);
+          this.dataSource = new MatTableDataSource(data);
         })
     );
   }
