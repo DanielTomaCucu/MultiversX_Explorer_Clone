@@ -1,4 +1,9 @@
-<div class="nfts-list">
+
+<div class="loader-overlay"  *ngIf="isLoading$ | async">
+ <mat-spinner></mat-spinner>
+</div>
+
+<div class="nfts-list"  *ngIf="!(isLoading$| async)" >
   <h2 class="header-table">Collections</h2>
   <div class="container-input-navigation">
     <input

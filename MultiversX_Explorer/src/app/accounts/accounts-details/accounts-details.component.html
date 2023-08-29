@@ -1,6 +1,8 @@
 <app-network-info></app-network-info>
-
-<div class="addressDetails-container">
+<div class="loader-overlay" *ngIf="isLoading$ | async">
+  <mat-spinner></mat-spinner>
+</div>
+<div class="addressDetails-container" *ngIf="!(isLoading$ | async)">
   <h2>Address Details</h2>
   <div class="address">
     <p class="address-copy">

@@ -1,4 +1,7 @@
-<div class="container-table-all-nfts">
+<div class="loader-overlay"  *ngIf="isLoading$ | async">
+ <mat-spinner></mat-spinner>
+</div>
+<div class="container-table-all-nfts" *ngIf="!(isLoading$ | async)">
   <div class="header-container">
     <p class="nft-header">NFTs</p>
     <div class="navigation">

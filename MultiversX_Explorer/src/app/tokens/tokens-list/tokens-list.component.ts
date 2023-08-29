@@ -6,6 +6,7 @@ import { MatSort } from '@angular/material/sort';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TokenDetailsService } from './token-details/token-details.service';
 import { Subscription } from 'rxjs';
+import { LoadingSpinnerService } from 'src/app/shared/loading-spinner.service';
 @Component({
   selector: 'app-tokens-list',
   templateUrl: './tokens-list.component.html',
@@ -16,12 +17,14 @@ export class TokensListComponent {
   dataSource: any;
   tokens: number = 0;
   ecoMCap: any = 0;
+  isLoading$ = this.loadingSpinnerService.isLoading.asObservable();
   constructor(
     private tokensListService: TokensListService,
     private tokensService: TokensService,
     private router: Router,
     private tokenDetailsService: TokenDetailsService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private loadingSpinnerService: LoadingSpinnerService
   ) {
     this.subscriptions = new Subscription();
   }

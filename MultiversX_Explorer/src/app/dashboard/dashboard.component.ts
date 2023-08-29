@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { LoadingSpinnerService } from '../shared/loading-spinner.service';
 import { DashboardService } from './dashboard.service';
 
 @Component({
@@ -13,7 +14,11 @@ export class DashboardComponent {
   transactionsCount: any;
   validatorsCount: any;
   subsciptions: Subscription;
-  constructor(private dasboardService: DashboardService) {
+  isLoading$ = this.loadingSpinnerService.isLoading.asObservable();
+  constructor(
+    private dasboardService: DashboardService,
+    private loadingSpinnerService: LoadingSpinnerService
+  ) {
     this.subsciptions = new Subscription();
   }
 

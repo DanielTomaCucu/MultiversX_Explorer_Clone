@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { LoadingSpinnerService } from 'src/app/shared/loading-spinner.service';
 import { NftDetailsTableService } from '../nft-details-tabel/nft-details-table.service';
 import { NftDetailsService } from './nft-details.service';
 
@@ -10,13 +11,14 @@ import { NftDetailsService } from './nft-details.service';
   styleUrls: ['./nft-details.component.scss'],
 })
 export class NftDetailsComponent {
-
+  isLoading$ = this.loadingSpinnerService.isLoading.asObservable();
   subscription: Subscription;
   nftDetal: any;
   constructor(
     private nftsDetailsService: NftDetailsService,
     private route: ActivatedRoute,
-    private nffDetailsTableService: NftDetailsTableService
+    private nffDetailsTableService: NftDetailsTableService,
+    private loadingSpinnerService: LoadingSpinnerService
   ) {
     this.subscription = new Subscription();
   }
