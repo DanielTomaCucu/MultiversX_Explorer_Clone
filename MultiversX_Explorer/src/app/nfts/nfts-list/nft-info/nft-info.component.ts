@@ -3,6 +3,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { identity, Subscription } from 'rxjs';
 import { LoadingSpinnerService } from 'src/app/shared/loading-spinner.service';
+import { TxHashService } from 'src/app/tx-hash/tx-hash.service';
 import { NftInfoService } from './nft-info.service';
 
 @Component({
@@ -24,7 +25,8 @@ export class NftInfoComponent {
     private nftInfoService: NftInfoService,
     private route: ActivatedRoute,
     private router: Router,
-    private loadingSpinnerService: LoadingSpinnerService
+    private loadingSpinnerService: LoadingSpinnerService,
+    private txHashService:TxHashService
   ) {
     this.subscriptions = new Subscription();
   }
@@ -112,6 +114,10 @@ export class NftInfoComponent {
   }
   redirectToAccount(identifier: string) {
     this.router.navigate(['/accounts', identifier]);
+  }
+  redirectToTx(txHash:string) {
+    this.router.navigate(['/transactions', txHash]);
+    this.txHashService.getTxHash(txHash);
   }
   ngOnDistroy() {
     this.subscriptions.unsubscribe();

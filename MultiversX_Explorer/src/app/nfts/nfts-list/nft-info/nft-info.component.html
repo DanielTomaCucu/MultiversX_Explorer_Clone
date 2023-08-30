@@ -232,7 +232,7 @@
       <ng-container matColumnDef="txHash">
         <th mat-header-cell *matHeaderCellDef>Tx Hash</th>
         <td mat-cell *matCellDef="let row">
-          <p class="item-table">{{ row.txHash | truncateMiddle : 16 }}</p>
+          <p class="item-table" (click)="redirectToTx(row.txHash)">{{ row.txHash | truncateMiddle : 16 }}</p>
         </td>
       </ng-container>
 

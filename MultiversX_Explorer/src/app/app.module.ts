@@ -37,6 +37,7 @@ import { NftInfoComponent } from './nfts/nfts-list/nft-info/nft-info.component';
 import { LoadingInterceptor } from './shared/loading-interceptor.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { LoadingSpinnerService } from './shared/loading-spinner.service';
+import { TxHashComponent } from './tx-hash/tx-hash.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { LoadingSpinnerService } from './shared/loading-spinner.service';
 
     NftDetailsTabelComponent,
     NftInfoComponent,
+    TxHashComponent,
   ],
   imports: [
     BrowserModule,

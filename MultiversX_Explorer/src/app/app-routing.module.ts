@@ -11,6 +11,7 @@ import { NftsComponent } from './nfts/nfts.component';
 import { TokenDetailsComponent } from './tokens/tokens-list/token-details/token-details.component';
 import { TokensComponent } from './tokens/tokens.component';
 import { TransactionsComponent } from './transactions/transactions.component';
+import { TxHashComponent } from './tx-hash/tx-hash.component';
 import { ValidatorsComponent } from './validators/validators.component';
 
 const routes: Routes = [
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'blocks', component: BlocksComponent },
   { path: 'transactions', component: TransactionsComponent },
+  { path: 'transactions/:txHash', component: TxHashComponent },
   { path: 'accounts', component: AccountsComponent },
   { path: 'accounts/:address', component: AccountsDetailsComponent },
   { path: 'tokens', component: TokensComponent },
