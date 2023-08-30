@@ -38,6 +38,8 @@ import { LoadingInterceptor } from './shared/loading-interceptor.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { LoadingSpinnerService } from './shared/loading-spinner.service';
 import { TxHashComponent } from './tx-hash/tx-hash.component';
+import { ProvidersComponent } from './validators/providers/providers.component';
+import { ProvidersDetailsComponent } from './validators/providers/providers-details/providers-details.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +61,8 @@ import { TxHashComponent } from './tx-hash/tx-hash.component';
     NftDetailsTabelComponent,
     NftInfoComponent,
     TxHashComponent,
+    ProvidersComponent,
+    ProvidersDetailsComponent,
   ],
   imports: [
     BrowserModule,

@@ -9,6 +9,7 @@ import { TruncateMiddlePipe } from './truncate-middle.pipe';
 import { CapitalizePipe } from './capitalize.pipe';
 import { RelativeTimePipe } from './relativeTime.pipe';
 import { LoadingSpinnerService } from './loading-spinner.service';
+import { TruncateStringPipe } from './truncateString.pipe';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { LoadingSpinnerService } from './loading-spinner.service';
     TruncateMiddlePipe,
     CapitalizePipe,
     RelativeTimePipe,
+    TruncateStringPipe
   ],
   imports: [CommonModule, FormsModule, MatCardModule],
   exports: [
@@ -29,6 +31,7 @@ import { LoadingSpinnerService } from './loading-spinner.service';
     TruncateMiddlePipe,
     CapitalizePipe,
     RelativeTimePipe,
+    TruncateStringPipe
   ],
 })
 export class SharedModule {}
