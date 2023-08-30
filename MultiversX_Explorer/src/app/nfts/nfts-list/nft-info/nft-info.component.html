@@ -1,6 +1,5 @@
-
-<div class="loader-overlay"  *ngIf="isLoading$ | async">
- <mat-spinner></mat-spinner>
+<div class="loader-overlay" *ngIf="isLoading$ | async">
+  <mat-spinner></mat-spinner>
 </div>
 <app-network-info></app-network-info>
 
@@ -53,9 +52,34 @@
         </p>
       </div>
     </div>
+    <div class="item-list" *ngIf="infoNft?.owner">
+      <p class="item-text">Owner</p>
+      <mat-icon
+        class="smart-contract-icon"
+        *ngIf="containsManyQs(infoNft?.creator)"
+        >description</mat-icon
+      >
+      <p
+        class="item-text item-list-redirect"
+        (click)="redirectToAccount(infoNft?.owner)"
+      >
+        {{ infoNft?.owner | truncateMiddle : 40 }}
+      </p>
+    </div>
+
     <div class="item-list">
       <p class="item-text">Creator</p>
-      <p class="item-text">{{ infoNft?.creator | truncateMiddle : 40 }}</p>
+      <mat-icon
+        class="smart-contract-icon"
+        *ngIf="containsManyQs(infoNft?.creator)"
+        >description</mat-icon
+      >
+      <p
+        class="item-text item-list-redirect"
+        (click)="redirectToAccount(infoNft?.creator)"
+      >
+        {{ infoNft?.creator | truncateMiddle : 40 }}
+      </p>
     </div>
 
     <div class="item-list">
@@ -65,11 +89,11 @@
         {{ infoNft?.timestamp | relativeTime }}
       </p>
     </div>
-    <div class="item-list">
+    <div class="item-list" *ngIf="infoNft?.royalties">
       <p class="item-text">Royalties</p>
       <p class="item-text">{{ infoNft?.royalties }}%</p>
     </div>
-    <div class="item-list">
+    <div class="item-list" *ngIf="infoNft?.supply">
       <p class="item-text">Supply</p>
       <p class="item-text">{{ infoNft?.supply | number }}</p>
     </div>
@@ -135,7 +159,7 @@
         {{ infoNft?.assets?.description }}
       </p>
     </div>
-    <div class="item-list preview-parent">
+    <div class="item-list preview-parent" *ngIf="infoNft?.url">
       <p class="item-text">Assets</p>
       <a
         href="{{ infoNft?.url }}"
@@ -152,10 +176,37 @@
       ></div>
     </div>
 
-    <div class="item-list">
+    <div class="item-list" *ngIf="infoNft?.tags">
       <p class="item-text">Tags</p>
       <div class="container-tags">
         <p *ngFor="let tag of infoNft?.tags" class="items-tags">#{{ tag }}</p>
+      </div>
+    </div>
+    <div class="item-list" *ngIf="raritiesArray?.length > 0">
+      <p class="item-text">Ratities</p>
+      <div class="rarities">
+        <div class="rarity" *ngFor="let rarity of raritiesArray">
+          <i class="fas fa-trophy icon-rarity"></i>
+          <div class="rarity-info">
+            <p>{{ rarity.key | capitalize }} Rank</p>
+            <p>{{ rarity.value.rank }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="item-list" *ngIf="infoNft?.metadata.attributes">
+      <p class="item-text">Attributes</p>
+      <div class="attributes-array">
+        <div
+          class="attributes"
+          *ngFor="let attribute of infoNft?.metadata.attributes"
+        >
+          <div class="attributes-info">
+            <p>{{ attribute.trait_type }}</p>
+            <p>{{ attribute.value }}</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>

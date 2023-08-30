@@ -37,6 +37,7 @@ import { NftInfoComponent } from './nfts/nfts-list/nft-info/nft-info.component';
 import { LoadingInterceptor } from './shared/loading-interceptor.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { LoadingSpinnerService } from './shared/loading-spinner.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -80,7 +81,8 @@ import { LoadingSpinnerService } from './shared/loading-spinner.service';
     CommonModule,
     MatProgressSpinnerModule,
   ],
-  providers: [LoadingSpinnerService,
+  providers: [
+    LoadingSpinnerService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: LoadingInterceptor,

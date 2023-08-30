@@ -18,6 +18,7 @@ export class NftInfoComponent {
   itemsSize: number = 25;
   transactionsList: any;
   subscriptions: Subscription;
+  raritiesArray: any;
   isLoading$ = this.loadingSpinnerService.isLoading.asObservable();
   constructor(
     private nftInfoService: NftInfoService,
@@ -26,7 +27,6 @@ export class NftInfoComponent {
     private loadingSpinnerService: LoadingSpinnerService
   ) {
     this.subscriptions = new Subscription();
-    console.log(this.isLoading$)
   }
 
   displayedColumns: string[] = [
@@ -54,6 +54,13 @@ export class NftInfoComponent {
     this.subscriptions.add(
       this.nftInfoService.getNftInfo(nft).subscribe((data) => {
         this.infoNft = data;
+        console.log(data);
+        this.raritiesArray = Object.entries(data.rarities).map(
+          ([key, value]) => ({
+            key,
+            value,
+          })
+        );
       })
     );
   }
@@ -63,7 +70,7 @@ export class NftInfoComponent {
       this.nftInfoService
         .getNftTransactions(identifier, this.currentFrom, this.itemsSize)
         .subscribe((data) => {
-          console.log(data), (this.transactionsList = data);
+          this.transactionsList = data;
           this.dataSource = new MatTableDataSource(data);
         })
     );
@@ -98,6 +105,13 @@ export class NftInfoComponent {
       queryParams: { page: page },
       queryParamsHandling: 'merge',
     });
+  }
+  containsManyQs(address: string): boolean {
+    const pattern = /q{10,}/;
+    return pattern.test(address);
+  }
+  redirectToAccount(identifier: string) {
+    this.router.navigate(['/accounts', identifier]);
   }
   ngOnDistroy() {
     this.subscriptions.unsubscribe();
