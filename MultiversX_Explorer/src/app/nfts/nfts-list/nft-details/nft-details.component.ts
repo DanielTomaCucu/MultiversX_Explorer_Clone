@@ -28,6 +28,7 @@ export class NftDetailsComponent {
       .getCollectionDetails(collection)
       .subscribe((data) => {
         this.nftDetal = data;
+     
         this.processData(data);
         this.nffDetailsTableService.getNftList(data.collection);
       });

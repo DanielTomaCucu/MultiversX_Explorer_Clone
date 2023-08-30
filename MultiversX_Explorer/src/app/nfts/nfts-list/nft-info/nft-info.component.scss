@@ -40,6 +40,21 @@
       font-weight: 100;
       font-size: 14px;
     }
+    .item-list-redirect {
+      color: #fff;
+    }
+    .item-list-redirect:hover {
+      color: #22f7dd;
+      cursor: pointer;
+    }
+    .smart-contract-icon{
+    color: #22f7dd;
+    font-size: 14px;
+    width: 14px;
+    margin-bottom: -8px;
+    margin-right: -7px;
+
+    }
   }
 }
 .minted-time-icon {
@@ -219,4 +234,72 @@ td {
 .item-table:hover {
   color: #22f7dd;
   cursor: pointer;
+}
+.rarities {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 30px;
+  margin: 20px 0px;
+  .rarity {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    gap: 10px;
+    p {
+      color: #a3a3a3;
+      margin: 0px;
+      font-size: smaller;
+      font-weight: 100;
+    }
+    .rarity-info {
+      display: flex;
+      flex-direction: column;
+      align-content: center;
+      flex-wrap: nowrap;
+      justify-content: center;
+      gap: 5px;
+    }
+  }
+  .icon-rarity {
+    color: #22f7dd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    box-shadow: 0 0 0.25rem 0 rgba(35, 247, 221, 0.3);
+    border-radius: 0.5rem;
+    min-width: 3.4rem;
+    min-height: 3.4rem;
+  }
+}
+.attributes-array {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+  margin: 20px 0px;
+  .attributes {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-basis: 11.75rem;
+    overflow: hidden;
+    flex-grow: 0;
+    flex-shrink: 0;
+    border-radius: 0.5rem;
+    background-color: #262626;
+
+    padding: 1rem;
+    p {
+      text-align: center;
+      margin: 0px;
+      font-weight: 100;
+      font-size: smaller;
+      color: #a3a3a3;
+    }
+  }
 }
