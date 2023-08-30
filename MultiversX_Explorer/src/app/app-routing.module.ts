@@ -12,6 +12,8 @@ import { TokenDetailsComponent } from './tokens/tokens-list/token-details/token-
 import { TokensComponent } from './tokens/tokens.component';
 import { TransactionsComponent } from './transactions/transactions.component';
 import { TxHashComponent } from './tx-hash/tx-hash.component';
+import { ProvidersDetailsComponent } from './validators/providers/providers-details/providers-details.component';
+import { ProvidersComponent } from './validators/providers/providers.component';
 import { ValidatorsComponent } from './validators/validators.component';
 
 const routes: Routes = [
@@ -28,7 +30,15 @@ const routes: Routes = [
   { path: 'collections/:collection', component: NftDetailsComponent },
   { path: 'nfts', component: NftsComponent },
   { path: 'nfts/:nft', component: NftInfoComponent },
-  { path: 'validators', component: ValidatorsComponent },
+  {
+    path: 'validators',
+    component: ValidatorsComponent,
+    children: [
+      { path: 'providers', component: ProvidersComponent },
+      { path: '', redirectTo: 'validators', pathMatch: 'full' },
+    ],
+  },
+  { path: 'providers/:address', component: ProvidersDetailsComponent },
   { path: 'analytics', component: AnalyticsComponent },
 ];
 

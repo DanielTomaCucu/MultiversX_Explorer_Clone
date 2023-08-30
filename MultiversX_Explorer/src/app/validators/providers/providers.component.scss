@@ -1,0 +1,46 @@
+.table {
+  overflow: scroll;
+}
+.providerName {
+  display: flex;
+  align-content: center;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 5px;
+  height: inherit;
+  img {
+    width: 40px;
+    border-radius: 50px;
+    border: 1px solid rgba(38, 38, 38, 0.8);
+  }
+  .no-avatar {
+    font-size: 40px;
+    width: 40px;
+    height: auto;
+    color: #3a3a3a;
+  }
+  .verified {
+    font-size: 14px;
+    color: #22f7de;
+    margin-bottom: -14px;
+  }
+}
+table {
+  background-color: transparent;
+  box-shadow: none;
+}
+td {
+  color: #a3a3a3;
+  margin: 10px 0px;
+  white-space: nowrap;
+}
+.mat-mdc-table .mat-mdc-header-cell {
+  background-color: hsl(0 0% 15% / 0.6);
+  color: hsl(0 0% 64%);
+  font-weight: 200;
+  white-space: nowrap;
+}
+.redirectProvider:hover {
+  color: #1df7de;
+  cursor: pointer;
+}
