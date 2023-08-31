@@ -15,14 +15,14 @@
         </ng-template>
         <p
           *ngIf="row?.identityInfo?.name; else noName"
-          (click)="redirectToProvider(row?.provider)"
+          (click)="redirectToProvider(row?.provider, row.identityInfo, row?.featured)"
           class="redirectProvider"
         >
           {{ row?.identityInfo?.name | truncateString : 25 }}
         </p>
         <ng-template #noName>
           <p
-            (click)="redirectToProvider(row?.provider)"
+            (click)="redirectToProvider(row?.provider, row.identityInfo, row?.featured)"
             class="redirectProvider"
           >
             {{ row?.provider | truncateMiddle : 20 }}
