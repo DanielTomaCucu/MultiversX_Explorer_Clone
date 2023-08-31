@@ -61,8 +61,10 @@ export class ProvidersComponent {
     const percentage = (used / total) * 100;
     return `${percentage.toFixed(1)}%`;
   }
-  redirectToProvider(address: string) {
+  redirectToProvider(address: string, item: any, featured:any) {
     this.router.navigate(['/providers', address]);
+    localStorage.setItem('providerDetails', JSON.stringify(item));
+    localStorage.setItem('isFeatured',featured)
     this.providersDetailsService.getProvidersDetails(address);
   }
   ngOnDelete() {

@@ -1,1 +1,115 @@
-<p>providers-details works!</p>
+<div class="loader-overlay" *ngIf="isLoading$ | async">
+  <mat-spinner></mat-spinner>
+</div>
+<app-network-info></app-network-info>
+<div *ngIf="!(isLoading$ | async)">
+  <div class="provider-details">
+    <div class="general-info-details">
+      <img [src]="providerDetailsSummar?.avatar" />
+      <p class="providerName">{{ providerDetailsSummar?.name }}</p>
+      <mat-icon class="verified">verified</mat-icon>
+      <p class="rank">
+        rank <span>{{ providerDetailsSummar?.rank }}</span>
+      </p>
+    </div>
+    <div class="stake-details">
+      <div class="stake-card">
+        <p class="stake-title">Stake Balance</p>
+        <p class="stake-info-dinamic">
+          {{ providerDetailsSummar.locked | largeNumber }}
+        </p>
+      </div>
+      <div class="stake-card">
+        <p class="stake-title">Stake percent</p>
+        <p class="stake-info-dinamic">
+          {{ providerDetailsSummar.stakePercent }}
+        </p>
+      </div>
+      <div class="stake-card">
+        <p class="stake-title">Nodes</p>
+        <p class="stake-info-dinamic">
+          {{ providerDetailsSummar?.validators }}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="smart-contract-details">
+    <div class="header">
+      <p class="header-text">Contract Details</p>
+      <p class="header-button">Stake now</p>
+    </div>
+    <div class="address">
+      <p>
+        Address: <span>{{ providerDetails?.provider }}</span>
+      </p>
+    </div>
+    <div class="detailed-details">
+      <div class="card">
+        <mat-icon class="icon-detailed-details">dns</mat-icon>
+        <div>
+          <p class="title-card">Number of nodes</p>
+          <p class="data-details">{{ providerDetails?.numNodes }}</p>
+        </div>
+      </div>
+      <div class="card">
+        <mat-icon class="icon-detailed-details">eco</mat-icon>
+        <div>
+          <p class="title-card">Computed APR</p>
+          <p class="data-details">{{ providerDetails?.apr }}</p>
+        </div>
+      </div>
+      <div class="card">
+        <mat-icon class="icon-detailed-details">article</mat-icon>
+        <div>
+          <p class="title-card">Service fee</p>
+          <p class="data-details">{{ providerDetails?.serviceFee }}</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <mat-icon class="icon-detailed-details">lock</mat-icon>
+        <div>
+          <p class="title-card">Locked</p>
+          <p class="data-details">
+            {{ providerDetails?.locked | largeNumber }}
+          </p>
+        </div>
+      </div>
+      <div class="card">
+        <mat-icon class="icon-detailed-details">group</mat-icon>
+        <div>
+          <p class="title-card">Delegators</p>
+          <p class="data-details">{{ providerDetails?.numUsers }}</p>
+        </div>
+      </div>
+      <div class="card">
+        <mat-icon class="icon-detailed-details">filter_none</mat-icon>
+        <div>
+          <p class="title-card">Cumulated Rewards</p>
+          <p class="data-details">
+            {{ providerDetails?.cumulatedRewards | largeNumber }}
+          </p>
+        </div>
+      </div>
+      <div class="card">
+        <mat-icon class="icon-detailed-details">publish</mat-icon>
+        <div>
+          <p class="title-card">Delegation Cap</p>
+          <p class="data-details">
+            {{ providerDetails?.delegationCap | largeNumber }}
+          </p>
+        </div>
+      </div>
+      <div class="card">
+        <mat-icon class="icon-detailed-details">person</mat-icon>
+        <div>
+          <p class="title-card">Owner</p>
+          <p class="data-details">
+            {{ providerDetails?.provider | truncateMiddle : 20 }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
