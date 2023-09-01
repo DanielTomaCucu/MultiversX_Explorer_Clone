@@ -34,3 +34,11 @@ mat-spinner {
 :host ::ng-deep .custom-spinner circle{
     stroke: #0CC20C !important;
 }
+
+
+.mat-mdc-table .mat-mdc-header-cell {
+  background: hsl(0 0% 15% / 0.6)!important;
+  color: hsl(0 0% 64%);
+  font-weight: 200;
+  white-space: nowrap;
+}
