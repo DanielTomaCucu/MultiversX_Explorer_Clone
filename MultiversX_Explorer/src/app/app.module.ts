@@ -40,6 +40,9 @@ import { LoadingSpinnerService } from './shared/loading-spinner.service';
 import { TxHashComponent } from './tx-hash/tx-hash.component';
 import { ProvidersComponent } from './validators/providers/providers.component';
 import { ProvidersDetailsComponent } from './validators/providers/providers-details/providers-details.component';
+import { NodesComponent } from './validators/nodes/nodes.component';
+import { StatisticsComponent } from './validators/statistics/statistics.component';
+import { QueueComponent } from './validators/queue/queue.component';
 
 @NgModule({
   declarations: [
@@ -63,13 +66,16 @@ import { ProvidersDetailsComponent } from './validators/providers/providers-deta
     TxHashComponent,
     ProvidersComponent,
     ProvidersDetailsComponent,
+    NodesComponent,
+    StatisticsComponent,
+    QueueComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     MatCardModule,
-    BrowserModule,
+  
     BrowserAnimationsModule,
     MatSidenavModule,
     MatToolbarModule,

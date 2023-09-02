@@ -1,0 +1,31 @@
+@import url("./../providers/providers-details/providers-details.component.scss");
+table{
+  background: transparent;
+  box-shadow: none;
+}
+td{
+  color: #a3a3a3;
+}
+.status-node-online,
+.status-node-offline {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 5px;
+  mat-icon {
+    width: 14px;
+    height: 14px;
+    font-size: 14px;
+  }
+}
+.search-pagination {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.table-over{
+  overflow: scroll;
+}

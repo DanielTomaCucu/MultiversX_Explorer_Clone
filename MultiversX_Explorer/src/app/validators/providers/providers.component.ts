@@ -67,7 +67,7 @@ export class ProvidersComponent {
     localStorage.setItem('isFeatured',featured)
     this.providersDetailsService.getProvidersDetails(address);
   }
-  ngOnDelete() {
+  ngOnDestroy() {
     this.subscription.unsubscribe();
   }
 }
