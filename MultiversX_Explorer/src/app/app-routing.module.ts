@@ -12,8 +12,11 @@ import { TokenDetailsComponent } from './tokens/tokens-list/token-details/token-
 import { TokensComponent } from './tokens/tokens.component';
 import { TransactionsComponent } from './transactions/transactions.component';
 import { TxHashComponent } from './tx-hash/tx-hash.component';
+import { NodesComponent } from './validators/nodes/nodes.component';
 import { ProvidersDetailsComponent } from './validators/providers/providers-details/providers-details.component';
 import { ProvidersComponent } from './validators/providers/providers.component';
+import { QueueComponent } from './validators/queue/queue.component';
+import { StatisticsComponent } from './validators/statistics/statistics.component';
 import { ValidatorsComponent } from './validators/validators.component';
 
 const routes: Routes = [
@@ -35,6 +38,9 @@ const routes: Routes = [
     component: ValidatorsComponent,
     children: [
       { path: 'providers', component: ProvidersComponent },
+      { path: 'nodes', component: NodesComponent },
+      { path: 'statistics', component: StatisticsComponent },
+      { path: 'queue', component: QueueComponent },
       { path: '', redirectTo: 'validators', pathMatch: 'full' },
     ],
   },

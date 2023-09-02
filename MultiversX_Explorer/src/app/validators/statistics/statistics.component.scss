@@ -1,0 +1,23 @@
+table {
+  background-color: transparent;
+  box-shadow: none;
+}
+td {
+  color: #a3a3a3;
+  white-space: nowrap;
+  padding: 0px 5px;
+}
+th {
+  padding: 0px 5px;
+}
+.table_over {
+  overflow: scroll;
+}
+.search-pagination {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 20px;
+}

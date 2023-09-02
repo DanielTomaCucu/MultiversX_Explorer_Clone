@@ -42,3 +42,41 @@ mat-spinner {
   font-weight: 200;
   white-space: nowrap;
 }
+
+
+.redirect {
+  color: #fff;
+}
+.redirect:hover {
+  color: #23f7dd;
+  cursor: pointer;
+}
+
+input {
+  width: 200px;
+  padding: 10px;
+  border-radius: 7px;
+  border: none;
+  outline: none;
+  background: #262626;
+  color: #fff;
+}
+.navigation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: nowrap;
+  span {
+    cursor: pointer;
+    color: #a3a3a4;
+    font-size: smaller;
+    mat-icon {
+      margin-bottom: -7px;
+    }
+  }
+  .disable {
+    color: #525252;
+    cursor: default;
+  }
+}

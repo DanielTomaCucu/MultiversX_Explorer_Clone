@@ -95,7 +95,7 @@ export class ProvidersDetailsComponent {
   }
 
   redirectToNode(bls: string) {}
-  ngOnDelete() {
+  ngOnDestroy() {
     this.subscription.unsubscribe();
   }
 }
