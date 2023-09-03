@@ -17,6 +17,8 @@ import { ProvidersDetailsComponent } from './validators/providers/providers-deta
 import { ProvidersComponent } from './validators/providers/providers.component';
 import { QueueComponent } from './validators/queue/queue.component';
 import { StatisticsComponent } from './validators/statistics/statistics.component';
+import { IdentitiesComponent } from './validators/validators-info/identities/identities.component';
+import { ValidatorsInfoComponent } from './validators/validators-info/validators-info.component';
 import { ValidatorsComponent } from './validators/validators.component';
 
 const routes: Routes = [
@@ -37,13 +39,15 @@ const routes: Routes = [
     path: 'validators',
     component: ValidatorsComponent,
     children: [
+      { path: 'stats', component: ValidatorsInfoComponent },
       { path: 'providers', component: ProvidersComponent },
       { path: 'nodes', component: NodesComponent },
       { path: 'statistics', component: StatisticsComponent },
       { path: 'queue', component: QueueComponent },
-      { path: '', redirectTo: 'validators', pathMatch: 'full' },
+      { path: '', redirectTo: 'stats', pathMatch: 'full' },
     ],
   },
+  { path: 'identities/:name', component: IdentitiesComponent },
   { path: 'providers/:address', component: ProvidersDetailsComponent },
   { path: 'analytics', component: AnalyticsComponent },
 ];

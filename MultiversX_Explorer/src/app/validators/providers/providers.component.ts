@@ -30,6 +30,7 @@ export class ProvidersComponent {
     this.subscription.add(
       this.providersService.getProviders().subscribe((data) => {
         this.providersList = data;
+        console.log(data)
         this.dataSource = new MatTableDataSource(data);
         this.dataSource.sort = this.sort;
       })
@@ -61,11 +62,11 @@ export class ProvidersComponent {
     const percentage = (used / total) * 100;
     return `${percentage.toFixed(1)}%`;
   }
-  redirectToProvider(address: string, item: any, featured:any) {
+  redirectToProvider(address: string, owner:string ,featured:any) {
     this.router.navigate(['/providers', address]);
-    localStorage.setItem('providerDetails', JSON.stringify(item));
     localStorage.setItem('isFeatured',featured)
     this.providersDetailsService.getProvidersDetails(address);
+    this.providersDetailsService.getProviderSmallInfo(owner);
   }
   ngOnDestroy() {
     this.subscription.unsubscribe();

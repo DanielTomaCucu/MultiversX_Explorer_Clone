@@ -1,0 +1,224 @@
+@import url("../../providers/providers-details/providers-details.component.scss");
+.identity_details {
+  background-color: #000;
+  margin: 1vh 10px 3vh 10px;
+  border-radius: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  img {
+    width: 8em;
+    height: 8em;
+    border-radius: 50%;
+  }
+}
+.logo-location {
+  display: flex;
+
+  gap: 20px;
+  align-content: center;
+  align-items: center;
+  .name-rank {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    color: aliceblue;
+    gap: 10px;
+  }
+  .name-rank :first-child {
+    font-size: 18px;
+  }
+  .identity-badge {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+    background: #23f7dd;
+    border-radius: 0.375rem;
+    padding: 0.188rem 0.75rem 0.188rem 0.313rem;
+
+    font-weight: 600;
+    font-size: 0.813rem;
+    line-height: 0.813rem;
+    color: #08302c;
+    margin-right: 3rem;
+    .badge-side {
+      position: absolute;
+      left: 2.375rem;
+      padding: 0.375rem 0.75rem;
+      border-radius: 1rem;
+      font-size: 14px;
+      border: 2px solid #23f7dd;
+      color: #99f6e4;
+      background: linear-gradient(
+        90deg,
+        rgba(0, 143, 93, 0.2),
+        rgba(0, 126, 143, 0.2)
+      );
+      -webkit-backdrop-filter: blur(5px);
+      backdrop-filter: blur(5px);
+    }
+  }
+  .description {
+    color: #a3a3a3;
+    margin: 0px;
+    font-size: 0.9rem;
+  }
+  .location-media {
+    color: #a3a3a3;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    row-gap: 5px;
+    column-gap: 10px;
+    font-size: 0.8rem;
+    margin: 5px 0px;
+    p,
+    a {
+      display: flex;
+      flex-wrap: nowrap;
+      align-content: center;
+      align-items: center;
+      gap: 3px;
+      margin: 0px;
+    }
+
+    mat-icon {
+      width: 0.9rem;
+      height: 0.9rem;
+      font-size: 0.9rem;
+    }
+
+    a {
+      text-decoration: none;
+      color: #23f7dd;
+    }
+    a :visited {
+      color: #23f7dd;
+    }
+  }
+}
+.cards-details {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
+}
+.card {
+  background: #121212;
+  padding: 1.5rem;
+  border-radius: 20px;
+  flex: 1;
+  gap: 0px;
+  min-width: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  .title {
+    font-size: 0.9rem;
+    color: #a3a3a3;
+    margin: 0px 0px 5px 0px;
+    font-weight: 200;
+    margin: 0px;
+  }
+  .card-body {
+    color: #23f7dd;
+    font-size: 2rem;
+    margin: 0px;
+  }
+}
+.stake {
+  color: aliceblue;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  min-width: max-content;
+  flex-basis: 15%;
+  width: max-content;
+
+  p {
+    margin: 0px;
+    background: #22f7de;
+    padding: 5px 17px;
+    border-radius: 5px;
+    color: #000;
+    text-align: center;
+  }
+}
+@media screen and (max-width: 920px) {
+  .stake {
+    width: 100%;
+    flex: 1;
+    min-width: max-content;
+    p {
+      width: 100%;
+    }
+  }
+}
+.nodes-provider {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: 20px;
+}
+.card-provider {
+  background: #121212;
+  padding: 1.5rem;
+  border-radius: 20px;
+  flex: 1;
+  min-width: -moz-fit-content;
+  min-width: fit-content;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 5px;
+
+  .title {
+    color: #a3a3a3;
+    margin: 0px;
+  }
+  .card-p-body {
+    color: #ffffff;
+    font-size: 0.9rem;
+  }
+  .percent {
+    color: #23f7dd;
+    font-size: 0.9rem;
+  }
+  .provider-id {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 5px;
+    p {
+      margin: 0px;
+    }
+  }
+}
+.card-provider:first-child {
+  flex-basis: 50%;
+}
+.card-node-p {
+  font-size: 2rem !important;
+  margin: 0px;
+}
+
+.status-node-online {
+  color: #49de80;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  gap: 3px;
+  mat-icon {
+    width: 13px;
+    height: 13px;
+    font-size: 13px;
+  }
+}
+table{
+  width: 100%;
+}

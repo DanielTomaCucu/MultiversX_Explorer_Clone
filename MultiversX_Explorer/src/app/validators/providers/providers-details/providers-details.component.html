@@ -5,30 +5,30 @@
 <div *ngIf="!(isLoading$ | async)">
   <div class="provider-details">
     <div class="general-info-details">
-      <img [src]="providerDetailsSummar?.avatar" />
-      <p class="providerName">{{ providerDetailsSummar?.name }}</p>
+      <img [src]="providerDetailsSummar?.identityInfo.avatar" />
+      <p class="providerName">{{ providerDetailsSummar?.identityInfo.name }}</p>
       <mat-icon class="verified">verified</mat-icon>
       <p class="rank">
-        rank <span>{{ providerDetailsSummar?.rank }}</span>
+        rank <span>{{ providerDetailsSummar?.identityInfo.rank }}</span>
       </p>
     </div>
     <div class="stake-details">
       <div class="stake-card">
         <p class="stake-title">Stake Balance</p>
         <p class="stake-info-dinamic">
-          {{ providerDetailsSummar?.locked | largeNumber }}
+          {{ providerDetailsSummar?.locked | largeNumber }} EGLD
         </p>
       </div>
       <div class="stake-card">
         <p class="stake-title">Stake percent</p>
         <p class="stake-info-dinamic">
-          {{ providerDetailsSummar?.stakePercent }}
+          {{ providerDetailsSummar?.identityInfo?.stakePercent }} %
         </p>
       </div>
       <div class="stake-card">
         <p class="stake-title">Nodes</p>
         <p class="stake-info-dinamic">
-          {{ providerDetailsSummar?.validators }}
+          {{ providerDetailsSummar?.numNodes }}
         </p>
       </div>
     </div>
@@ -56,14 +56,16 @@
         <mat-icon class="icon-detailed-details">eco</mat-icon>
         <div>
           <p class="title-card">Computed APR</p>
-          <p class="data-details">{{ providerDetails?.apr }}</p>
+          <p class="data-details">{{ providerDetails?.apr }} %</p>
         </div>
       </div>
       <div class="card">
         <mat-icon class="icon-detailed-details">article</mat-icon>
         <div>
           <p class="title-card">Service fee</p>
-          <p class="data-details">{{ providerDetails?.serviceFee }}</p>
+          <p class="data-details">
+            {{ toPercentage(providerDetails?.serviceFee) }}
+          </p>
         </div>
       </div>
 

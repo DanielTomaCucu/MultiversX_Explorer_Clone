@@ -2,35 +2,34 @@ import { Component, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription, tap } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { LoadingSpinnerService } from 'src/app/shared/loading-spinner.service';
-import { ProvidersDetailsService } from './providers-details.service';
+import { IdentitiesService } from './identities.service';
 
 @Component({
-  selector: 'app-providers-details',
-  templateUrl: './providers-details.component.html',
-  styleUrls: ['./providers-details.component.scss'],
+  selector: 'app-identities',
+  templateUrl: './identities.component.html',
+  styleUrls: ['./identities.component.scss'],
 })
-export class ProvidersDetailsComponent {
-  providerDetails: any;
-  providerDetailsSummar: any;
-  providerNodes: any;
-  subscription: Subscription;
-  isFeatured = localStorage.getItem('featured');
-  isLoading$ = this.loadingSpinnerService.isLoading.asObservable();
+export class IdentitiesComponent {
+  dataSourceDelegation!: MatTableDataSource<any>;
+  @ViewChild(MatSort) sort!: MatSort;
   dataSource!: MatTableDataSource<any>;
+  isLoading$ = this.loadingSpinnerService.isLoading.asObservable();
+  identifierDetails: any;
+  distribution?: { [key: string]: string };
+  provider: any = localStorage.getItem('provider');
   currentFrom: number = 0;
   itemsSize: number = 25;
-  owner!: string;
+  subscription: Subscription;
   constructor(
-    private providerDetailsService: ProvidersDetailsService,
     private route: ActivatedRoute,
+    private identitiesService: IdentitiesService,
     private loadingSpinnerService: LoadingSpinnerService,
     private router: Router
   ) {
     this.subscription = new Subscription();
   }
-
   displayedColumns: string[] = [
     'public_key',
     'name',
@@ -41,46 +40,50 @@ export class ProvidersDetailsComponent {
     'rating',
     'nonce',
   ];
-  @ViewChild(MatSort) sort!: MatSort;
-  async ngOnInit() {
-    const addr: any = this.route.snapshot.paramMap.get('address');
-    await this.providerDetailsService
-      .getProvidersDetails(addr)
-      .pipe(
-        tap((data) => {
-          this.providerDetails = data;
-          this.owner = data.owner;
+  displayedDelegted: string[] = [
+    'address',
+    'stake',
+    'nodes',
+    'computed_apr',
+    'service_fee',
+    'delegation_cap',
+    'filled',
+  ];
+
+  ngOnInit() {
+    const identifier: any = this.route.snapshot.paramMap.get('name');
+    this.subscription.add(
+      this.identitiesService.getIdentity(identifier).subscribe((data) => {
+        this.distribution = data?.distribution;
+        this.identifierDetails = data;
+      })
+    );
+    this.subscription.add(
+      this.identitiesService
+        .getProviderDetails(this.provider)
+        .subscribe((data) => {
+          this.dataSourceDelegation = new MatTableDataSource([data]);
         })
-      )
-      .toPromise();
-    await this.loadProviderSmallData();
+    );
+
     this.subscription.add(
       this.route.queryParams.subscribe((params) => {
         const page = +params['page'] || 1;
         this.currentFrom = (page - 1) * this.itemsSize;
-        this.loadNodes();
+        this.getNodes();
       })
     );
   }
-  loadNodes() {
-    const addr: any = this.route.snapshot.paramMap.get('address');
+
+  getNodes() {
     this.subscription.add(
-      this.providerDetailsService
-        .getProvidersNodes(addr, this.currentFrom, this.itemsSize)
+      this.identitiesService
+        .getNodes(this.provider, this.currentFrom, this.itemsSize)
         .subscribe((data) => {
-          console.log(data);
           this.dataSource = new MatTableDataSource(data);
           this.dataSource.sort = this.sort;
         })
     );
-  }
-  async loadProviderSmallData() {
-    this.providerDetailsService
-      .getProviderSmallInfo(this.owner)
-      .subscribe((data) => {
-        this.providerDetailsSummar = data[0];
-        console.log(data[0]);
-      });
   }
   nextPage() {
     const nextPage = this.currentFrom / this.itemsSize + 2;
@@ -100,8 +103,11 @@ export class ProvidersDetailsComponent {
       queryParamsHandling: 'merge',
     });
   }
-
-  redirectToNode(bls: string) {}
+  getUsagePercentage(used: number, total: number): string {
+    if (total === 0) return '0%';
+    const percentage = (used / total) * 100;
+    return `${percentage.toFixed(1)}%`;
+  }
 
   toPercentage(value: any): string {
     let percentageValue = (value * 100).toFixed(2);
@@ -112,6 +118,9 @@ export class ProvidersDetailsComponent {
       );
     }
     return `${percentageValue}%`;
+  }
+  redirectToProvider(providerAddr: string) {
+    this.router.navigate(['/providers', providerAddr]);
   }
   ngOnDestroy() {
     this.subscription.unsubscribe();

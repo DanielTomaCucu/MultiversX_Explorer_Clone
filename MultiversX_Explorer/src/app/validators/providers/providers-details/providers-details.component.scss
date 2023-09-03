@@ -165,6 +165,8 @@
 }
 .data-details {
   font-weight: 300;
+  font-size: 0.9rem;
+  margin-top:3px;
 }
 .icon-detailed-details {
   color: #22f7dd;
@@ -240,8 +242,8 @@ td {
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 10px;
-  .header{
-    color:#fff;
+  .header {
+    color: #fff;
     font-weight: 400;
   }
   .navigation {
@@ -264,3 +266,4 @@ td {
     }
   }
 }
+
