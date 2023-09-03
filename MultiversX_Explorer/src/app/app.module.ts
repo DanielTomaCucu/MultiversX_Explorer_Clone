@@ -81,7 +81,6 @@ import { IdentitiesComponent } from './validators/validators-info/identities/ide
     AppRoutingModule,
     HttpClientModule,
     MatCardModule,
-
     BrowserAnimationsModule,
     MatSidenavModule,
     MatToolbarModule,

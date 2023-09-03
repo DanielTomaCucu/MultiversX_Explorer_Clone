@@ -44,8 +44,6 @@ export class ProvidersDetailsComponent {
   @ViewChild(MatSort) sort!: MatSort;
   async ngOnInit() {
     const addr: any = this.route.snapshot.paramMap.get('address');
-
-    // Convert the Observable to Promise and wait for it to complete
     await this.providerDetailsService
       .getProvidersDetails(addr)
       .pipe(
@@ -55,11 +53,7 @@ export class ProvidersDetailsComponent {
         })
       )
       .toPromise();
-
-    // Execute the loadProviderSmallData method after the Promise is resolved
     await this.loadProviderSmallData();
-
-    // Continue with the rest of your logic
     this.subscription.add(
       this.route.queryParams.subscribe((params) => {
         const page = +params['page'] || 1;
