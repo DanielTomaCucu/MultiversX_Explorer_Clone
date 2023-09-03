@@ -1,0 +1,229 @@
+<app-network-info></app-network-info>
+<div class="loader-overlay" *ngIf="isLoading$ | async">
+  <mat-spinner></mat-spinner>
+</div>
+<div class="identity_details" *ngIf="!(isLoading$ | async)">
+  <div class="logo-location">
+    <img [src]="identifierDetails?.avatar" />
+    <div class="small-detail">
+      <div class="name-rank">
+        <p>{{ identifierDetails?.name }}</p>
+        <p class="identity-badge">
+          Rank <span class="badge-side">{{ identifierDetails?.rank }}</span>
+        </p>
+      </div>
+      <p class="description" *ngIf="identifierDetails?.description">
+        {{ identifierDetails?.description }}
+      </p>
+      <div class="location-media">
+        <p *ngIf="identifierDetails?.location">
+          <mat-icon>location_on</mat-icon> {{ identifierDetails?.location }}
+        </p>
+        <p *ngIf="identifierDetails?.twitter">
+          <a
+            href="https://twitter.com/{{ identifierDetails?.twitter }}"
+            target="_blank"
+            ><i class="fab fa-twitter"></i>{{ identifierDetails?.twitter }}</a
+          >
+        </p>
+        <p *ngIf="identifierDetails?.website">
+          <a href="{{ identifierDetails?.website }}">
+            <i class="fas fa-link"></i>{{ identifierDetails?.website }}</a
+          >
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="cards-details">
+    <div class="card">
+      <p class="title">Stake Balance</p>
+      <p class="card-body">
+        {{ identifierDetails?.locked | largeNumber }} EGLD
+      </p>
+    </div>
+    <div class="card">
+      <p class="title">Stake Procentage</p>
+      <p class="card-body">{{ identifierDetails?.stakePercent }} %</p>
+    </div>
+    <div class="card">
+      <p class="title">Computed Apr</p>
+      <p class="card-body">{{ identifierDetails?.apr }} %</p>
+    </div>
+    <div class="stake"><p class="stake-button">Stake Now</p></div>
+  </div>
+  <div class="nodes-provider">
+    <div class="card-provider">
+      <p class="title">Stake Distribution</p>
+      <div class="container-ids">
+        <div *ngFor="let item of distribution | keyvalue" class="provider-id">
+          <p class="card-p-body">{{ item.key | truncateMiddle : 30 }}</p>
+          <p class="percent">({{ toPercentage(item?.value) }})</p>
+        </div>
+      </div>
+    </div>
+    <div class="card-provider">
+      <p class="title">Nodes</p>
+      <p class="card-node-p card-p-body">{{ identifierDetails?.validators }}</p>
+    </div>
+  </div>
+</div>
+
+<div class="table" *ngIf="!(isLoading$ | async)">
+  <div class="header-table">
+    <h2 class="header">Delegation Contracts</h2>
+  </div>
+  <div class="table-over">
+    <div>
+      <table
+        mat-table
+        [dataSource]="dataSourceDelegation"
+        class="mat-elevation-z8"
+      >
+        <ng-container matColumnDef="address">
+          <th mat-header-cell *matHeaderCellDef>Address</th>
+          <td mat-cell *matCellDef="let row">
+            <p class="redirect" (click)="redirectToProvider(row?.provider)">
+              {{ row?.provider | truncateMiddle : 30 }}
+            </p>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="stake">
+          <th mat-header-cell *matHeaderCellDef>Stake</th>
+          <td mat-cell *matCellDef="let row">
+            {{ row.locked | largeNumber }} EGLD
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="nodes">
+          <th mat-header-cell *matHeaderCellDef>Nodes</th>
+          <td mat-cell *matCellDef="let row">{{ row.numNodes }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="computed_apr">
+          <th mat-header-cell *matHeaderCellDef>Computed Apr</th>
+          <td mat-cell *matCellDef="let row">{{ row.apr }} %</td>
+        </ng-container>
+        <ng-container matColumnDef="service_fee">
+          <th mat-header-cell *matHeaderCellDef>Service Fee</th>
+          <td mat-cell *matCellDef="let row">
+            {{ toPercentage(row.serviceFee) }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="delegation_cap">
+          <th mat-header-cell *matHeaderCellDef>Delegation Cap</th>
+          <td mat-cell *matCellDef="let row">
+            <p *ngIf="row?.delegationCap > 0; else uncapped">
+              {{ row.delegationCap | largeNumber }} EGLD
+            </p>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="filled">
+          <th mat-header-cell *matHeaderCellDef>Filled</th>
+          <td mat-cell *matCellDef="let row">
+            <p *ngIf="row?.delegationCap > 0; else uncapped">
+              {{ getUsagePercentage(row.locked, row?.delegationCap) }}
+            </p>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedDelegted"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedDelegted"></tr>
+
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">No data matching the filter</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<ng-template #uncapped><p>Uncapped</p></ng-template>
+<div class="table" *ngIf="!(isLoading$ | async)">
+  <div class="header-table">
+    <h2 class="header">Nodes</h2>
+    <div class="navigation">
+      <span (click)="prevPage()" [class.disable]="currentFrom == 0">
+        <mat-icon> chevron_left </mat-icon>Prev</span
+      >
+      <span (click)="nextPage()">Next <mat-icon>chevron_right</mat-icon></span>
+    </div>
+  </div>
+  <div class="table-over">
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+      <ng-container matColumnDef="public_key">
+        <th mat-header-cell *matHeaderCellDef>Public key</th>
+        <td mat-cell *matCellDef="let row">
+          <p class="bls redirect">
+            <mat-icon *ngIf="row.status == 'waiting'" class="waiting"
+              >schedule</mat-icon
+            >
+            {{ row?.bls | truncateMiddle : 20 }}
+          </p>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+        <td mat-cell *matCellDef="let row">{{ row?.name }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="shard">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Shard</th>
+        <td mat-cell *matCellDef="let row">
+          <p class="redirect" *ngIf="row?.shard < 3; else metachain">
+            Shard {{ row?.shard }}
+          </p>
+          <ng-template #metachain>
+            <p class="redirect">Metachain</p>
+          </ng-template>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="version">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Version</th>
+        <td mat-cell *matCellDef="let row">{{ row?.version }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="ignored_signatures">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          Ignored Signautures
+        </th>
+        <td mat-cell *matCellDef="let row">
+          <p *ngIf="row?.validatorIgnoredSignatures > 0; else Na">
+            {{ row?.validatorIgnoredSignatures }}
+          </p>
+          <ng-template #Na>
+            <p>N/A</p>
+          </ng-template>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+        <td mat-cell *matCellDef="let row">
+          <p class="status-node-online" *ngIf="row.online; else offline">
+            <mat-icon>circle</mat-icon>Online
+          </p>
+          <ng-template #offline>
+            <p class="status-node-offline"><span></span>Offline</p>
+          </ng-template>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="rating">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Rating</th>
+        <td mat-cell *matCellDef="let row">{{ row?.tempRating }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="nonce">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Nonce</th>
+        <td mat-cell *matCellDef="let row">{{ row?.nonce }}</td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">No data matching the filter</td>
+      </tr>
+    </table>
+  </div>
+</div>

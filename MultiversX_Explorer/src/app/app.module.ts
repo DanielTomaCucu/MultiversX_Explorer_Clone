@@ -43,6 +43,9 @@ import { ProvidersDetailsComponent } from './validators/providers/providers-deta
 import { NodesComponent } from './validators/nodes/nodes.component';
 import { StatisticsComponent } from './validators/statistics/statistics.component';
 import { QueueComponent } from './validators/queue/queue.component';
+import { ValidatorsInfoComponent } from './validators/validators-info/validators-info.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { IdentitiesComponent } from './validators/validators-info/identities/identities.component';
 
 @NgModule({
   declarations: [
@@ -69,13 +72,16 @@ import { QueueComponent } from './validators/queue/queue.component';
     NodesComponent,
     StatisticsComponent,
     QueueComponent,
+    ValidatorsInfoComponent,
+    IdentitiesComponent,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     MatCardModule,
-  
+
     BrowserAnimationsModule,
     MatSidenavModule,
     MatToolbarModule,
@@ -92,6 +98,7 @@ import { QueueComponent } from './validators/queue/queue.component';
     MatSortModule,
     CommonModule,
     MatProgressSpinnerModule,
+    MatMenuModule,
   ],
   providers: [
     LoadingSpinnerService,

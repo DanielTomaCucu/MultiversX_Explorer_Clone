@@ -7,12 +7,5 @@ import { ValidatorsService } from './validators.service';
   styleUrls: ['./validators.component.scss'],
 })
 export class ValidatorsComponent {
-  validatorsList: any;
-  constructor(private validatorsService: ValidatorsService) {}
-/*   ngOnInit() {
-    this.validatorsService.getValidators().subscribe((data) => {
-      this.validatorsList = data;
-
-    }); */
   }
 

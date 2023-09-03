@@ -21,7 +21,7 @@ td {
     cursor: pointer;
     padding: 9px 13px;
     border-radius: 8px;
-    border: 1px solid #cdcdcd59;
+    border: 1px solid rgb(205 205 205 / 14%);
     font-size: 12px;
     color: #737373;
     background: linear-gradient(
@@ -38,6 +38,7 @@ td {
       rgba(215, 221, 232, 0.3)
     );
     color: #a3a3a3;
+    border: none;
   }
 }
 .warning {
