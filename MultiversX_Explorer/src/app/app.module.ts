@@ -46,6 +46,7 @@ import { QueueComponent } from './validators/queue/queue.component';
 import { ValidatorsInfoComponent } from './validators/validators-info/validators-info.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { IdentitiesComponent } from './validators/validators-info/identities/identities.component';
+import { NodesInfoComponent } from './validators/nodes/nodes-info/nodes-info.component';
 
 @NgModule({
   declarations: [
@@ -74,6 +75,7 @@ import { IdentitiesComponent } from './validators/validators-info/identities/ide
     QueueComponent,
     ValidatorsInfoComponent,
     IdentitiesComponent,
+    NodesInfoComponent,
 
   ],
   imports: [

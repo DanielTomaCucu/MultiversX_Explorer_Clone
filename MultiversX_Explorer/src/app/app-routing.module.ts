@@ -12,6 +12,7 @@ import { TokenDetailsComponent } from './tokens/tokens-list/token-details/token-
 import { TokensComponent } from './tokens/tokens.component';
 import { TransactionsComponent } from './transactions/transactions.component';
 import { TxHashComponent } from './tx-hash/tx-hash.component';
+import { NodesInfoComponent } from './validators/nodes/nodes-info/nodes-info.component';
 import { NodesComponent } from './validators/nodes/nodes.component';
 import { ProvidersDetailsComponent } from './validators/providers/providers-details/providers-details.component';
 import { ProvidersComponent } from './validators/providers/providers.component';
@@ -49,6 +50,7 @@ const routes: Routes = [
   },
   { path: 'identities/:name', component: IdentitiesComponent },
   { path: 'providers/:address', component: ProvidersDetailsComponent },
+  { path: 'nodes/:bls', component: NodesInfoComponent },
   { path: 'analytics', component: AnalyticsComponent },
 ];
 

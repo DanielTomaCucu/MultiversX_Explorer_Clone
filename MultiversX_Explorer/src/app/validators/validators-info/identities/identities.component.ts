@@ -122,6 +122,9 @@ export class IdentitiesComponent {
   redirectToProvider(providerAddr: string) {
     this.router.navigate(['/providers', providerAddr]);
   }
+  redirectToNode(bls:string) {
+  this.router.navigate(['/nodes', bls]);
+  }
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }

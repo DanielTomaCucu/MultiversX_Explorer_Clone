@@ -1,0 +1,154 @@
+<app-network-info></app-network-info>
+<div class="loader-overlay" *ngIf="isLoading$ | async">
+  <mat-spinner></mat-spinner>
+</div>
+<div class="nodeInfo" *ngIf="!(isLoading$ | async)">
+  <div class="smart-contract-details">
+    <div class="header">
+      <p class="header-text">Node Details</p>
+    </div>
+    <div class="address">
+      <p>
+        Address: <span>{{ nodeInfo?.bls | truncateMiddle : 50 }} </span
+        ><mat-icon class="copy" (click)="copyToClipboard(nodeInfo?.bls)"
+          >content_copy</mat-icon
+        >
+      </p>
+    </div>
+    <div class="detailed-details">
+      <div class="card">
+        <mat-icon class="icon-detailed-details">filter_none</mat-icon>
+        <div>
+          <p class="title-card">Shard</p>
+          <p class="data-details">{{ nodeInfo?.shard }}</p>
+        </div>
+      </div>
+      <div class="card">
+        <mat-icon class="icon-detailed-details">done</mat-icon>
+        <div>
+          <p class="title-card">Version</p>
+          <p class="data-details">{{ nodeInfo?.version }}</p>
+        </div>
+      </div>
+      <div class="card">
+        <mat-icon class="icon-detailed-details">done</mat-icon>
+        <div>
+          <p class="title-card">Instances</p>
+          <p class="data-details">
+            {{ nodeInfo?.instances }}
+          </p>
+        </div>
+      </div>
+
+      <div class="card">
+        <mat-icon class="icon-detailed-details">dns</mat-icon>
+        <div>
+          <p class="title-card">Name</p>
+          <p class="data-details">
+            {{ nodeInfo?.name }}
+          </p>
+        </div>
+      </div>
+      <div class="card">
+        <mat-icon class="icon-detailed-details">settings</mat-icon>
+        <div>
+          <p class="title-card">Type</p>
+          <p class="data-details">{{ nodeInfo?.type }}</p>
+        </div>
+      </div>
+      <div class="card">
+        <mat-icon class="icon-detailed-details">clear_all</mat-icon>
+        <div>
+          <p class="title-card">Nonce</p>
+          <p class="data-details">
+            {{ nodeInfo?.nonce }}
+          </p>
+        </div>
+      </div>
+      <div class="card">
+        <mat-icon class="icon-detailed-details">lock</mat-icon>
+        <div>
+          <p class="title-card">Locked</p>
+          <p class="data-details">
+            {{ nodeInfo?.locked | largeNumber }}
+          </p>
+        </div>
+      </div>
+      <div class="card">
+        <mat-icon class="icon-detailed-details">code</mat-icon>
+        <div>
+          <p class="title-card">Provider</p>
+          <p class="data-details">
+            {{ nodeInfo?.provider | truncateMiddle : 20
+            }}<mat-icon
+              class="copy"
+              (click)="copyToClipboard(nodeInfo?.provider)"
+              >content_copy</mat-icon
+            >
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="smart-contract-details">
+    <div class="header">
+      <p class="header-text">Validator Statistics</p>
+    </div>
+
+    <div class="detailed-details">
+      <div class="card">
+        <mat-icon class="icon-detailed-details">close</mat-icon>
+        <div>
+          <p class="title-card">Ignored Signature</p>
+          <p
+            class="data-details"
+            *ngIf="nodeInfo?.validatorIgnoredSignatures; else Na"
+          >
+            {{ nodeInfo?.validatorIgnoredSignatures }}
+          </p>
+        </div>
+      </div>
+      <div class="card">
+        <mat-icon class="icon-detailed-details">done</mat-icon>
+        <div>
+          <p class="title-card">Leader Success</p>
+          <p class="data-details" *ngIf="nodeInfo?.leaderSuccess; else Na">
+            {{ nodeInfo?.leaderSuccess }}
+          </p>
+        </div>
+      </div>
+      <div class="card">
+        <mat-icon class="icon-detailed-details">close</mat-icon>
+        <div>
+          <p class="title-card">Leader Failure</p>
+          <p class="data-details" *ngIf="nodeInfo?.leaderFailure; else Na">
+            {{ nodeInfo?.leaderFailure }}
+          </p>
+        </div>
+      </div>
+
+      <div class="card">
+        <mat-icon class="icon-detailed-details">done</mat-icon>
+        <div>
+          <p class="title-card">Validator Success</p>
+          <p class="data-details" *ngIf="nodeInfo?.validatorSuccess; else Na">
+            {{ nodeInfo?.validatorSuccess }}
+          </p>
+        </div>
+      </div>
+      <div class="card">
+        <mat-icon class="icon-detailed-details">close</mat-icon>
+        <div>
+          <p class="title-card">Validator Failure</p>
+          <p class="data-details" *ngIf="nodeInfo?.validatorFailure; else Na">
+            {{ nodeInfo?.validatorFailure }}
+          </p>
+        </div>
+      </div>
+    </div>
+    <ng-template #Na>
+      <p class="data-details">N/A</p>
+    </ng-template>
+  </div>
+</div>
