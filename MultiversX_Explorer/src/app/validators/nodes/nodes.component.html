@@ -48,7 +48,7 @@
       <ng-container matColumnDef="public_key">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Public key</th>
         <td mat-cell *matCellDef="let row">
-          <p class="bls redirect">
+          <p class="bls redirect" (click)="redirectToNodeInfo(row?.bls)">
             <mat-icon *ngIf="row.status == 'waiting'" class="waiting"
               >schedule</mat-icon
             >

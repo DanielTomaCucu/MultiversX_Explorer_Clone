@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { LoadingSpinnerService } from 'src/app/shared/loading-spinner.service';
 import { AccountsDetailsService } from './accounts-details.service';
 
@@ -14,27 +15,38 @@ export class AccountsDetailsComponent {
   accountTokensCount: number = 0;
   stakeAmount: any;
   nftAmount: number = 0;
+  subscription: Subscription;
   isLoading$ = this.loadingSpinnerService.isLoading.asObservable();
   constructor(
     private accountDetailsService: AccountsDetailsService,
     private route: ActivatedRoute,
     private loadingSpinnerService: LoadingSpinnerService
-  ) {}
+  ) {
+    this.subscription = new Subscription();
+  }
   ngOnInit() {
     this.address = this.route.snapshot.paramMap.get('address');
-    this.accountDetailsService
-      .getAccountDetails(this.address)
-      .subscribe((data) => (this.accountDetails = data));
-    this.accountDetailsService
-      .getTokensCount(this.address)
-      .subscribe((data) => (this.accountTokensCount = data));
+    this.subscription.add(
+      this.accountDetailsService
+        .getAccountDetails(this.address)
+        .subscribe((data) => (this.accountDetails = data))
+    );
+    this.subscription.add(
+      this.accountDetailsService
+        .getTokensCount(this.address)
+        .subscribe((data) => (this.accountTokensCount = data))
+    );
 
-    this.accountDetailsService
-      .getStakeAmount(this.address)
-      .subscribe((data) => (this.stakeAmount = data.totalStaked));
-    this.accountDetailsService
-      .getNftCount(this.address)
-      .subscribe((data) => (this.nftAmount = data));
+    this.subscription.add(
+      this.accountDetailsService
+        .getStakeAmount(this.address)
+        .subscribe((data) => (this.stakeAmount = data.totalStaked))
+    );
+    this.subscription.add(
+      this.accountDetailsService
+        .getNftCount(this.address)
+        .subscribe((data) => (this.nftAmount = data))
+    );
   }
 
   copyToClipboard() {
@@ -49,5 +61,8 @@ export class AccountsDetailsComponent {
     selBox.select();
     document.execCommand('copy');
     document.body.removeChild(selBox);
+  }
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }

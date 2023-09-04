@@ -4,6 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { LoadingSpinnerService } from 'src/app/shared/loading-spinner.service';
+import { NodesInfoService } from './nodes-info/nodes-info.service';
 import { NodesService } from './nodes.service';
 
 @Component({
@@ -30,7 +31,8 @@ export class NodesComponent {
     private nodesService: NodesService,
     private loadingSpinnerService: LoadingSpinnerService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private nodesInfoService: NodesInfoService
   ) {
     this.subscription = new Subscription();
   }
@@ -131,6 +133,10 @@ export class NodesComponent {
       queryParams: { ...this.filters, page: page },
       queryParamsHandling: 'merge',
     });
+  }
+  redirectToNodeInfo(bls: string) {
+    this.router.navigate(['/nodes', bls]);
+    this.nodesInfoService.getNodeInfo(bls);
   }
   ngOnDestroy() {
     this.subscription.unsubscribe();

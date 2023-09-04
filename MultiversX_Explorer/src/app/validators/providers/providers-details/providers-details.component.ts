@@ -101,7 +101,9 @@ export class ProvidersDetailsComponent {
     });
   }
 
-  redirectToNode(bls: string) {}
+  redirectToNode(bls: string) {
+    this.router.navigate(['/nodes', bls]);
+  }
 
   toPercentage(value: any): string {
     let percentageValue = (value * 100).toFixed(2);
@@ -113,6 +115,7 @@ export class ProvidersDetailsComponent {
     }
     return `${percentageValue}%`;
   }
+
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }

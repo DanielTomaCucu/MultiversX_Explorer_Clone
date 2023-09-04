@@ -77,6 +77,9 @@ export class QueueComponent {
       queryParamsHandling: 'merge',
     });
   }
+  redirectToNode(bls: string) {
+    this.router.navigate(['/nodes', bls]);
+  }
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }

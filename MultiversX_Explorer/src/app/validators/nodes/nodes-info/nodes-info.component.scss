@@ -1,0 +1,35 @@
+@import url("../../providers/providers-details/providers-details.component.scss");
+
+.address {
+  word-break: break-all;
+  color: aliceblue;
+  span {
+    color: aliceblue;
+  }
+}
+.card {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: flex-end;
+  color: aliceblue;
+  white-space: nowrap;
+  gap: 15px;
+  min-width: 250px;
+}
+.title-card {
+  margin: 0px;
+}
+.header {
+  margin: 20px 0px;
+}
+.copy {
+  width: 15px;
+  height: 15px;
+  font-size: 15px;
+  margin: 0px 0px -3px 3px;
+  color: aliceblue;
+  cursor: pointer;
+}
+.copy:hover {
+  color: #22f7dd;
+}
