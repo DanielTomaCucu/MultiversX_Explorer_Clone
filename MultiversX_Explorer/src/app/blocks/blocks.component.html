@@ -1,1 +1,102 @@
-<p>test!</p>
+<app-network-info></app-network-info>
+<div class="loader-overlay" *ngIf="isLoading$ | async">
+  <mat-spinner></mat-spinner>
+</div>
+<div class="blocks" *ngIf="!(isLoading$ | async)">
+  <div class="header-navigation">
+    <h2 class="header">Blocks</h2>
+    <div class="navigation">
+      <span (click)="prevPage()" [class.disable]="currentFrom == 0">
+        <mat-icon> chevron_left </mat-icon>Prev</span
+      >
+      <span (click)="nextPage()">Next <mat-icon>chevron_right</mat-icon></span>
+    </div>
+  </div>
+  <div class="blocks-list">
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+      <ng-container matColumnDef="block">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Block</th>
+        <td mat-cell *matCellDef="let row">
+          <p class="redirect">{{ row.nonce }}</p>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="age">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Age</th>
+        <td mat-cell *matCellDef="let row">
+          {{ row.timestamp | relativeTime }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="txns">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="txns">
+          Txns
+        </th>
+        <td mat-cell *matCellDef="let row" class="txns">{{ row.txCount }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="shard">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Shard</th>
+        <td mat-cell *matCellDef="let row">
+          <p class="redirect" *ngIf="row.shard < 3; else metachain">
+            Shard {{ row.shard }}
+          </p>
+          <ng-template #metachain>
+            <p class="redirect">Metachain</p></ng-template
+          >
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="size">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Size</th>
+        <td mat-cell *matCellDef="let row">{{ bytesToKB(row.size) }} kB</td>
+      </ng-container>
+      <ng-container matColumnDef="gas_used">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Gas Used</th>
+        <td mat-cell *matCellDef="let row" class="gas-cell">
+          <div class="gas-used">
+            <p>
+              {{ row.gasConsumed | number }} ({{
+                computeGasPercentage(row) | number : "1.1-2"
+              }}%)
+            </p>
+
+            <div class="progress-bar">
+              <div
+                class="progress-filled"
+                [style.width.%]="computeGasPercentage(row)"
+              ></div>
+            </div>
+          </div>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="block_hash">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Block Hash</th>
+        <td mat-cell *matCellDef="let row">
+          <p class="redirect">{{ row.hash | truncateMiddle : 30 }}</p>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="leader">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Leader</th>
+        <td mat-cell *matCellDef="let row">
+          <div class="leader" *ngIf="row?.proposerIdentity; else noIdentity">
+            <img [src]="row?.proposerIdentity?.avatar" />
+            <p class="redirect">
+              {{ row?.proposerIdentity?.name | truncateString : 26 }}
+            </p>
+          </div>
+          <ng-template #noIdentity>
+            <p class="redirect">{{ row.proposer | truncateMiddle : 26 }}</p>
+          </ng-template>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">No data matching the filter</td>
+      </tr>
+    </table>
+  </div>
+</div>
