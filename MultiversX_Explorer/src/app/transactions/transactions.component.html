@@ -1,1 +1,119 @@
-<p>transactions works!</p>
+<app-network-info></app-network-info>
+<div class="transactins">
+  <div class="transactions-list">
+    <h2 class="header">Live Transactions</h2>
+    <div class="table">
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <ng-container matColumnDef="txn_hash">
+          <th mat-header-cell *matHeaderCellDef ID>Txn Hash</th>
+          <td mat-cell *matCellDef="let row">
+            <div class="tx">
+              <mat-icon class="status waiting" *ngIf="row.status == 'pending'"
+                >hourglass_empty</mat-icon
+              >
+              <mat-icon *ngIf="row?.guardianSignature" class="status guard"
+                >shield</mat-icon
+              >
+              <mat-icon *ngIf="row.status == 'fail'" class="status fail"
+                >close</mat-icon
+              >
+              <p class="redirect">{{ row.txHash | truncateMiddle : 20 }}</p>
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="age">
+          <th mat-header-cell *matHeaderCellDef>Age</th>
+          <td mat-cell *matCellDef="let row">
+            {{ row.timestamp | relativeTime }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="shard">
+          <th mat-header-cell *matHeaderCellDef>Shard</th>
+          <td mat-cell *matCellDef="let row" class="shard">
+            <p class="redirect">Shard {{ row.senderShard }}</p>
+            <mat-icon class="shard-arrow">arrow_forward</mat-icon>
+            <p *ngIf="row.receiverShard < 3; else metachain" class="redirect">
+              Shard {{ row.receiverShard }}
+            </p>
+            <ng-template #metachain
+              ><p class="redirect">Metachain</p></ng-template
+            >
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="from">
+          <th mat-header-cell *matHeaderCellDef>From</th>
+          <td mat-cell *matCellDef="let row">
+            <div class="from-cell">
+              <img
+                *ngIf="
+                  row.senderAssets?.name &&
+                  row.senderAssets.tags[1] == 'username'
+                "
+                class="herotag"
+                src="./assets/multiversX-logo.png"
+              />
+              <p class="redirect" *ngIf="row.senderAssets?.name; else address">
+                {{ row.senderAssets.name | truncateString : 16 |removeElrond}}
+              </p>
+              <ng-template #address>
+                <p class="redirect">{{ row.sender | truncateMiddle : 16 }}</p>
+              </ng-template>
+            </div>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="to">
+          <th mat-header-cell *matHeaderCellDef>To</th>
+          <td mat-cell *matCellDef="let row">
+            <div class="from-cell">
+              <img
+                *ngIf="
+                  row.receiverAssets?.name &&
+                  row.receiverAssets.tags[1] === 'username'
+                "
+                class="herotag"
+                src="./assets/multiversX-logo.png"
+              />
+              <mat-icon
+                class="status guard"
+                *ngIf="containsManyQs(row.receiver)"
+                >description</mat-icon
+              >
+              <p
+                class="redirect"
+                *ngIf="row.receiverAssets?.name; else address"
+              >
+                {{ row.receiverAssets.name | truncateString : 16 |removeElrond }}
+              </p>
+              <ng-template #address>
+                <p class="redirect">{{ row.receiver | truncateMiddle : 16 }}</p>
+              </ng-template>
+            </div>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="method">
+          <th mat-header-cell *matHeaderCellDef>Method</th>
+          <td mat-cell *matCellDef="let row">
+            <p class="method" *ngIf="row.action?.name; else transfer">
+              {{ row.action?.name | capitalize | truncateString : 16 }}
+            </p>
+            <ng-template #transfer>
+              <p class="method">
+                {{ row.function | capitalize | truncateString : 16 }}
+              </p>
+            </ng-template>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">No data matching the filter</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

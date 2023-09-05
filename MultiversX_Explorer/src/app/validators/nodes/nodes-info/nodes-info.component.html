@@ -3,6 +3,37 @@
   <mat-spinner></mat-spinner>
 </div>
 <div class="nodeInfo" *ngIf="!(isLoading$ | async)">
+  <div class="provider-details">
+    <div class="general-info-details">
+      <img [src]="providerDetailsSummar?.identityInfo.avatar" />
+      <p class="providerName">{{ providerDetailsSummar?.identityInfo.name }}</p>
+      <mat-icon class="verified">verified</mat-icon>
+      <p class="rank">
+        rank <span>{{ providerDetailsSummar?.identityInfo.rank }}</span>
+      </p>
+    </div>
+    <div class="stake-details">
+      <div class="stake-card">
+        <p class="stake-title">Stake Balance</p>
+        <p class="stake-info-dinamic">
+          {{ providerDetailsSummar?.locked | largeNumber }} EGLD
+        </p>
+      </div>
+      <div class="stake-card">
+        <p class="stake-title">Stake percent</p>
+        <p class="stake-info-dinamic">
+          {{ providerDetailsSummar?.identityInfo?.stakePercent }} %
+        </p>
+      </div>
+      <div class="stake-card">
+        <p class="stake-title">Nodes</p>
+        <p class="stake-info-dinamic">
+          {{ providerDetailsSummar?.numNodes }}
+        </p>
+      </div>
+    </div>
+  </div>
+
   <div class="smart-contract-details">
     <div class="header">
       <p class="header-text">Node Details</p>
