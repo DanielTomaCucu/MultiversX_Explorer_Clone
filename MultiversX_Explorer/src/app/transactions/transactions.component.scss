@@ -1,0 +1,80 @@
+.transactions-list {
+  background-color: #121212;
+  margin: 10px;
+  padding: 16px;
+  border-radius: 20px;
+}
+.header {
+  color: aliceblue;
+  font-weight: 300;
+}
+.table {
+  overflow: scroll;
+}
+table {
+  background: transparent;
+  box-shadow: none;
+}
+td {
+  color: #a3a3a3;
+  white-space: nowrap;
+  padding: 0px 8px;
+}
+th {
+  padding: 0px 8px;
+}
+.shard {
+  display: flex;
+  flex-wrap: nowrap;
+  align-content: center;
+  align-items: center;
+  gap: 7px;
+  .shard-arrow {
+    width: 16px;
+    height: 16px;
+    font-size: 16px;
+  }
+}
+.status {
+  font-size: 14px;
+  width: 14px;
+  height: 14px;
+}
+.waiting {
+  color: #ffd740;
+}
+.guard {
+  color: #22f7de;
+}
+
+.from-cell {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 7px;
+}
+.herotag {
+  width: 13px;
+  height: 13px;
+}
+
+.method {
+  padding: 0px 6px;
+  color: #22c55e;
+  border: 1px solid #22c55e82;
+  border-radius: 5px;
+  font-size: 12px;
+  text-align: center;
+  background: #22c55d0d;
+  width: fit-content;
+}
+.fail {
+  color: #ef4444;
+}
+.tx {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 2px;
+}

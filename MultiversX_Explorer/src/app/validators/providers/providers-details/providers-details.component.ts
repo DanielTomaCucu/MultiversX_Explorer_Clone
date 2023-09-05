@@ -79,7 +79,6 @@ export class ProvidersDetailsComponent {
       .getProviderSmallInfo(this.owner)
       .subscribe((data) => {
         this.providerDetailsSummar = data[0];
-        console.log(data[0]);
       });
   }
   nextPage() {
