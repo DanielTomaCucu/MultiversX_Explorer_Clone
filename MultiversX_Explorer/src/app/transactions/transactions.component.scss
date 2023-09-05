@@ -78,3 +78,28 @@ th {
   align-items: center;
   gap: 2px;
 }
+.header-navigation {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
+}
+.navigation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: nowrap;
+  span {
+    cursor: pointer;
+    color: #a3a3a4;
+    font-size: smaller;
+    mat-icon {
+      margin-bottom: -7px;
+    }
+  }
+  .disable {
+    color: #525252;
+    cursor: default;
+  }
+}

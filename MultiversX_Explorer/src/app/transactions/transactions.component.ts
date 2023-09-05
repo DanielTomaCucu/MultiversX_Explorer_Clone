@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { LoadingSpinnerService } from '../shared/loading-spinner.service';
 import { TransactionsService } from './transactions.service';
 
 @Component({
@@ -9,7 +12,18 @@ import { TransactionsService } from './transactions.service';
 })
 export class TransactionsComponent {
   dataSource!: MatTableDataSource<any>;
-  constructor(private transactionsService: TransactionsService) {}
+  currentFrom: number = 0;
+  itemsSize: number = 25;
+  subscription: Subscription;
+  isLoading$ = this.loadingSpinnerService.isLoading.asObservable();
+  constructor(
+    private transactionsService: TransactionsService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private loadingSpinnerService: LoadingSpinnerService
+  ) {
+    this.subscription = new Subscription();
+  }
   displayedColumns: string[] = [
     'txn_hash',
     'age',
@@ -20,13 +34,49 @@ export class TransactionsComponent {
   ];
 
   ngOnInit() {
-    this.transactionsService.getTransactions().subscribe((data) => {
-      console.log(data);
-      this.dataSource = new MatTableDataSource(data);
-    });
+    this.subscription.add(
+      this.route.queryParams.subscribe((params) => {
+        const page = +params['page'] || 1;
+        this.currentFrom = (page - 1) * this.itemsSize;
+        this.getTransactions();
+      })
+    );
+  }
+
+  getTransactions() {
+    this.subscription.add(
+      this.transactionsService
+        .getTransactions(this.currentFrom, this.itemsSize)
+        .subscribe((data) => {
+          console.log(data);
+          this.dataSource = new MatTableDataSource(data);
+        })
+    );
   }
   containsManyQs(address: string): boolean {
     const pattern = /q{10,}/;
     return pattern.test(address);
+  }
+  nextPage() {
+    const nextPage = this.currentFrom / this.itemsSize + 2;
+    this.updatePage(nextPage);
+  }
+
+  prevPage() {
+    const prevPage = this.currentFrom / this.itemsSize;
+    if (prevPage > 0) {
+      this.updatePage(prevPage);
+    }
+  }
+
+  updatePage(page: number) {
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: { page: page },
+      queryParamsHandling: 'merge',
+    });
+  }
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }

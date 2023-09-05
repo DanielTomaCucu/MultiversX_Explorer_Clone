@@ -1,7 +1,20 @@
 <app-network-info></app-network-info>
-<div class="transactins">
+<div class="loader-overlay" *ngIf="isLoading$ | async">
+  <mat-spinner></mat-spinner>
+</div>
+<div class="transactins" *ngIf="!(isLoading$ | async)">
   <div class="transactions-list">
-    <h2 class="header">Live Transactions</h2>
+    <div class="header-navigation">
+      <h2 class="header">Live Transactions</h2>
+      <div class="navigation">
+        <span (click)="prevPage()" [class.disable]="currentFrom == 0">
+          <mat-icon> chevron_left </mat-icon>Prev</span
+        >
+        <span (click)="nextPage()"
+          >Next <mat-icon>chevron_right</mat-icon></span
+        >
+      </div>
+    </div>
     <div class="table">
       <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
         <ng-container matColumnDef="txn_hash">
@@ -56,7 +69,7 @@
                 src="./assets/multiversX-logo.png"
               />
               <p class="redirect" *ngIf="row.senderAssets?.name; else address">
-                {{ row.senderAssets.name | truncateString : 16 |removeElrond}}
+                {{ row.senderAssets.name | truncateString : 16 | removeElrond }}
               </p>
               <ng-template #address>
                 <p class="redirect">{{ row.sender | truncateMiddle : 16 }}</p>
@@ -85,7 +98,9 @@
                 class="redirect"
                 *ngIf="row.receiverAssets?.name; else address"
               >
-                {{ row.receiverAssets.name | truncateString : 16 |removeElrond }}
+                {{
+                  row.receiverAssets.name | truncateString : 16 | removeElrond
+                }}
               </p>
               <ng-template #address>
                 <p class="redirect">{{ row.receiver | truncateMiddle : 16 }}</p>
