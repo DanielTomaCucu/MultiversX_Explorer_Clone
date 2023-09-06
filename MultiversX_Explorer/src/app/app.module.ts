@@ -47,6 +47,7 @@ import { ValidatorsInfoComponent } from './validators/validators-info/validators
 import { MatMenuModule } from '@angular/material/menu';
 import { IdentitiesComponent } from './validators/validators-info/identities/identities.component';
 import { NodesInfoComponent } from './validators/nodes/nodes-info/nodes-info.component';
+import { TransactionsAccountComponent } from './accounts/accounts-details/transactions-account/transactions-account.component';
 
 @NgModule({
   declarations: [
@@ -76,6 +77,7 @@ import { NodesInfoComponent } from './validators/nodes/nodes-info/nodes-info.com
     ValidatorsInfoComponent,
     IdentitiesComponent,
     NodesInfoComponent,
+    TransactionsAccountComponent,
 
   ],
   imports: [

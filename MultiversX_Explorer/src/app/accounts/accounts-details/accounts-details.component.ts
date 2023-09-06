@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { LoadingSpinnerService } from 'src/app/shared/loading-spinner.service';
 import { AccountsDetailsService } from './accounts-details.service';
+import { TransactionsAccountService } from './transactions-account/transactions-account.service';
 
 @Component({
   selector: 'app-accounts-details',
@@ -17,19 +19,36 @@ export class AccountsDetailsComponent {
   nftAmount: number = 0;
   subscription: Subscription;
   isLoading$ = this.loadingSpinnerService.isLoading.asObservable();
+
+  dataSource!: MatTableDataSource<any>;
   constructor(
     private accountDetailsService: AccountsDetailsService,
     private route: ActivatedRoute,
-    private loadingSpinnerService: LoadingSpinnerService
+    private loadingSpinnerService: LoadingSpinnerService,
+    private transactionsAccount: TransactionsAccountService
   ) {
     this.subscription = new Subscription();
   }
+  displayedColumns: string[] = [
+    'txn_hash',
+    'age',
+    'shard',
+    'from',
+    'to',
+    'method',
+    'value',
+  ];
+
   ngOnInit() {
     this.address = this.route.snapshot.paramMap.get('address');
+    this.getTransactions(this.address);
     this.subscription.add(
       this.accountDetailsService
         .getAccountDetails(this.address)
-        .subscribe((data) => (this.accountDetails = data))
+        .subscribe((data) => {
+          this.accountDetails = data;
+          console.log(data);
+        })
     );
     this.subscription.add(
       this.accountDetailsService
@@ -48,7 +67,12 @@ export class AccountsDetailsComponent {
         .subscribe((data) => (this.nftAmount = data))
     );
   }
-
+  getTransactions(address: string) {
+    this.accountDetailsService.getTransactions(address).subscribe((data) => {
+      console.log(data);
+      this.dataSource = new MatTableDataSource(data);
+    });
+  }
   copyToClipboard() {
     const selBox = document.createElement('textarea');
     selBox.style.position = 'fixed';
