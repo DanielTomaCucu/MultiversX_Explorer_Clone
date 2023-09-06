@@ -67,8 +67,124 @@
       <mat-icon class="icon-account-info">all_out </mat-icon>
       <div class="text-card-info">
         <p>Shard</p>
-        <p class="specific-infi-card">{{ accountDetails?.shard }}</p>
+        <p class="specific-infi-card">Shard {{ accountDetails?.shard }}</p>
       </div>
     </div>
   </div>
+</div>
+
+<div class="tableAllData">
+  <div class="buttonsValidators">
+    <a routerLink="/accounts/" routerLinkActive="active">Transactions</a>
+    <a routerLink="/validators/nodes" routerLinkActive="active">ESDT Tokens</a>
+    <a routerLink="/validators/queue" routerLinkActive="active">NFTs</a>
+    <a routerLink="/validators/statistics" routerLinkActive="active">Staking</a>
+  </div>
+
+  <div class="transactions-table">
+    <div class="table">
+      <table
+        mat-table
+        [dataSource]="dataSource"
+        matSort
+        class="mat-elevation-z8"
+      >
+        <ng-container matColumnDef="txn_hash">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Txn Hash</th>
+          <td mat-cell *matCellDef="let row">
+            <div class="txn">
+            <mat-icon class="status waiting" *ngIf="row.status == 'pending'"
+              >hourglass_empty</mat-icon
+            >
+            <mat-icon *ngIf="row.status == 'fail'" class="status fail"
+              >close</mat-icon
+            >
+            <p class="redirect">{{ row.txHash | truncateMiddle : 20 }}</p></div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="age">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Age</th>
+          <td mat-cell *matCellDef="let row">
+            {{ row.timestamp | relativeTime }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="shard">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Shard</th>
+          <td mat-cell *matCellDef="let row">
+            <div class="shard">
+              <p class="redirect" *ngIf="row.senderShard < 3; else metachain">
+                Shard {{ row.senderShard }}
+              </p>
+              <mat-icon>arrow_forward</mat-icon>
+              <p class="redirect" *ngIf="row.receiverShard < 3; else metachain">
+                Shard {{ row.receiverShard }}
+              </p>
+            </div>
+            <ng-template #metachain>
+              <p class="redirect">Metachain</p>
+            </ng-template>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="from">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>From</th>
+          <td mat-cell *matCellDef="let row">
+            <p class="redirect" *ngIf="row?.senderAssets?.name; else sender">
+              {{ row?.senderAssets?.name }}
+            </p>
+            <ng-template #sender>
+              <p class="redirect">{{ row?.sender | truncateMiddle : 16 }}</p>
+            </ng-template>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="to">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>To</th>
+          <td mat-cell *matCellDef="let row" class="to-column">
+            <mat-icon
+              class="stake"
+              *ngIf="
+                row.receiverAssets?.tags[0] == 'staking' ||
+                row?.action?.category === 'stake'
+              "
+              >description</mat-icon
+            >
+            <p class="redirect" *ngIf="row.receiverAssets?.name; else receiver">
+              {{ row.receiverAssets?.name | truncateString : 18 }}
+            </p>
+            <ng-template #receiver
+              ><p class="redirect">
+                {{ row.receiver | truncateMiddle : 16 }}
+              </p></ng-template
+            >
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="method">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Method</th>
+          <td mat-cell *matCellDef="let row">
+            <p class="method">{{ row.function | truncateString : 18 }}</p>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="value">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Value</th>
+          <td mat-cell *matCellDef="let row">
+            {{ row.value | largeNumber }} EGLD
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">No data matching the filter</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <router-outlet></router-outlet>
 </div>
