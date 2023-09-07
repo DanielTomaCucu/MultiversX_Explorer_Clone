@@ -1,10 +1,11 @@
+import { transition } from '@angular/animations';
 import { Component } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { LoadingSpinnerService } from 'src/app/shared/loading-spinner.service';
 import { AccountsDetailsService } from './accounts-details.service';
-import { TransactionsAccountService } from './transactions-account/transactions-account.service';
+import { EsdtTokensService } from './esdt-tokens/esdt-tokens.service';
 
 @Component({
   selector: 'app-accounts-details',
@@ -19,13 +20,15 @@ export class AccountsDetailsComponent {
   nftAmount: number = 0;
   subscription: Subscription;
   isLoading$ = this.loadingSpinnerService.isLoading.asObservable();
+  public isTransactionsRoute: boolean | undefined;
 
   dataSource!: MatTableDataSource<any>;
   constructor(
     private accountDetailsService: AccountsDetailsService,
     private route: ActivatedRoute,
+    private router: Router,
     private loadingSpinnerService: LoadingSpinnerService,
-    private transactionsAccount: TransactionsAccountService
+    private esdtTokensService: EsdtTokensService
   ) {
     this.subscription = new Subscription();
   }
@@ -39,7 +42,13 @@ export class AccountsDetailsComponent {
     'value',
   ];
 
+  isTransactionRoute(): boolean {
+    const url = this.router.url;
+    return url.startsWith('/accounts/') && url.split('/').length === 3;
+  }
+
   ngOnInit() {
+    this.esdtTokensService.getTokens(this.address)
     this.address = this.route.snapshot.paramMap.get('address');
     this.getTransactions(this.address);
     this.subscription.add(
@@ -47,7 +56,6 @@ export class AccountsDetailsComponent {
         .getAccountDetails(this.address)
         .subscribe((data) => {
           this.accountDetails = data;
-          console.log(data);
         })
     );
     this.subscription.add(
@@ -68,10 +76,11 @@ export class AccountsDetailsComponent {
     );
   }
   getTransactions(address: string) {
-    this.accountDetailsService.getTransactions(address).subscribe((data) => {
-      console.log(data);
-      this.dataSource = new MatTableDataSource(data);
-    });
+    this.subscription.add(
+      this.accountDetailsService.getTransactions(address).subscribe((data) => {
+        this.dataSource = new MatTableDataSource(data);
+      })
+    );
   }
   copyToClipboard() {
     const selBox = document.createElement('textarea');

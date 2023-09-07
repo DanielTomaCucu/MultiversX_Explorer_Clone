@@ -75,13 +75,18 @@
 
 <div class="tableAllData">
   <div class="buttonsValidators">
-    <a routerLink="/accounts/" routerLinkActive="active">Transactions</a>
-    <a routerLink="/validators/nodes" routerLinkActive="active">ESDT Tokens</a>
+    <a [routerLink]="['/accounts', address]" routerLinkActive="active"
+      >Transactions</a
+    >
+    <a [routerLink]="['/accounts', address, 'tokens']" routerLinkActive="active"
+      >ESDT Tokens</a
+    >
+
     <a routerLink="/validators/queue" routerLinkActive="active">NFTs</a>
     <a routerLink="/validators/statistics" routerLinkActive="active">Staking</a>
   </div>
-
-  <div class="transactions-table">
+  <router-outlet></router-outlet>
+  <div class="transactions-table" *ngIf="isTransactionRoute()">
     <div class="table">
       <table
         mat-table
@@ -93,13 +98,14 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Txn Hash</th>
           <td mat-cell *matCellDef="let row">
             <div class="txn">
-            <mat-icon class="status waiting" *ngIf="row.status == 'pending'"
-              >hourglass_empty</mat-icon
-            >
-            <mat-icon *ngIf="row.status == 'fail'" class="status fail"
-              >close</mat-icon
-            >
-            <p class="redirect">{{ row.txHash | truncateMiddle : 20 }}</p></div>
+              <mat-icon class="status waiting" *ngIf="row.status == 'pending'"
+                >hourglass_empty</mat-icon
+              >
+              <mat-icon *ngIf="row.status == 'fail'" class="status fail"
+                >close</mat-icon
+              >
+              <p class="redirect">{{ row.txHash | truncateMiddle : 20 }}</p>
+            </div>
           </td>
         </ng-container>
 
@@ -185,6 +191,4 @@
       </table>
     </div>
   </div>
-
-  <router-outlet></router-outlet>
 </div>

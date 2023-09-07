@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AccountsDetailsComponent } from './accounts/accounts-details/accounts-details.component';
-import { TransactionsAccountComponent } from './accounts/accounts-details/transactions-account/transactions-account.component';
+import { EsdtTokensComponent } from './accounts/accounts-details/esdt-tokens/esdt-tokens.component';
+
 import { AccountsComponent } from './accounts/accounts.component';
 import { AnalyticsComponent } from './analytics/analytics.component';
 import { BlocksComponent } from './blocks/blocks.component';
@@ -30,8 +31,14 @@ const routes: Routes = [
   { path: 'transactions', component: TransactionsComponent },
   { path: 'transactions/:txHash', component: TxHashComponent },
   { path: 'accounts', component: AccountsComponent },
-  {path: 'accounts/details',component:TransactionsAccountComponent},
-  { path: 'accounts/:address', component: AccountsDetailsComponent },
+  {
+    path: 'accounts/:address',
+    component: AccountsDetailsComponent,
+    children: [
+      { path: '', redirectTo: 'some-default-route', pathMatch: 'full' },
+      { path: 'tokens', component: EsdtTokensComponent },
+    ],
+  },
   { path: 'tokens', component: TokensComponent },
   { path: 'tokens/:identifier', component: TokenDetailsComponent },
   { path: 'collections', component: NftsComponent },
