@@ -1,8 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AccountsDetailsComponent } from './accounts/accounts-details/accounts-details.component';
+<<<<<<< HEAD
 import { EsdtTokensComponent } from './accounts/accounts-details/esdt-tokens/esdt-tokens.component';
 
+=======
+import { TransactionsAccountComponent } from './accounts/accounts-details/transactions-account/transactions-account.component';
+>>>>>>> main
 import { AccountsComponent } from './accounts/accounts.component';
 import { AnalyticsComponent } from './analytics/analytics.component';
 import { BlocksComponent } from './blocks/blocks.component';
