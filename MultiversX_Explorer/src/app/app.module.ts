@@ -47,7 +47,9 @@ import { ValidatorsInfoComponent } from './validators/validators-info/validators
 import { MatMenuModule } from '@angular/material/menu';
 import { IdentitiesComponent } from './validators/validators-info/identities/identities.component';
 import { NodesInfoComponent } from './validators/nodes/nodes-info/nodes-info.component';
-import { TransactionsAccountComponent } from './accounts/accounts-details/transactions-account/transactions-account.component';
+import { EsdtTokensComponent } from './accounts/accounts-details/esdt-tokens/esdt-tokens.component';
+import { RouterModule } from '@angular/router';
+
 
 @NgModule({
   declarations: [
@@ -77,8 +79,7 @@ import { TransactionsAccountComponent } from './accounts/accounts-details/transa
     ValidatorsInfoComponent,
     IdentitiesComponent,
     NodesInfoComponent,
-    TransactionsAccountComponent,
-
+    EsdtTokensComponent,
   ],
   imports: [
     BrowserModule,
@@ -92,7 +93,6 @@ import { TransactionsAccountComponent } from './accounts/accounts-details/transa
     MatIconModule,
     LayoutModule,
     MatListModule,
-    AppRoutingModule,
     SharedModule,
     MatTableModule,
     MatInputModule,
@@ -102,6 +102,7 @@ import { TransactionsAccountComponent } from './accounts/accounts-details/transa
     CommonModule,
     MatProgressSpinnerModule,
     MatMenuModule,
+    RouterModule,
   ],
   providers: [
     LoadingSpinnerService,
