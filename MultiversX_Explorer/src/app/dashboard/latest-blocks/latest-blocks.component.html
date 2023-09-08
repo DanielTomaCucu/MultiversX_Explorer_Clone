@@ -8,7 +8,7 @@
     <div
       class="border-container"
       *ngFor="let block of latestBloks"
-      [@listAnimation]
+      [@listAnimation]="{ value: '', params: { enterTransform: isSmallScreen ? 'translateY(-100%)' : 'translateX(-100%)', leaveTransform: isSmallScreen ? 'translateY(100%)' : 'translateX(100%)' } }"
     >
       <mat-card class="card-glow">
         <div class="block-time-nonce">

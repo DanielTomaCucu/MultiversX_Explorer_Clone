@@ -8,9 +8,9 @@ import { LargeNumberPipe } from './largeNumber.pipe';
 import { TruncateMiddlePipe } from './truncate-middle.pipe';
 import { CapitalizePipe } from './capitalize.pipe';
 import { RelativeTimePipe } from './relativeTime.pipe';
-import { LoadingSpinnerService } from './loading-spinner.service';
 import { TruncateStringPipe } from './truncateString.pipe';
 import { RemoveElrondPipe } from './removeElrond.pipe';
+
 
 
 @NgModule({
@@ -24,6 +24,7 @@ import { RemoveElrondPipe } from './removeElrond.pipe';
     RelativeTimePipe,
     TruncateStringPipe,
     RemoveElrondPipe,
+
   ],
   imports: [CommonModule, FormsModule, MatCardModule],
   exports: [
