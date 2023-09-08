@@ -13,6 +13,9 @@
   align-items: stretch;
   gap: 10px;
   overflow: hidden;
+      overflow: hidden;
+    position: relative;
+    min-height: 133px;
 }
 .header-container {
   display: flex;
@@ -76,4 +79,26 @@ mat-icon {
 
 .hash {
   margin: 0px;
+}
+
+@media  screen and (max-width: 550px){
+.cards-blocks {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  gap: 10px;
+  overflow: hidden;
+      flex-direction: column;
+          overflow: hidden;
+    position: relative;min-height: 707px;
+}
+mat-card {
+  background: #171717;
+  color: #a3a3a3;
+  border-radius: 20px;
+  font-weight: 100;
+  font-size: 14px;
+  padding: 5px;
+  min-width: 100%
+}
 }
