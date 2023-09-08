@@ -14,6 +14,7 @@ import { SmallDigits } from './small-digits.pipe';
 
 
 
+
 @NgModule({
   providers: [],
   declarations: [
