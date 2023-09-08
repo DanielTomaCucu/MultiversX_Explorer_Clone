@@ -33,7 +33,7 @@ export class EsdtTokensComponent {
 
     this.subscribe.add(
       this.estdTokensService.getTokens(this.address).subscribe((data) => {
-      
+
         this.tokens = data;
       })
     );
