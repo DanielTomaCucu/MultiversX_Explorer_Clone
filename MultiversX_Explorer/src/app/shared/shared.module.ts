@@ -10,6 +10,8 @@ import { CapitalizePipe } from './capitalize.pipe';
 import { RelativeTimePipe } from './relativeTime.pipe';
 import { TruncateStringPipe } from './truncateString.pipe';
 import { RemoveElrondPipe } from './removeElrond.pipe';
+import { SmallDigits } from './small-digits.pipe';
+
 
 
 
@@ -24,7 +26,7 @@ import { RemoveElrondPipe } from './removeElrond.pipe';
     RelativeTimePipe,
     TruncateStringPipe,
     RemoveElrondPipe,
-
+    SmallDigits,
   ],
   imports: [CommonModule, FormsModule, MatCardModule],
   exports: [
@@ -36,6 +38,7 @@ import { RemoveElrondPipe } from './removeElrond.pipe';
     RelativeTimePipe,
     TruncateStringPipe,
     RemoveElrondPipe,
+    SmallDigits,
   ],
 })
 export class SharedModule {}

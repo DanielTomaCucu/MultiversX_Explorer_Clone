@@ -10,7 +10,7 @@ export class DashboardService {
   private blocksCount = `${environment.baseUrl}/blocks/count`;
   private transactionsCount = `${environment.baseUrl}/transactions/count`;
   private validatorsCount = `${environment.baseUrl}/nodes/count?online=true&type=validator`;
-  private blocks = `${environment.baseUrl}/blocks`;
+
   constructor(private http: HttpClient) {}
 
   getAccountsCounts(): Observable<any> {
@@ -27,7 +27,4 @@ export class DashboardService {
     return this.http.get<any>(this.validatorsCount);
   }
 
-  getBlocks(): Observable<any> {
-    return this.http.get<any>(this.blocks);
-  }
 }

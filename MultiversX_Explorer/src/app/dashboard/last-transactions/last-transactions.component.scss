@@ -13,9 +13,9 @@
   align-items: stretch;
   gap: 15px;
   overflow: hidden;
-  overflow: hidden;
   position: relative;
   min-height: 133px;
+  padding: 10px 0px 0px 10px;
 }
 .header-container {
   display: flex;
@@ -40,7 +40,7 @@
   display: inline-block;
   position: relative;
   border-radius: 1rem;
-  overflow: hidden;
+
   padding: 1px;
   background: linear-gradient(
     to right,
@@ -69,8 +69,9 @@ mat-card {
   flex-wrap: nowrap;
   align-items: center;
   gap: 5px;
+  justify-content: space-between;
 }
-mat-icon {
+.circle {
   color: #5f5f5f;
   width: 5px;
   height: 5px;
@@ -78,7 +79,7 @@ mat-icon {
 }
 
 .hash {
-  margin: 0px;
+  margin: 5px 0px 0px;
 }
 
 @media screen and (max-width: 550px) {
@@ -91,8 +92,8 @@ mat-icon {
     flex-direction: column;
     overflow: hidden;
     position: relative;
-      min-height: 728px;
-    max-height: 728px;
+    min-height: 815px;
+    max-height: 815px;
   }
   mat-card {
     background: #171717;
@@ -105,18 +106,80 @@ mat-icon {
     min-height: 131px;
   }
   .border-container {
-  display: inline-block;
-  position: relative;
-  border-radius: 1rem;
-  overflow: hidden;
-  padding: 1px;
+    display: inline-block;
+    position: relative;
+    border-radius: 1rem;
+    padding: 1px;
+    background: linear-gradient(
+      to right,
+      #00ffea 11%,
+      transparent 86%,
+      transparent 100%,
+      rgba(0, 255, 234, 0) 100%
+    );
+    min-width: 300px;
+    min-height: 149px;
+  }
+}
+.shard {
+  margin: 6px 0px;
+}
+.icon {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  font-size: 14px;
+  background: #171717;
+  border-radius: 50px;
+  border: 1px solid;
+  height: 14px;
+  width: 14px;
+  padding: 4px;
+}
+.success {
+  color: #4ade80;
+}
+.failed {
+  color: #ef4444;
+}
+.waiting {
+  color: #fbbf24;
+}
+.back-success {
   background: linear-gradient(
     to right,
-    #00ffea 11%,
+    #4ade80 11%,
     transparent 86%,
     transparent 100%,
     rgba(0, 255, 234, 0) 100%
   );
-  min-width: 300px;    min-height: 131px;
 }
+.back-waiting {
+  background: linear-gradient(
+    to right,
+    #fbbf24 11%,
+    transparent 86%,
+    transparent 100%,
+    rgba(0, 255, 234, 0) 100%
+  );
+}
+.back-failed {
+  background: linear-gradient(
+    to right,
+    #ef4444 11%,
+    transparent 86%,
+    transparent 100%,
+    rgba(0, 255, 234, 0) 100%
+  );
+}
+.tag {
+  width: 12px;
+  margin: 0px 5px -1px 4px;
+}
+.sc{
+  font-size: 14px;
+    width: 14px;
+    height: 14px;
+    color: #1df7dd;
+    margin: 0px 3px -1px 0px;
 }

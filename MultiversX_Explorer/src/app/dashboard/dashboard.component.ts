@@ -44,10 +44,7 @@ export class DashboardComponent {
         this.validatorsCount = data;
       })
     );
-    this.dasboardService.getBlocks().subscribe((data) => {
-      console.log(data);
-      this.latestBloks = data;
-    });
+
   }
 
   ngOnDestroy() {
