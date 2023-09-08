@@ -1,0 +1,134 @@
+<div class="dashdoard-content">
+  <div class="header-container">
+    <h1 class="header">Last Transactions</h1>
+    <p class="button" (click)="redirectToBlocks()">View All</p>
+  </div>
+
+  <div class="cards-blocks">
+    <div
+      class="border-container"
+      [ngClass]="{
+        'back-success': transaction?.status == 'success',
+        'back-waiting': transaction?.status == 'pending',
+        'back-failed': transaction?.status == 'fail'
+      }"
+      *ngFor="let transaction of latestTransactions"
+      [@listAnimation]="{
+        value: '',
+        params: {
+          enterTransform: isSmallScreen
+            ? 'translateY(-100%)'
+            : 'translateX(-100%)',
+          leaveTransform: isSmallScreen
+            ? 'translateY(100%)'
+            : 'translateX(100%)'
+        }
+      }"
+    >
+      <mat-card class="card-glow">
+        <mat-icon class="icon success" *ngIf="transaction?.status == 'success'"
+          >done</mat-icon
+        >
+        <mat-icon class="icon waiting" *ngIf="transaction?.status == 'pending'"
+          >hourglass_empty
+        </mat-icon>
+        <mat-icon class="icon failed" *ngIf="transaction?.status == 'fail'"
+          >close
+        </mat-icon>
+        <div class="block-time-nonce">
+          <p class="nonce redirect">
+            {{ transaction?.value | smallDigits }} EGLD
+          </p>
+          <p class="time">{{ transaction.timestamp | relativeTime }}</p>
+        </div>
+
+        <mat-card-content class="card-dashboard">
+          <div class="trasactions">
+            <p class="shard">
+              To:
+              <mat-icon class="sc" *ngIf="containsManyQs(transaction?.receiver)"
+                >description</mat-icon
+              >
+              <img
+                *ngIf="transaction?.receiverAssets?.tags[1] === 'username'"
+                class="tag"
+                src="/assets/multiversX-logo.png"
+              />
+              <span
+                class="redirect shard"
+                *ngIf="transaction?.receiverAssets?.name; else identifier"
+                >{{
+                  removeElrond(
+                    transaction?.receiverAssets?.name | truncateString : 18
+                  )
+                }}</span
+              >
+              <ng-template #identifier>
+                <span class="redirect shard">{{
+                  transaction?.receiver | truncateMiddle : 16
+                }}</span>
+              </ng-template>
+            </p>
+
+            <p
+              *ngIf="transaction?.receiverShard < 3; else metachain"
+              class="redirect shard"
+              (click)="redirectToBlocks()"
+            >
+              <mat-icon class="circle">circle</mat-icon> Shard:
+              {{ transaction?.receiverShard }}
+            </p>
+          </div>
+
+          <div class="trasactions">
+            <p class="shard">
+              From:
+              <mat-icon class="sc" *ngIf="containsManyQs(transaction?.provider)"
+                >description</mat-icon
+              >
+              <img
+                *ngIf="transaction?.senderAssets?.tags[1] === 'username'"
+                class="tag"
+                src="/assets/multiversX-logo.png"
+              />
+              <span
+                class="redirect shard"
+                *ngIf="transaction?.senderAssets?.name; else identifierSender"
+                >{{
+                  removeElrond(
+                    transaction?.senderAssets?.name | truncateString : 18
+                  )
+                }}</span
+              >
+              <ng-template #identifierSender>
+                <span class="redirect shard">{{
+                  transaction?.sender | truncateMiddle : 18
+                }}</span>
+              </ng-template>
+            </p>
+
+            <p
+              *ngIf="transaction?.senderShard < 3; else metachain"
+              class="redirect shard"
+              (click)="redirectToBlocks()"
+            >
+              <mat-icon class="circle">circle</mat-icon> Shard:
+              {{ transaction?.senderShard }}
+            </p>
+          </div>
+          <ng-template #metachain
+            ><p class="redirect shard" (click)="redirectToBlocks()" Metachain>
+              Metachain
+            </p></ng-template
+          >
+          <p class="hash">
+            Hash:
+            <span class="redirect">{{
+              transaction.txHash | truncateMiddle : 27
+            }}</span>
+          </p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

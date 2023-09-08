@@ -51,6 +51,7 @@ import { EsdtTokensComponent } from './accounts/accounts-details/esdt-tokens/esd
 import { RouterModule } from '@angular/router';
 import { AccountNftsComponent } from './accounts/accounts-details/account-nfts/account-nfts.component';
 import { LatestBlocksComponent } from './dashboard/latest-blocks/latest-blocks.component';
+import { LastTransactionsComponent } from './dashboard/last-transactions/last-transactions.component';
 
 
 @NgModule({
@@ -84,6 +85,7 @@ import { LatestBlocksComponent } from './dashboard/latest-blocks/latest-blocks.c
     EsdtTokensComponent,
     AccountNftsComponent,
     LatestBlocksComponent,
+    LastTransactionsComponent,
   ],
   imports: [
     BrowserModule,
