@@ -81,9 +81,9 @@
     <a [routerLink]="['/accounts', address, 'tokens']" routerLinkActive="active"
       >ESDT Tokens</a
     >
-
-    <a routerLink="/validators/queue" routerLinkActive="active">NFTs</a>
-    <a routerLink="/validators/statistics" routerLinkActive="active">Staking</a>
+    <a [routerLink]="['/accounts', address, 'nfts']" routerLinkActive="active"
+      >NFTs</a
+    >
   </div>
   <router-outlet></router-outlet>
   <div class="transactions-table" *ngIf="isTransactionRoute()">

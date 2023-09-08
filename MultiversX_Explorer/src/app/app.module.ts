@@ -49,6 +49,8 @@ import { IdentitiesComponent } from './validators/validators-info/identities/ide
 import { NodesInfoComponent } from './validators/nodes/nodes-info/nodes-info.component';
 import { EsdtTokensComponent } from './accounts/accounts-details/esdt-tokens/esdt-tokens.component';
 import { RouterModule } from '@angular/router';
+import { AccountNftsComponent } from './accounts/accounts-details/account-nfts/account-nfts.component';
+import { LatestBlocksComponent } from './dashboard/latest-blocks/latest-blocks.component';
 
 
 @NgModule({
@@ -80,6 +82,8 @@ import { RouterModule } from '@angular/router';
     IdentitiesComponent,
     NodesInfoComponent,
     EsdtTokensComponent,
+    AccountNftsComponent,
+    LatestBlocksComponent,
   ],
   imports: [
     BrowserModule,

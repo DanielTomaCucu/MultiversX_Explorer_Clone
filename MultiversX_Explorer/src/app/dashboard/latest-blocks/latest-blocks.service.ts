@@ -6,10 +6,10 @@ import { environment } from 'src/enviroments/enviroment';
 @Injectable({
   providedIn: 'root',
 })
-export class EsdtTokensService {
-  private tokens = `${environment.baseUrl}/accounts`;
+export class LatestBlocksService {
+  private blocks = `${environment.baseUrl}/blocks?size=5`;
   constructor(private http: HttpClient) {}
-  getTokens(address: string): Observable<any> {
-    return this.http.get<any>(`${this.tokens}/${address}/tokens`);
+  getBlocks(): Observable<any> {
+    return this.http.get<any>(this.blocks);
   }
 }

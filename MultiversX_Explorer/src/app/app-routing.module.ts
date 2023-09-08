@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AccountNftsComponent } from './accounts/accounts-details/account-nfts/account-nfts.component';
 import { AccountsDetailsComponent } from './accounts/accounts-details/accounts-details.component';
 import { EsdtTokensComponent } from './accounts/accounts-details/esdt-tokens/esdt-tokens.component';
 
@@ -35,8 +36,9 @@ const routes: Routes = [
     path: 'accounts/:address',
     component: AccountsDetailsComponent,
     children: [
-      { path: '', redirectTo: 'some-default-route', pathMatch: 'full' },
+      { path: '', redirectTo: '', pathMatch: 'full' },
       { path: 'tokens', component: EsdtTokensComponent },
+      { path: 'nfts', component: AccountNftsComponent },
     ],
   },
   { path: 'tokens', component: TokensComponent },

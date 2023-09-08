@@ -1,20 +1,20 @@
 .dashdoard-content {
   background-color: #000;
-      margin: 1vh 10px;
+  margin: 1vh 10px;
   border-radius: 20px;
 
   padding: 20px;
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 
-    gap: 20px;
+  gap: 20px;
 }
 .cards-content {
-   display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 20px;
-    width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
+  width: 100%;
 }
 .header-dashboard {
   color: #fff;
@@ -22,7 +22,7 @@
   font-size: xx-large;
 }
 mat-card {
-  background:#111212;
+  background: #111212;
   border-radius: 20px;
   flex: 1;
 }
@@ -45,4 +45,18 @@ p {
   font-weight: 400;
   font-size: xx-large;
   margin: 6px 0px 0px;
+}
+.cards-blocks {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  gap: 15px;
+  overflow: hidden;
+
+  .block-time-nonce {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
 }
