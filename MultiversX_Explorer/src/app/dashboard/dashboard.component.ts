@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { LoadingSpinnerService } from '../shared/loading-spinner.service';
 import { DashboardService } from './dashboard.service';
 
@@ -15,6 +15,7 @@ export class DashboardComponent {
   validatorsCount: any;
   subsciptions: Subscription;
   isLoading$ = this.loadingSpinnerService.isLoading.asObservable();
+  latestBloks: any;
   constructor(
     private dasboardService: DashboardService,
     private loadingSpinnerService: LoadingSpinnerService
@@ -43,6 +44,10 @@ export class DashboardComponent {
         this.validatorsCount = data;
       })
     );
+    this.dasboardService.getBlocks().subscribe((data) => {
+      console.log(data);
+      this.latestBloks = data;
+    });
   }
 
   ngOnDestroy() {

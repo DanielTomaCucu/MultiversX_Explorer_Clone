@@ -1,0 +1,16 @@
+<div class="loader-overlay" *ngIf="isLoading$ | async">
+  <mat-spinner></mat-spinner>
+</div>
+<div class="nfts-list" *ngIf="!(isLoading$ | async)">
+  <div class="nft-item" *ngFor="let nft of accountNfts">
+    <p (click)="redirectToCollection(nft?.collection)" class="redirect coll">{{ nft?.collection }}</p>
+    <div class="identifier">
+      <p *ngIf="nft?.balance">{{ nft?.balance }}</p>
+      <p (click)="redirectToNft(nft.identifier)" class="redirect">{{ nft?.identifier }}</p>
+      <p class='p-collection p-nft' *ngIf="nft.type == 'NonFungibleESDT'">NFT</p>
+
+      <p  class='p-collection p-sft' *ngIf="nft.type == 'SemiFungibleESDT'">SFT</p>
+    </div>
+  </div>
+</div>
+

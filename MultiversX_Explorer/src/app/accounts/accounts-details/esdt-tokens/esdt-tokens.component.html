@@ -1,7 +1,14 @@
-<div class="tokens-list">
+<div class="loader-overlay" *ngIf="isLoading$ | async">
+  <mat-spinner></mat-spinner>
+</div>
+<div class="tokens-list" *ngIf="!(isLoading$ | async)">
   <div class="token-item" *ngFor="let token of tokens">
-    <p class="name" *ngIf=" token.assets?.name ;else name">{{ token.assets?.name }}</p>
-    <ng-template #name><p class="name">{{token.name}}</p></ng-template>
+    <p class="name" *ngIf="token.assets?.name; else name">
+      {{ token.assets?.name }}
+    </p>
+    <ng-template #name
+      ><p class="name">{{ token.name }}</p></ng-template
+    >
     <div class="token-price">
       <p>
         {{ token.balance | largeNumber }}
@@ -9,13 +16,18 @@
           ( {{ token.valueUsd | number : "1.1-4" }} $)</span
         >
       </p>
-      <div class="token-identifier redirect" *ngIf="token?.assets?.svgUrl; else identifier">
+      <div
+        class="token-identifier redirect"
+        *ngIf="token?.assets?.svgUrl; else identifier"
+      >
         <img [src]="token?.assets?.svgUrl" />
-        <p>{{ token?.ticker }}</p>
+        <p (click)="redirectToToken(token.identifier)">{{ token?.ticker }}</p>
       </div>
 
       <ng-template #identifier>
-        <p class="redirect">{{ token.identifier }}</p>
+        <p (click)="redirectToToken(token.identifier)" class="redirect">
+          {{ token.identifier }}
+        </p>
       </ng-template>
     </div>
   </div>

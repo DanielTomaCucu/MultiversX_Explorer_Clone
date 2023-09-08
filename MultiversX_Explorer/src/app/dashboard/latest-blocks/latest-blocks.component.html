@@ -1,0 +1,36 @@
+<div class="dashdoard-content">
+  <div class="header-container">
+    <h1 class="header">Blocks</h1>
+    <p class="button" (click)="redirectToBlocks()">View All</p>
+  </div>
+
+  <div class="cards-blocks">
+    <div
+      class="border-container"
+      *ngFor="let block of latestBloks"
+      [@listAnimation]
+    >
+      <mat-card class="card-glow">
+        <div class="block-time-nonce">
+          <p class="nonce redirect">{{ block.nonce }}</p>
+          <p class="time">{{ block.timestamp | relativeTime }}</p>
+        </div>
+        <mat-card-content class="card-dashboard">
+          <div class="trasactions">
+            <p>
+              Transactions: <span class="redirect">{{ block.txCount }}</span>
+            </p>
+            <mat-icon>circle</mat-icon>
+            <p class="redirect" (click)="redirectToBlocks()">
+              Shard: {{ block.shard }}
+            </p>
+          </div>
+          <p class="hash">
+            Hash:
+            <span class="redirect">{{ block.hash | truncateMiddle : 20 }}</span>
+          </p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>
