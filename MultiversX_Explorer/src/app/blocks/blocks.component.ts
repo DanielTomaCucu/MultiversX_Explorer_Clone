@@ -50,10 +50,12 @@ export class BlocksComponent {
       this.blocksService
         .getBlocks(this.currentFrom, this.itemsSize)
         .subscribe((data) => {
-          console.log(data);
           this.dataSource = new MatTableDataSource(data);
         })
     );
+  }
+  redirectToBlocks() {
+    this.router.navigate(['transactions']);
   }
   bytesToKB(bytes: number, decimalPlaces: number = 2): number {
     const result = bytes * 0.001;

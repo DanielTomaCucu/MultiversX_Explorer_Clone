@@ -68,11 +68,11 @@
                 class="herotag"
                 src="./assets/multiversX-logo.png"
               />
-              <p class="redirect" *ngIf="row.senderAssets?.name; else address">
+              <p  (click)="getAddress(row.sender )" class="redirect" *ngIf="row.senderAssets?.name; else address">
                 {{ row.senderAssets.name | truncateString : 16 | removeElrond }}
               </p>
               <ng-template #address>
-                <p class="redirect">{{ row.sender | truncateMiddle : 16 }}</p>
+                <p  (click)="getAddress(row.sender )" class="redirect">{{ row.sender | truncateMiddle : 16 }}</p>
               </ng-template>
             </div>
           </td>
@@ -94,7 +94,7 @@
                 *ngIf="containsManyQs(row.receiver)"
                 >description</mat-icon
               >
-              <p
+              <p  (click)="getAddress(row.receiver )"
                 class="redirect"
                 *ngIf="row.receiverAssets?.name; else address"
               >
@@ -103,7 +103,7 @@
                 }}
               </p>
               <ng-template #address>
-                <p class="redirect">{{ row.receiver | truncateMiddle : 16 }}</p>
+                <p  (click)="getAddress(row.receiver )" class="redirect">{{ row.receiver | truncateMiddle : 16 }}</p>
               </ng-template>
             </div>
           </td>

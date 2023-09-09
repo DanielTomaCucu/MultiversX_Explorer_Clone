@@ -62,7 +62,6 @@ const routes: Routes = [
   { path: 'identities/:name', component: IdentitiesComponent },
   { path: 'providers/:address', component: ProvidersDetailsComponent },
   { path: 'nodes/:bls', component: NodesInfoComponent },
-  { path: 'analytics', component: AnalyticsComponent },
 ];
 
 @NgModule({
