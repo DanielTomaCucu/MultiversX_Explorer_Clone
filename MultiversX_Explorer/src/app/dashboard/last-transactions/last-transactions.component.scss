@@ -92,8 +92,8 @@ mat-card {
     flex-direction: column;
     overflow: hidden;
     position: relative;
-    min-height: 815px;
-    max-height: 815px;
+    min-height: 830px;
+    max-height: 830px;
   }
   mat-card {
     background: #171717;
@@ -103,7 +103,7 @@ mat-card {
     font-size: 14px;
     padding: 5px;
     min-width: 100%;
-    min-height: 131px;
+    min-height: inherit;
   }
   .border-container {
     display: inline-block;
@@ -118,7 +118,7 @@ mat-card {
       rgba(0, 255, 234, 0) 100%
     );
     min-width: 300px;
-    min-height: 149px;
+    min-height: 150px;
   }
 }
 .shard {
