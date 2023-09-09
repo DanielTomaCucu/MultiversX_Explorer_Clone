@@ -12,8 +12,9 @@ Data Exploration: Dive deep into blockchain data, visualizing transactions, bloc
 Responsive Design: Optimized for various screen sizes ensuring a smooth user experience across devices.
 Rate Limit Handling: The application is designed to handle API rate limits gracefully, ensuring data integrity and user feedback.
 
-
+# Purpose
+This project was developed as a hands-on exercise to learn more about integrating third-party APIs into Angular applications, as well as refining skills in HTML and SCSS.
 
 All the Apis from MultiversX: https://api.multiversx.com/
 
-The project can be found on: https://multiversx-explorer.vercel.app/dashboard
+The project can be found here: https://multiversx-explorer.vercel.app/dashboard
