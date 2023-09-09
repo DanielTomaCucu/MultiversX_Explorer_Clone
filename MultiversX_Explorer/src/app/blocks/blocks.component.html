@@ -38,11 +38,11 @@
       <ng-container matColumnDef="shard">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Shard</th>
         <td mat-cell *matCellDef="let row">
-          <p class="redirect" *ngIf="row.shard < 3; else metachain">
+          <p (click)="redirectToBlocks()" class="redirect" *ngIf="row.shard < 3; else metachain">
             Shard {{ row.shard }}
           </p>
           <ng-template #metachain>
-            <p class="redirect">Metachain</p></ng-template
+            <p (click)="redirectToBlocks()"class="redirect">Metachain</p></ng-template
           >
         </td>
       </ng-container>

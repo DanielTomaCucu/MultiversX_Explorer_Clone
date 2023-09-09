@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
+import { AccountsDetailsService } from '../accounts/accounts-details/accounts-details.service';
 import { LoadingSpinnerService } from '../shared/loading-spinner.service';
 import { TransactionsService } from './transactions.service';
 
@@ -20,7 +21,8 @@ export class TransactionsComponent {
     private transactionsService: TransactionsService,
     private router: Router,
     private route: ActivatedRoute,
-    private loadingSpinnerService: LoadingSpinnerService
+    private loadingSpinnerService: LoadingSpinnerService,
+    private accountDetailsService:AccountsDetailsService
   ) {
     this.subscription = new Subscription();
   }
@@ -48,7 +50,6 @@ export class TransactionsComponent {
       this.transactionsService
         .getTransactions(this.currentFrom, this.itemsSize)
         .subscribe((data) => {
-          console.log(data);
           this.dataSource = new MatTableDataSource(data);
         })
     );
@@ -68,7 +69,10 @@ export class TransactionsComponent {
       this.updatePage(prevPage);
     }
   }
-
+  getAddress(address: any): Observable<any> {
+    this.router.navigate(['/accounts', address]);
+    return this.accountDetailsService.getAccountDetails(address);
+  }
   updatePage(page: number) {
     this.router.navigate([], {
       relativeTo: this.route,

@@ -68,7 +68,6 @@ export class ProvidersDetailsComponent {
       this.providerDetailsService
         .getProvidersNodes(addr, this.currentFrom, this.itemsSize)
         .subscribe((data) => {
-          console.log(data);
           this.dataSource = new MatTableDataSource(data);
           this.dataSource.sort = this.sort;
         })

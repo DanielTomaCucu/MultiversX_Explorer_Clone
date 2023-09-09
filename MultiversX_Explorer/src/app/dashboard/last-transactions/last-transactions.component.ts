@@ -70,7 +70,7 @@ export class LastTransactionsComponent {
   }
 
   redirectToBlocks() {
-    this.router.navigate(['blocks']);
+    this.router.navigate(['transactions']);
   }
   containsManyQs(address: string): boolean {
     const pattern = /q{10,}/;
