@@ -2,6 +2,8 @@
 This project is a minimalistic replica of the MultiversX Explorer, leveraging APIs provided by MultiversX to visualize and navigate blockchain data.
 
 # Overview
+![Screenshot 2023-10-31 at 17 50 42](https://github.com/DanielTomaCucu/MultiversX_Explorer_Clone/assets/61708051/d8c9472e-d817-41f6-918e-f79e5b3ef11d)
+
 The application fetches and displays data by making HTTP requests to the MultiversX APIs. Users can explore blockchain data in a manner similar to the native MultiversX Explorer.
 
 # Performance Considerations
